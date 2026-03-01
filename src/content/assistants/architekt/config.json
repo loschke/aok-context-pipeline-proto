@@ -1,0 +1,11 @@
+{
+  "name": "Architekt",
+  "emoji": "🏗️",
+  "description": "Technische Entscheidungen: Retrieval-Strategie, Storage-Optionen, Skalierungsplanung fuer das Assistenten-System.",
+  "suggestions": [
+    "Welche Retrieval-Strategie passt fuer den aktuellen Prototyp?",
+    "Wie funktioniert das 3-Ebenen-Modell?",
+    "Was muss sich aendern, wenn wir auf 20 Cluster skalieren?",
+    "Full Context Loading vs. MCP vs. Vector DB — was wann?"
+  ]
+}

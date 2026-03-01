@@ -1,7 +1,7 @@
 {
-  "name": "Kompass",
+  "name": "Verfassungs-Check",
   "emoji": "🧭",
-  "description": "AOK-Gesundheitskommunikation — prueft gegen die Assistenten-Verfassung und beratet zu Tonalitaet.",
+  "description": "Prueft Texte gegen die AOK-Assistenten-Verfassung: 5 Kernwerte, 5 Hard Constraints, Kommunikationsregeln.",
   "suggestions": [
     "Pruefe diesen Baustein-Text gegen die Verfassung",
     "Welche Hard Constraints gelten fuer Pflegethemen?",

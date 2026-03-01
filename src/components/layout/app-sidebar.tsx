@@ -9,7 +9,6 @@ import {
 import { SidebarLogo } from "./sidebar-logo"
 import { AppSwitcher } from "./app-switcher"
 import { NavModules } from "./nav-modules"
-import { NavSecondary } from "./nav-secondary"
 
 export async function AppSidebar() {
   return (
@@ -25,7 +24,6 @@ export async function AppSidebar() {
       <SidebarSeparator />
       <SidebarContent>
         <NavModules />
-        <NavSecondary />
       </SidebarContent>
     </Sidebar>
   )

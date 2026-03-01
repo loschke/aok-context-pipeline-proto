@@ -44,12 +44,14 @@ interface ArtifactState {
 
 interface AssistantChatProps {
   experts: ExpertConfig[]
+  initialExpert?: string
 }
 
-export function AssistantChat({ experts }: AssistantChatProps) {
-  const [expertSlug, setExpertSlug] = useState<string>(
-    assistantConfig.defaultExpert
-  )
+export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
+  const resolvedInitial = initialExpert && experts.some((e) => e.slug === initialExpert)
+    ? initialExpert
+    : assistantConfig.defaultExpert
+  const [expertSlug, setExpertSlug] = useState<string>(resolvedInitial)
   const [input, setInput] = useState("")
   const [messageCount, setMessageCount] = useState(0)
   const [artifact, setArtifact] = useState<ArtifactState | null>(null)

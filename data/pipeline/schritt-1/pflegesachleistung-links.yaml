@@ -1,0 +1,45 @@
+quell_url: https://www.deine-gesundheitswelt.de/krankheit-behandlung-und-pflege/pflegesachleistungen
+crawl_datum: "2026-03-01"
+
+links:
+  inhaltlich:
+    - url: /krankheit-behandlung-und-pflege/entlastungsbetrag
+      linktext: "Entlastungsbetrag"
+      kontext: "FAQ – Pflegegrad 1 kann Pflegedienst ueber Entlastungsbetrag (131 Euro) nutzen"
+    - url: https://pflege.sachsen-anhalt.de/angebote-zur-unterstuetzung-in-der-pflege-selbsthilfe/uebersicht-der-angebote-zur-unterstuetzung-im-alltag-im-land-sachsen-anhalt/
+      linktext: "anerkannte Angebote zur Unterstützung im Alltag"
+      kontext: "FAQ – Bis zu 40% Pflegesachleistung fuer Alltagsunterstuetzung umwidmbar"
+
+  redaktionell:
+    - url: /service/pflegesuche
+      linktext: "Pflegedienst-Navigator"
+      kontext: "Wussten Sie schon-Block – Hilfe bei Pflegedienst-Suche"
+    - url: /krankheit-behandlung-und-pflege/kombinationsleistung
+      linktext: "Kombinationsleistung"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/hausnotrufsystem
+      linktext: "Hausnotrufsystem"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/technische-pflegehilfsmittel
+      linktext: "Technische Pflegehilfsmittel"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/patientenverfuegung
+      linktext: "Patientenverfügung"
+      kontext: "Gut zu wissen-Block (verwandt, aber andere Kategorie)"
+    - url: /krankheit-behandlung-und-pflege/pfleglicher-umgang-mit-hilfsmitteln
+      linktext: "Pfleglicher Umgang mit Hilfsmitteln"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/infektion-mit-mykoplasmen
+      linktext: "Infektion mit Mykoplasmen"
+      kontext: "Gut zu wissen-Block (kein Pflege-Bezug, allgemein Gesundheit)"
+
+  service:
+    - url: https://gk.deine-gesundheitswelt.de/mein-formularcenter/formular?formId=SAN-09-002
+      linktext: "Meine Gesundheitswelt"
+      kontext: "Online-Antrag auf Pflegeleistungen"
+    - url: https://gk.deine-gesundheitswelt.de/mein-formularcenter/formular?formId=SAN-09-008
+      linktext: "Meine Gesundheitswelt"
+      kontext: "Online-Antrag Umwidmung Pflegesachleistung"
+    - url: /service/pflegedienstsuche/pflegedienstsuche-ergebnisseite
+      linktext: "Pflegedienstsuche im AOK-Gesundheitsnavigator"
+      kontext: "FAQ – Suche nach zugelassenen Pflege- und Betreuungsdiensten"

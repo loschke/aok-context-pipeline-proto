@@ -1,7 +1,7 @@
 {
-  "name": "Pipeline-Experte",
+  "name": "Pipeline-Methodik",
   "emoji": "🔧",
-  "description": "Content-to-Context Methodik — hilft bei Extraktion, Baustein-Design und Pipeline-Schritten.",
+  "description": "Methodik-Hilfe fuer die 8 Pipeline-Schritte: Extraktion, Typisierung, Taxonomie, Kontext-Anreicherung.",
   "suggestions": [
     "Wie strukturiere ich einen Erklaerungsbaustein?",
     "Zeig mir ein Frontmatter-Beispiel fuer einen Pflege-Baustein",

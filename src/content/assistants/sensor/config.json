@@ -1,7 +1,7 @@
 {
-  "name": "Sensor",
+  "name": "Intent-Analyse",
   "emoji": "📡",
-  "description": "Intent-Erkennung — versteht die 7 Kernintentionen und hilft bei zielgruppen-gerechter Kommunikation.",
+  "description": "Ordnet Nutzeranfragen den 7 Kernintentionen zu und empfiehlt passende Antwort-Strategien.",
   "suggestions": [
     "Welche der 7 Kernintentionen passt zu dieser Nutzeranfrage?",
     "Wie unterscheide ich Akute Sorge von Frischer Diagnose?",

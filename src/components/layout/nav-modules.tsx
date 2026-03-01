@@ -14,6 +14,10 @@ import {
 import { primaryModules } from "@/config/navigation"
 import { cn } from "@/lib/utils"
 
+function getBasePath(url: string) {
+  return url.split("?")[0]
+}
+
 export function NavModules() {
   const pathname = usePathname()
   const { state } = useSidebar()
@@ -24,7 +28,7 @@ export function NavModules() {
       <SidebarGroupLabel className="micro-label">Module</SidebarGroupLabel>
       <SidebarMenu>
         {primaryModules.map((item) => {
-          const isActive = pathname === item.url
+          const isActive = pathname === getBasePath(item.url)
 
           // Collapsed: Compact icon button with tooltip
           if (isCollapsed) {
@@ -33,6 +37,20 @@ export function NavModules() {
                 <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
                   <Link href={item.url}>
                     <item.icon className="size-4 text-primary" />
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )
+          }
+
+          // Compact variant: Single-line with icon + title
+          if (item.variant === "compact") {
+            return (
+              <SidebarMenuItem key={item.url}>
+                <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
+                  <Link href={item.url}>
+                    <item.icon className="size-4 text-primary" />
+                    <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

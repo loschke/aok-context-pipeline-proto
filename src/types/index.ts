@@ -15,6 +15,8 @@ export interface ModuleItem extends NavItem {
   description: string
   /** Slug fuer Chat-Kontext-Dateien in content/guides/<guide>/modules/<slug>.md */
   chatContext?: string
+  /** compact = einzeilige Zeile ohne Description-Card */
+  variant?: "compact"
 }
 
 export interface AppLink {

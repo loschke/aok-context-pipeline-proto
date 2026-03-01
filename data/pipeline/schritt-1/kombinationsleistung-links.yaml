@@ -1,0 +1,39 @@
+quell_url: https://www.deine-gesundheitswelt.de/krankheit-behandlung-und-pflege/kombinationsleistung
+crawl_datum: "2026-03-01"
+
+links:
+  inhaltlich: []
+    # Pflegegeld und Pflegesachleistung werden im Text namentlich erwaehnt,
+    # aber nicht verlinkt. Die inhaltliche Beziehung ist trotzdem gegeben
+    # und wird in Schritt 7 als Relation erfasst.
+
+  redaktionell:
+    - url: /service/pflegesuche
+      linktext: "unser Pflegedienstnavigator"
+      kontext: "Wussten Sie schon-Block – Hilfe bei Pflegedienst-Suche"
+    - url: /krankheit-behandlung-und-pflege/hausnotrufsystem
+      linktext: "Hausnotrufsystem"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/technische-pflegehilfsmittel
+      linktext: "Technische Pflegehilfsmittel"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/kurzzeitpflege
+      linktext: "Kurzzeitpflege"
+      kontext: "Gut zu wissen-Block"
+    - url: /krankheit-behandlung-und-pflege/kaelteallergie
+      linktext: "Kälteallergie"
+      kontext: "Gut zu wissen-Block (kein Pflege-Bezug, allgemein Gesundheit)"
+    - url: /krankheit-behandlung-und-pflege/sonnenallergie
+      linktext: "Sonnenallergie"
+      kontext: "Gut zu wissen-Block (kein Pflege-Bezug, allgemein Gesundheit)"
+    - url: /krankheit-behandlung-und-pflege/e-rezepte-einloesen
+      linktext: "E-Rezept einlösen"
+      kontext: "Gut zu wissen-Block (kein Pflege-Bezug, allgemein Gesundheit)"
+
+  service:
+    - url: https://gk.deine-gesundheitswelt.de/mein-formularcenter/formular?formId=SAN-09-002
+      linktext: "Antrag auf Leistungen der Pflegeversicherung"
+      kontext: "Online-Antrag Pflegesachleistung (Kombinationsleistung)"
+    - url: https://pflege.aok.de/
+      linktext: "Familiencoach Pflege"
+      kontext: "Externes Tool fuer pflegende Angehoerige, psychische Entlastung"

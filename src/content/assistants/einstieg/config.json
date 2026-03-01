@@ -1,0 +1,11 @@
+{
+  "name": "SAVA Einstieg",
+  "emoji": "💡",
+  "description": "Fuer Stakeholder und Entscheider. Erklaert warum der Assistent mehr braucht als ChatGPT und eine Website.",
+  "suggestions": [
+    "Warum reicht ChatGPT nicht fuer eine Krankenkasse?",
+    "Was sind die 4 Elemente des Assistenten?",
+    "Zeig mir ein Beispiel: Wie beantwortet der Assistent eine Pflege-Frage?",
+    "Was ist der Unterschied zwischen Website-Content und Assistenten-Wissen?"
+  ]
+}

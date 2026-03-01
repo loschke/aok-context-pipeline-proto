@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Settings } from "lucide-react"
+import { BotMessageSquare } from "lucide-react"
 
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
@@ -28,13 +28,13 @@ export function AppHeader({ user }: AppHeaderProps) {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" size="icon" className="size-8 text-primary-foreground hover:bg-white/15 hover:text-primary-foreground" asChild>
-              <Link href="/settings">
-                <Settings className="size-4" />
-                <span className="sr-only">Einstellungen</span>
+              <Link href="/assistant">
+                <BotMessageSquare className="size-4" />
+                <span className="sr-only">SAVA Experten</span>
               </Link>
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Einstellungen</TooltipContent>
+          <TooltipContent>SAVA Experten</TooltipContent>
         </Tooltip>
         <NavUser user={user} />
       </div>

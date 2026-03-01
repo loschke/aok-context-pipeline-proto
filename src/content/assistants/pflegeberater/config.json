@@ -1,0 +1,11 @@
+{
+  "name": "Pflegeberatung (Demo)",
+  "emoji": "💬",
+  "description": "Live-Demo des Endprodukts. Beantwortet Pflege-Fragen wie der fertige AOK-Assistent — fuer Praesentationen und Validierung.",
+  "suggestions": [
+    "Meine Mutter wird pflegebeduerftig. Wo fange ich an?",
+    "Was ist der Unterschied zwischen Pflegegeld und Sachleistung?",
+    "Welche Hilfsmittel bezahlt die Pflegekasse?",
+    "Ich pflege meinen Vater zu Hause und bin erschoepft. Was kann ich tun?"
+  ]
+}

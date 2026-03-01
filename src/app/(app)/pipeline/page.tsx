@@ -1,7 +1,13 @@
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+
 import { getUser } from "@/lib/auth"
+import { listExperts } from "@/lib/assistant/list-experts"
+import { ExpertOverview } from "@/components/assistant/expert-overview"
 
 export default async function PipelinePage() {
   const user = await getUser()
+  const experts = await listExperts()
   const displayName = user?.name || user?.email || "dort"
 
   return (
@@ -45,6 +51,27 @@ export default async function PipelinePage() {
           </p>
         </div>
       </div>
+
+      {experts.length > 0 && (
+        <div className="mt-12">
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <h2 className="text-lg font-bold tracking-tight">SAVA Experten</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {experts.length} Assistenten fuer Methodik, Qualitaetssicherung, Demo und Onboarding.
+              </p>
+            </div>
+            <Link
+              href="/assistant"
+              className="group flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+            >
+              Alle oeffnen
+              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+          <ExpertOverview experts={experts} />
+        </div>
+      )}
     </div>
   )
 }
