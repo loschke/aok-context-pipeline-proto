@@ -326,6 +326,102 @@
 }
 
 /* ═══════════════════════════════════════
+   Pipeline Prose Typography
+   Scope: className="pipeline-prose" on FilePreview
+   Reuses chat-prose patterns for consistency
+   ═══════════════════════════════════════ */
+
+.pipeline-prose {
+  line-height: 1.6;
+  color: var(--foreground);
+}
+
+.pipeline-prose > h1,
+.pipeline-prose > h2,
+.pipeline-prose > h3,
+.pipeline-prose > h4 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.pipeline-prose > h1 { font-size: 1.25em; }
+.pipeline-prose > h2 { font-size: 1.125em; }
+.pipeline-prose > h3 { font-size: 1.05em; }
+
+.pipeline-prose > h1:first-child,
+.pipeline-prose > h2:first-child,
+.pipeline-prose > h3:first-child,
+.pipeline-prose > h4:first-child {
+  margin-top: 0;
+}
+
+.pipeline-prose > ul,
+.pipeline-prose > ol {
+  padding-left: 1.5em;
+  margin-block: 0.5em;
+}
+
+.pipeline-prose > ul { list-style-type: disc; }
+.pipeline-prose > ol { list-style-type: decimal; }
+
+.pipeline-prose li {
+  margin-block: 0.25em;
+}
+
+.pipeline-prose li > ul,
+.pipeline-prose li > ol {
+  padding-left: 1.25em;
+  margin-block: 0.125em;
+}
+
+.pipeline-prose > blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  margin-block: 0.75em;
+  color: var(--muted-foreground);
+}
+
+.pipeline-prose > hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-block: 1em;
+}
+
+.pipeline-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 0.75em;
+  font-size: 0.875em;
+}
+
+.pipeline-prose th,
+.pipeline-prose td {
+  border: 1px solid var(--border);
+  padding: 0.375em 0.625em;
+  text-align: left;
+}
+
+.pipeline-prose th {
+  font-weight: 600;
+  background: var(--muted);
+}
+
+.pipeline-prose :not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.15em 0.35em;
+  border-radius: 0.25em;
+  background: var(--muted);
+}
+
+.pipeline-prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════
    Streamdown Code Block Overrides
    ═══════════════════════════════════════ */
 
