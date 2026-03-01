@@ -1,25 +1,25 @@
-import { Palette, MessageSquare, Film } from "lucide-react"
+import { Workflow, Globe, FolderHeart } from "lucide-react"
 import type { AppLink } from "@/types"
 
 export const apps: AppLink[] = [
   {
-    name: "AI-Design",
-    url: "https://ai-design.lernen.diy",
-    icon: Palette,
-    description: "KI-Bildgenerierung lernen",
+    name: "Context Pipeline",
+    url: "/pipeline",
+    icon: Workflow,
+    description: "Content-to-Context Workbench",
     active: true,
   },
   {
-    name: "Prompt Engineering",
-    url: "https://prompts.lernen.diy",
-    icon: MessageSquare,
-    description: "Effektive Prompts schreiben",
+    name: "AOK Gesundheitswelt",
+    url: "https://www.aok.de/pk/gesundheitswelt/",
+    icon: Globe,
+    description: "Quell-Website fuer Content-Extraktion",
   },
   {
-    name: "AI-Video",
-    url: "https://ai-video.lernen.diy",
-    icon: Film,
-    description: "KI-Videos erstellen",
+    name: "Pflege-Cluster",
+    url: "https://www.aok.de/pk/pflege/",
+    icon: FolderHeart,
+    description: "Pilot-Themencluster Pflege",
   },
 ]
 

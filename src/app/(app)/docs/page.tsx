@@ -8,7 +8,7 @@ export default function DocsPage() {
       </span>
       <h1 className="text-2xl font-bold">Dokumentation</h1>
       <p className="text-muted-foreground">
-        Anleitungen und Referenzmaterial — Inhalt folgt.
+        Pipeline-Methodik, Baustein-Spezifikation und Kontext-Architektur.
       </p>
     </div>
   )

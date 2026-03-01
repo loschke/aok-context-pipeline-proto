@@ -12,7 +12,7 @@ export function SidebarLogo() {
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton asChild size="lg" tooltip="Dashboard">
-          <Link href="/dashboard" className={isCollapsed ? "flex justify-center" : ""}>
+          <Link href="/pipeline" className={isCollapsed ? "flex justify-center" : ""}>
             <BrandWordmark variant={isCollapsed ? "signet" : "full"} />
           </Link>
         </SidebarMenuButton>

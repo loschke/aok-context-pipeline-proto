@@ -34,9 +34,9 @@ const brands: Record<BrandId, BrandConfig> = {
   },
   aok: {
     id: "aok",
-    name: "AOK",
-    description: "AOK Lernplattform",
-    domain: "aok.lernen.diy",
+    name: "SAVA",
+    description: "Context Pipeline",
+    domain: "localhost",
   },
 }
 

@@ -37,7 +37,7 @@ export default function LandingPage() {
         </h1>
 
         <p className="mb-10 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-          Wähle ein Modul und lerne durch praktische Anwendung.
+          Content-to-Context Pipeline fuer AOK-Gesundheitsinhalte. Webinhalte extrahieren, strukturieren und als Wissensbausteine aufbereiten.
         </p>
 
         <div>

@@ -8,7 +8,7 @@ export default function HelpPage() {
       </span>
       <h1 className="text-2xl font-bold">Hilfe & FAQ</h1>
       <p className="text-muted-foreground">
-        Häufig gestellte Fragen und Support — Inhalt folgt.
+        Fragen zur Pipeline-Methodik und Baustein-Erstellung.
       </p>
     </div>
   )

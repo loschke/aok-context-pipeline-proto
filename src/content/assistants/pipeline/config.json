@@ -1,0 +1,11 @@
+{
+  "name": "Pipeline-Experte",
+  "emoji": "🔧",
+  "description": "Content-to-Context Methodik — hilft bei Extraktion, Baustein-Design und Pipeline-Schritten.",
+  "suggestions": [
+    "Wie strukturiere ich einen Erklaerungsbaustein?",
+    "Zeig mir ein Frontmatter-Beispiel fuer einen Pflege-Baustein",
+    "Welche Schritte kommen nach der Content-Extraktion?",
+    "Wie entscheide ich zwischen FAQ und Erklaerung als Bausteintyp?"
+  ]
+}

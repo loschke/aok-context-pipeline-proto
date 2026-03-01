@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Welchen Bausteintyp waehle ich fuer welchen Inhalt?",
+    "category": "workflow"
+  },
+  {
+    "text": "Wie sieht das Frontmatter-Schema fuer einen Baustein aus?",
+    "category": "examples"
+  },
+  {
+    "text": "Wie befuelle ich die 5 Kontext-Dimensionen fuer einen Baustein?",
+    "category": "workflow"
+  }
+]

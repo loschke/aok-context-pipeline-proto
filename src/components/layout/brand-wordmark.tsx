@@ -41,8 +41,8 @@ function Wordmark({ brandId, className }: { brandId: BrandId; className?: string
       )
     case "aok":
       return (
-        <span className={`font-sans text-lg font-black tracking-tight text-primary ${className ?? ""}`}>
-          AOK
+        <span className={`font-sans text-lg font-black tracking-tight ${className ?? ""}`}>
+          SAVA<span className="text-primary">.</span>
         </span>
       )
   }
@@ -76,8 +76,8 @@ function Signet({ brandId, className }: { brandId: BrandId; className?: string }
       )
     case "aok":
       return (
-        <span className={`font-sans text-base font-black leading-none text-primary ${className ?? ""}`}>
-          AOK
+        <span className={`font-sans text-base font-black leading-none ${className ?? ""}`}>
+          S<span className="text-primary">.</span>
         </span>
       )
   }

@@ -6,20 +6,21 @@
 
 ## Projekt-Überblick
 
-**Repository:** `sevenx-app-boilerplate`
-**Zweck:** Wiederverwendbare App-Shell unter der sevenX Dachmarke. Wird für jede neue App geklont und mit eigener Navigation/Content befüllt.
-**Aktuell:** Demo-Navigation mit Platzhalter-Inhalten der AI-Design App.
+**Repository:** `sava-context-pipeline`
+**Zweck:** Context Pipeline Workbench fuer das AOK SAVA-Projekt. Transformiert Webinhalte aus der AOK Gesundheitswelt in strukturierte Wissensbausteine fuer den AI-Assistenten.
+**Basis:** Geklont vom `sevenx-app-boilerplate`. Shell, Auth und UI-Infrastruktur bleiben identisch.
 
-### lernen.diy Plattform
+### SAVA Context Pipeline
 
-lernen.diy ist eine Plattform für praxisorientierte KI-Lernmodule. Jedes Modul (z.B. "AI-Design", "Prompt Engineering") läuft als eigene App auf einer Subdomain:
+Die App ist eine Arbeitsumgebung fuer die Content-to-Context Pipeline:
 
-- `lernen.diy` — Hub/Startseite (Astro, separates Repo)
-- `ai-design.lernen.diy` — Erste Lern-App (dieses Skeleton)
-- `auth.lernen.diy` — Logto OIDC (Custom Domain, kein eigener Code)
-- `assets.lernen.diy` — Cloudflare R2 Public Bucket
+- **Pipeline Dashboard** — Fortschritt und Status der Transformation
+- **Content Extraktion** — Firecrawl-basiertes Scraping von AOK-Webinhalten
+- **Context Builder** — Erstellung strukturierter Wissensbausteine (7 Typen, 5 Dimensionen)
+- **Qualitaetssicherung** — Validierung gegen Verfassung und Qualitaetskriterien
 
-Alle Apps teilen sich dieses Skeleton als Basis: gleiche Shell, gleiche Auth, gleiche UI-Sprache.
+Referenz-Dokumentation zur Methodik liegt in `docs/context-help/` (6 Dateien).
+Die AOK-Assistenten-Verfassung liegt in `_aok-assistent-verfassung.md`.
 
 ---
 

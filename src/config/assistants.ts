@@ -5,7 +5,7 @@ export const assistantConfig = {
   /** Maximale Output-Tokens pro Antwort (hoeher als Sidebar-Chat) */
   maxTokens: 4096,
   /** Default-Experte wenn keiner gewaehlt */
-  defaultExpert: "general",
+  defaultExpert: "kompass",
   /** Ob der Assistant als Link in der Sidebar-Navigation erscheint */
   showInNavigation: true,
   /** Label fuer den Navigation-Link */

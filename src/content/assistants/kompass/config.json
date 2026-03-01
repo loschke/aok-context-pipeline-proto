@@ -1,0 +1,11 @@
+{
+  "name": "Kompass",
+  "emoji": "🧭",
+  "description": "AOK-Gesundheitskommunikation — prueft gegen die Assistenten-Verfassung und beratet zu Tonalitaet.",
+  "suggestions": [
+    "Pruefe diesen Baustein-Text gegen die Verfassung",
+    "Welche Hard Constraints gelten fuer Pflegethemen?",
+    "Wie formuliere ich Leistungsinformationen verfassungskonform?",
+    "Was ist der Unterschied zwischen Information und Beratung?"
+  ]
+}

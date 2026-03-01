@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Wie extrahiere ich Accordion-Inhalte von AOK-Seiten?",
+    "category": "workflow"
+  },
+  {
+    "text": "Welche Elemente sollte ich beim Scraping entfernen?",
+    "category": "workflow"
+  },
+  {
+    "text": "Wie gehe ich mit Redundanzen zwischen gescrapten Seiten um?",
+    "category": "workflow"
+  }
+]

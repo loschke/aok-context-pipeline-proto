@@ -1,0 +1,11 @@
+{
+  "name": "Sensor",
+  "emoji": "📡",
+  "description": "Intent-Erkennung — versteht die 7 Kernintentionen und hilft bei zielgruppen-gerechter Kommunikation.",
+  "suggestions": [
+    "Welche der 7 Kernintentionen passt zu dieser Nutzeranfrage?",
+    "Wie unterscheide ich Akute Sorge von Frischer Diagnose?",
+    "Welche Antwort-Strategie passt zur Intention Leistungsklaerung?",
+    "Wie ordne ich einen Baustein den passenden Intentionen zu?"
+  ]
+}

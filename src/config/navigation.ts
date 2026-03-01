@@ -1,28 +1,35 @@
-import { Sparkles, Camera, Target, BookOpen, HelpCircle, MessageSquare } from "lucide-react"
+import { LayoutDashboard, Globe, Layers, CheckCircle, BookOpen, HelpCircle, MessageSquare } from "lucide-react"
 import type { NavItem, ModuleItem } from "@/types"
 
 export const primaryModules: ModuleItem[] = [
   {
-    title: "4K Framework",
-    url: "/module-1",
-    icon: Sparkles,
-    description: "Grundlagen der KI-Bildgenerierung",
-    badge: "Neu",
-    chatContext: "4k-framework",
+    title: "Pipeline Dashboard",
+    url: "/pipeline",
+    icon: LayoutDashboard,
+    description: "Fortschritt und Status der Pipeline",
+    chatContext: "pipeline",
   },
   {
-    title: "Kamera Sandbox",
-    url: "/module-2",
-    icon: Camera,
-    description: "Experimentiere mit Kameraeinstellungen",
-    chatContext: "kamera-sandbox",
+    title: "Content Extraktion",
+    url: "/extraktion",
+    icon: Globe,
+    description: "Webinhalte scrapen und aufbereiten",
+    chatContext: "extraktion",
   },
   {
-    title: "Übungen",
-    url: "/module-3",
-    icon: Target,
-    description: "Praktische Aufgaben",
-    chatContext: "uebungen",
+    title: "Context Builder",
+    url: "/context-builder",
+    icon: Layers,
+    description: "Wissensbausteine strukturieren",
+    badge: "Kern",
+    chatContext: "context-builder",
+  },
+  {
+    title: "Qualitaetssicherung",
+    url: "/qualitaet",
+    icon: CheckCircle,
+    description: "Bausteine validieren und freigeben",
+    chatContext: "qualitaet",
   },
 ]
 

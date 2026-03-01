@@ -4,7 +4,7 @@ export default function SettingsPage() {
       <span className="text-6xl">⚙️</span>
       <h1 className="text-2xl font-bold">Einstellungen</h1>
       <p className="text-muted-foreground">
-        Einstellungen für dein Lernmodul — Inhalt folgt.
+        Einstellungen fuer die Context Pipeline — Inhalt folgt.
       </p>
     </div>
   )
