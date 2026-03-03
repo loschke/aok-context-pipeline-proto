@@ -1,6 +1,7 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { Suspense } from "react"
+import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
 
 import {
@@ -18,8 +19,24 @@ function getBasePath(url: string) {
   return url.split("?")[0]
 }
 
+function getQueryParam(url: string, key: string): string | null {
+  const qIndex = url.indexOf("?")
+  if (qIndex === -1) return null
+  const params = new URLSearchParams(url.slice(qIndex))
+  return params.get(key)
+}
+
 export function NavModules() {
+  return (
+    <Suspense>
+      <NavModulesInner />
+    </Suspense>
+  )
+}
+
+function NavModulesInner() {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const { state } = useSidebar()
   const isCollapsed = state === "collapsed"
 
@@ -28,7 +45,17 @@ export function NavModules() {
       <SidebarGroupLabel className="micro-label">Module</SidebarGroupLabel>
       <SidebarMenu>
         {primaryModules.map((item) => {
-          const isActive = pathname === getBasePath(item.url)
+          const basePath = getBasePath(item.url)
+          const pathMatches = pathname === basePath
+
+          // For items sharing a base path (e.g. /assistant), disambiguate via query params
+          const itemExpert = getQueryParam(item.url, "expert")
+          const currentExpert = searchParams.get("expert")
+          const isActive = pathMatches && (
+            itemExpert
+              ? currentExpert === itemExpert        // URL has ?expert= → must match exactly
+              : !currentExpert                       // URL has no ?expert= → active only when no param set
+          )
 
           // Collapsed: Compact icon button with tooltip
           if (isCollapsed) {

@@ -1,5 +1,8 @@
+import { checkBodySize } from "@/lib/api-guards"
 import { getUser } from "@/lib/auth"
 import { features } from "@/config/features"
+import { checkRateLimit, RATE_LIMITS, rateLimitResponse } from "@/lib/rate-limit"
+import { isAllowedUrl } from "@/lib/url-validation"
 import { webScrape } from "@/lib/web"
 import { writePipelineFile } from "@/lib/pipeline"
 
@@ -27,6 +30,14 @@ export async function POST(req: Request) {
     return new Response("Unauthorized", { status: 401 })
   }
 
+  const rateCheck = checkRateLimit(user.id, RATE_LIMITS.pipeline)
+  if (!rateCheck.allowed) {
+    return rateLimitResponse(rateCheck.retryAfterMs)
+  }
+
+  const sizeError = checkBodySize(req)
+  if (sizeError) return sizeError
+
   let body: { urls: string[]; batch: string }
   try {
     body = await req.json()
@@ -44,15 +55,10 @@ export async function POST(req: Request) {
     return new Response("Invalid batch name", { status: 400 })
   }
 
-  // Validate all URLs
+  // Validate all URLs (protocol + SSRF protection)
   for (const url of urls) {
-    try {
-      const parsed = new URL(url)
-      if (!["http:", "https:"].includes(parsed.protocol)) {
-        return new Response(`Invalid URL protocol: ${url}`, { status: 400 })
-      }
-    } catch {
-      return new Response(`Invalid URL: ${url}`, { status: 400 })
+    if (!isAllowedUrl(url)) {
+      return new Response(`URL not allowed: ${url}`, { status: 400 })
     }
   }
 

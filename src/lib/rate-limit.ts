@@ -63,6 +63,7 @@ export const RATE_LIMITS = {
   chat: { maxRequests: 20, windowMs: 60_000 },
   web: { maxRequests: 30, windowMs: 60_000 },
   upload: { maxRequests: 10, windowMs: 60_000 },
+  pipeline: { maxRequests: 10, windowMs: 60_000 },
 } as const
 
 export function rateLimitResponse(retryAfterMs: number): Response {

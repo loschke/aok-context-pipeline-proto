@@ -1,11 +1,11 @@
 {
   "name": "Intent-Analyse",
   "emoji": "📡",
-  "description": "Ordnet Nutzeranfragen den 7 Kernintentionen zu und empfiehlt passende Antwort-Strategien.",
+  "description": "Erkennt Intentionen in Nutzeranfragen und leitet die passende Kommunikationsstrategie ab.",
   "suggestions": [
-    "Welche der 7 Kernintentionen passt zu dieser Nutzeranfrage?",
+    "Welche Intention steckt hinter dieser Nutzeranfrage?",
     "Wie unterscheide ich Akute Sorge von Frischer Diagnose?",
-    "Welche Antwort-Strategie passt zur Intention Leistungsklaerung?",
-    "Wie ordne ich einen Baustein den passenden Intentionen zu?"
+    "Wie wuerde derselbe Baustein-Inhalt bei verschiedenen Intentionen kommuniziert?",
+    "Welche Kommunikationsparameter gehoeren zur Intention Leistungsklaerung?"
   ]
 }

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Target, Workflow, MessageCircleHeart, BookOpen, HelpCircle, BotMessageSquare } from "lucide-react"
+import { LayoutDashboard, Target, Workflow, MessageCircleHeart, BookOpen, HelpCircle, BotMessageSquare, MessagesSquare } from "lucide-react"
 import type { NavItem, ModuleItem } from "@/types"
 
 export const primaryModules: ModuleItem[] = [
@@ -28,6 +28,12 @@ export const primaryModules: ModuleItem[] = [
     icon: MessageCircleHeart,
     description: "Assistent zum Ausprobieren",
     badge: "Demo",
+  },
+  {
+    title: "SAVA Expert Chat",
+    url: "/assistant",
+    icon: MessagesSquare,
+    description: "Architektur, Methodik und Gesamtsystem erklaert",
   },
 ]
 

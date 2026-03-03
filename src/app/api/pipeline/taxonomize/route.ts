@@ -1,6 +1,8 @@
 import { streamText, gateway } from "ai"
 
+import { checkBodySize } from "@/lib/api-guards"
 import { getUser } from "@/lib/auth"
+import { checkRateLimit, RATE_LIMITS, rateLimitResponse } from "@/lib/rate-limit"
 import { readPipelineFile, writePipelineFile } from "@/lib/pipeline"
 import { aiDefaults } from "@/config/ai"
 
@@ -54,6 +56,14 @@ export async function POST(req: Request) {
   if (!user) {
     return new Response("Unauthorized", { status: 401 })
   }
+
+  const rateCheck = checkRateLimit(user.id, RATE_LIMITS.pipeline)
+  if (!rateCheck.allowed) {
+    return rateLimitResponse(rateCheck.retryAfterMs)
+  }
+
+  const sizeError = checkBodySize(req)
+  if (sizeError) return sizeError
 
   let body: { sourceFiles: string[]; batch: string }
   try {
