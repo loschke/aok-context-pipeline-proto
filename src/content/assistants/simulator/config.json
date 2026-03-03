@@ -1,0 +1,11 @@
+{
+  "name": "Intention Simulator",
+  "emoji": "🔬",
+  "description": "Transparente Pipeline-Simulation: Zeigt Schritt fuer Schritt, wie der Assistent eine Anfrage verarbeiten wuerde.",
+  "suggestions": [
+    "Meine Mutter braucht einen Pflegedienst. Was zahlt die AOK?",
+    "Welche Hilfsmittel bezahlt die Pflegekasse?",
+    "Ich pflege meinen Vater und bin am Ende meiner Kraefte.",
+    "[Sprachnotiz, unterwegs] Meine Mutter hat Pflegegrad 2 — was steht ihr zu?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Verfassung & Qualitaet",
+  "emoji": "🧭",
+  "description": "Prueft Bausteine und Texte: 5 Kontext-Dimensionen, AOK-Verfassung, Frontmatter-Validierung — mit Pass/Fail pro Dimension.",
+  "suggestions": [
+    "Pruefe diesen Baustein gegen alle 5 Dimensionen und die Verfassung",
+    "Ist diese Formulierung verfassungskonform?",
+    "Welche Hard Constraints gelten fuer dieses Thema?",
+    "Pruefe dieses Frontmatter auf Vollstaendigkeit"
+  ]
+}

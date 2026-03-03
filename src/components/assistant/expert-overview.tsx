@@ -12,19 +12,19 @@ interface ExpertOverviewProps {
 
 const GROUP_ORDER = [
   {
-    label: "Information & Onboarding",
-    sublabel: "Fuer Stakeholder und AOK-Team",
-    slugs: ["einstieg", "workflow"],
+    label: "Information & Zusammenarbeit",
+    sublabel: "Fuer das AOK-Projektteam",
+    slugs: ["zusammenarbeit"],
   },
   {
-    label: "Simulation",
-    sublabel: "Live-Demo des Endprodukts",
-    slugs: ["pflegeberater"],
+    label: "Simulation & Demo",
+    sublabel: "Live-Demonstration des Assistenten-Systems",
+    slugs: ["pflegeberater", "simulator"],
   },
   {
-    label: "Methodik & QS",
-    sublabel: "Interne Werkzeuge fuer das DL-Team",
-    slugs: ["kompass", "pipeline", "sensor", "architekt", "qs", "pflege"],
+    label: "Methodik & Qualitaet",
+    sublabel: "Werkzeuge fuer die Pipeline-Arbeit",
+    slugs: ["pipeline", "qualitaet"],
   },
 ]
 

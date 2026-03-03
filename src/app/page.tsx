@@ -558,6 +558,30 @@ kontext_tags:
               </div>
             </div>
 
+            {/* Ausgabemedium */}
+            <div className="mb-8 border border-amber-200 bg-white p-5">
+              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-amber-700">Ausgabemedium — Die letzte Meile</h3>
+              <p className="mb-4 text-sm text-muted-foreground">
+                Dieselbe Antwort kann den Nutzer auf völlig unterschiedlichen Wegen erreichen.
+                Das Medium richtet sich nach Situation, Gerät und Kontext der Anfrage.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { label: "Chat-Antwort", desc: "Strukturierter Text im Dialog. Das Standard-Medium für direkte Fragen im Assistenten." },
+                  { label: "Dokument / PDF", desc: "Druckfähige Zusammenfassung zum Mitnehmen. Für Arztgespräche, Antragsunterlagen, Checklisten." },
+                  { label: "Push-Nachricht", desc: "Kurzer Impuls aufs Smartphone. Erinnerungen, Fristen, proaktive Hinweise auf neue Leistungen." },
+                  { label: "Audio / Vorlese", desc: "Gesprochene Antwort. Für unterwegs, bei Seheinschränkung oder wenn Lesen gerade nicht geht." },
+                  { label: "Schritt-für-Schritt", desc: "Interaktiver Wizard statt Fließtext. Komplexe Prozesse wie Antragsstellung oder Arztwechsel." },
+                  { label: "Visuelle Übersicht", desc: "Infografik, Zeitstrahl oder Vergleichstabelle. Wenn ein Bild mehr sagt als Text." },
+                ].map((s) => (
+                  <div key={s.label} className="rounded bg-amber-50 p-3">
+                    <p className="text-xs font-semibold text-amber-800">{s.label}</p>
+                    <p className="mt-1 text-xs text-amber-600">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Intention x Kommunikation Matrix */}
             <div className="overflow-x-auto border border-amber-200 bg-white">
               <table className="w-full text-left text-xs">
@@ -567,16 +591,17 @@ kontext_tags:
                     <th className="px-4 py-2.5 font-semibold text-amber-800">Tonalität</th>
                     <th className="px-4 py-2.5 font-semibold text-amber-800">Tiefe</th>
                     <th className="px-4 py-2.5 font-semibold text-amber-800">Proaktivität</th>
+                    <th className="px-4 py-2.5 font-semibold text-amber-800">Typisches Medium</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-amber-50">
-                  <tr><td className="px-4 py-2 font-medium">I1 Akute Sorge</td><td className="px-4 py-2">Beruhigend, empathisch</td><td className="px-4 py-2">Minimal</td><td className="px-4 py-2">Hoch</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I2 Frische Diagnose</td><td className="px-4 py-2">Strukturiert, sachlich-warm</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I3 Behandlungssuche</td><td className="px-4 py-2">Sachlich, kompetent</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">Mittel</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I4 Leistungsklärung</td><td className="px-4 py-2">Direkt, klar</td><td className="px-4 py-2">Präzise</td><td className="px-4 py-2">Niedrig</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I5 Langzeit-Mgmt.</td><td className="px-4 py-2">Partnerschaftlich</td><td className="px-4 py-2">Anpassbar</td><td className="px-4 py-2">Gering</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I6 Angehörige</td><td className="px-4 py-2">Unterstützend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Hoch</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I7 Prävention</td><td className="px-4 py-2">Motivierend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I1 Akute Sorge</td><td className="px-4 py-2">Beruhigend, empathisch</td><td className="px-4 py-2">Minimal</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">Chat, Push, Audio</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I2 Frische Diagnose</td><td className="px-4 py-2">Strukturiert, sachlich-warm</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Chat, PDF, Wizard</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I3 Behandlungssuche</td><td className="px-4 py-2">Sachlich, kompetent</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Chat, Übersicht, PDF</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I4 Leistungsklärung</td><td className="px-4 py-2">Direkt, klar</td><td className="px-4 py-2">Präzise</td><td className="px-4 py-2">Niedrig</td><td className="px-4 py-2">Chat, PDF</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I5 Langzeit-Mgmt.</td><td className="px-4 py-2">Partnerschaftlich</td><td className="px-4 py-2">Anpassbar</td><td className="px-4 py-2">Gering</td><td className="px-4 py-2">Push, Audio, Chat</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I6 Angehörige</td><td className="px-4 py-2">Unterstützend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">PDF, Wizard, Chat</td></tr>
+                  <tr><td className="px-4 py-2 font-medium">I7 Prävention</td><td className="px-4 py-2">Motivierend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Push, Audio, Übersicht</td></tr>
                 </tbody>
               </table>
             </div>

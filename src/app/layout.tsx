@@ -20,6 +20,14 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: `${brand.name} — ${brand.description}`,
   description: brand.description,
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 }
 
 export default function RootLayout({
