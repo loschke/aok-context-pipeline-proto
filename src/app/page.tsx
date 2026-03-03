@@ -76,7 +76,9 @@ export default function LandingPage() {
           </p>
 
           <h1 className="headline-black mb-6 max-w-4xl text-4xl leading-[1.08] tracking-tighter sm:text-5xl lg:text-6xl">
-            Dasselbe Thema. Verschiedene Menschen.
+            <span className="text-primary">Dasselbe Thema.</span>
+            <br />
+            Verschiedene Menschen.
             <br />
             Verschiedene Antworten<span className="text-primary">.</span>
           </h1>
