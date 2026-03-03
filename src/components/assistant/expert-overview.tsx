@@ -12,11 +12,6 @@ interface ExpertOverviewProps {
 
 const GROUP_ORDER = [
   {
-    label: "Information & Zusammenarbeit",
-    sublabel: "Fuer das AOK-Projektteam",
-    slugs: ["zusammenarbeit"],
-  },
-  {
     label: "Simulation & Demo",
     sublabel: "Live-Demonstration des Assistenten-Systems",
     slugs: ["pflegeberater", "simulator"],

@@ -25,33 +25,6 @@ export default async function PipelinePage() {
         strukturierte Wissensbausteine fuer den AI-Assistenten.
       </p>
 
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="border bg-card p-6">
-          <p className="mb-1 text-sm font-semibold">8-Schritte-Pipeline</p>
-          <p className="text-sm text-muted-foreground">
-            Von der Content-Extraktion ueber Baustein-Erstellung bis zur QA-Freigabe.
-          </p>
-        </div>
-        <div className="border bg-card p-6">
-          <p className="mb-1 text-sm font-semibold">7 Bausteintypen</p>
-          <p className="text-sm text-muted-foreground">
-            Erklaerung, Anleitung, FAQ, Checkliste, Vergleich, Glossar, Navigation.
-          </p>
-        </div>
-        <div className="border bg-card p-6">
-          <p className="mb-1 text-sm font-semibold">5 Kontext-Dimensionen</p>
-          <p className="text-sm text-muted-foreground">
-            Bedeutung, Struktur, Qualitaet, Regeln, Zielgruppe.
-          </p>
-        </div>
-        <div className="border bg-card p-6">
-          <p className="mb-1 text-sm font-semibold">Pilot: Pflege-Cluster</p>
-          <p className="text-sm text-muted-foreground">
-            ~24 Seiten aus aok.de/pk/pflege/ als erstes Themencluster.
-          </p>
-        </div>
-      </div>
-
       {experts.length > 0 && (
         <div className="mt-12">
           <div className="mb-6 flex items-end justify-between">
