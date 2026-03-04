@@ -1,11 +1,11 @@
 {
-  "name": "SAVA Engine",
+  "name": "SAVA Projektberater",
   "emoji": "🏛️",
-  "description": "Erklaert die Gesamtarchitektur der SAVA Engine: Kompass, Context, Intentionen, Kommunikation und das Zusammenspiel der Schichten.",
+  "description": "Erklaert die SAVA Engine und beraet zum Projektstatus: Architektur, Methodik, Aufwaende, naechste Schritte und offene Punkte.",
   "suggestions": [
     "Wie funktioniert die SAVA Engine?",
-    "Was ist ein Context und warum traegt er keine Intention?",
-    "Erklaer mir das Zusammenspiel von Sensor und Kommunikation an einem Beispiel",
-    "Warum sind Contexts auch als Headless Content nutzbar?"
+    "Wo stehen wir im Projekt und was sind die naechsten Schritte?",
+    "Wie viel Aufwand hat die AOK pro Cluster?",
+    "Was muss von der AOK kommen, bevor wir weitermachen koennen?"
   ]
 }

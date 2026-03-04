@@ -1,0 +1,11 @@
+{
+  "name": "SAVA Engine",
+  "emoji": "⚙️",
+  "description": "Erklaert die SAVA Engine in der Tiefe: Drei-Schichten-Architektur, Kompass, Context Engineering, Intentionen, Kommunikations-Layer und ihr Zusammenspiel.",
+  "suggestions": [
+    "Erklaere die Drei-Schichten-Architektur der SAVA Engine",
+    "Wie funktioniert Context Engineering mit den 5 Dimensionen?",
+    "Was passiert wenn eine Nutzeranfrage reinkommt — Schritt fuer Schritt?",
+    "Warum reicht Website-Content nicht fuer einen AI-Assistenten?"
+  ]
+}

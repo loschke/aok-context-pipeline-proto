@@ -1,0 +1,11 @@
+{
+  "name": "Use Case Explorer",
+  "emoji": "🗺️",
+  "description": "Generiert und strukturiert Use Cases fuer den SAVA-Assistenten systematisch entlang von 6 Achsen: Intention, Themencluster, Datenverfuegbarkeit, Journey-Stage, Integrationslevel und Governance.",
+  "suggestions": [
+    "Generiere Use Cases fuer den Cluster Schwangerschaft",
+    "Welche Use Cases gibt es fuer die Intention Akute Sorge?",
+    "Was waeren Quick-Win Use Cases, die wir sofort umsetzen koennten?",
+    "Wie unterscheiden sich Use Cases mit und ohne Versichertendaten?"
+  ]
+}

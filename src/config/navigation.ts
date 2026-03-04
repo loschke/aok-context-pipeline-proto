@@ -1,4 +1,4 @@
-import { LayoutDashboard, Target, Workflow, MessageCircleHeart, BookOpen, HelpCircle, BotMessageSquare, MessagesSquare } from "lucide-react"
+import { LayoutDashboard, Workflow, BookOpen, HelpCircle, BotMessageSquare, Building2 } from "lucide-react"
 import type { NavItem, ModuleItem } from "@/types"
 
 export const primaryModules: ModuleItem[] = [
@@ -11,29 +11,16 @@ export const primaryModules: ModuleItem[] = [
     variant: "compact",
   },
   {
-    title: "Intentionen",
-    url: "/intentionen",
-    icon: Target,
-    description: "7 Kernintentionen der AOK-Versicherten",
-  },
-  {
     title: "Context Pipeline",
     url: "/context-pipeline",
     icon: Workflow,
     description: "Methodik, Bausteine und Workflow",
   },
   {
-    title: "Pflegeberatung",
-    url: "/assistant?expert=pflegeberater",
-    icon: MessageCircleHeart,
-    description: "Assistent zum Ausprobieren",
-    badge: "Demo",
-  },
-  {
-    title: "SAVA Expert Chat",
-    url: "/assistant",
-    icon: MessagesSquare,
-    description: "Architektur, Methodik und Gesamtsystem erklaert",
+    title: "SAVA Projektberater",
+    url: "/assistant?expert=ueberblick",
+    icon: Building2,
+    description: "Architektur, Methodik und Projektstatus",
   },
 ]
 

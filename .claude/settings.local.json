@@ -83,7 +83,11 @@
       "mcp__plugin_playwright_playwright__browser_close",
       "Skill(remotion)",
       "mcp__plugin_playwright_playwright__browser_click",
-      "Bash(yes:*)"
+      "Bash(yes:*)",
+      "mcp__brainsidian__list_directory",
+      "mcp__brainsidian__create_note_from_template",
+      "mcp__brainsidian__write_note",
+      "mcp__brainsidian__move_note"
     ]
   }
 }

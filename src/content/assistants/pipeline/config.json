@@ -3,9 +3,9 @@
   "emoji": "🔧",
   "description": "Methodik-Hilfe fuer die 8 Pipeline-Schritte: Extraktion, Typisierung, Taxonomie, Kontext-Anreicherung.",
   "suggestions": [
+    "Was sind die 8 Schritte der Context Pipeline?",
     "Wie strukturiere ich einen Erklaerungsbaustein?",
     "Zeig mir ein Frontmatter-Beispiel fuer einen Pflege-Baustein",
-    "Welche Schritte kommen nach der Content-Extraktion?",
     "Wie entscheide ich zwischen FAQ und Erklaerung als Bausteintyp?"
   ]
 }

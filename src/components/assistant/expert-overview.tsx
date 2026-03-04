@@ -14,12 +14,12 @@ const GROUP_ORDER = [
   {
     label: "Simulation & Demo",
     sublabel: "Live-Demonstration des Assistenten-Systems",
-    slugs: ["pflegeberater", "simulator"],
+    slugs: ["pflegeberater", "simulator", "content-generator"],
   },
   {
     label: "Methodik & Qualitaet",
     sublabel: "Werkzeuge fuer die Pipeline-Arbeit",
-    slugs: ["pipeline", "qualitaet"],
+    slugs: ["pipeline", "qualitaet", "usecases", "engine", "ueberblick"],
   },
 ]
 
