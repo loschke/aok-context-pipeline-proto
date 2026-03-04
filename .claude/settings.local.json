@@ -73,7 +73,8 @@
       "Bash(mv:*)",
       "Bash(gh pr:*)",
       "Bash(find:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(grep:*)"
     ]
   }
 }
