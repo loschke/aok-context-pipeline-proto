@@ -20,6 +20,7 @@ import {
   ReasoningContent,
 } from "./reasoning"
 import type { ExpertConfig } from "@/lib/assistant/types"
+import { getModelConfig } from "@/config/models"
 import { ArtifactCard } from "./artifact-card"
 import {
   extractArtifactTitle,
@@ -35,6 +36,7 @@ const WEB_TOOL_LABELS: Record<string, string> = {
 interface AssistantMessagesProps {
   messages: UIMessage[]
   turnExperts: string[]
+  turnModels: string[]
   turnCanvas: boolean[]
   turnThinking: boolean[]
   expertsMap: Map<string, ExpertConfig>
@@ -47,6 +49,7 @@ interface AssistantMessagesProps {
 export function AssistantMessages({
   messages,
   turnExperts,
+  turnModels,
   turnCanvas,
   turnThinking,
   expertsMap,
@@ -182,6 +185,11 @@ export function AssistantMessages({
                 </>
               )}
             </MessageContent>
+            {!isUser && turnModels[turnIndex] && (
+              <span className="text-muted-foreground ml-9 text-xs">
+                {getModelConfig(turnModels[turnIndex])?.name ?? turnModels[turnIndex]}
+              </span>
+            )}
           </Message>
         )
       })}

@@ -1,0 +1,10 @@
+[     965ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rK (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:46786)
+    at rY (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:47819)
+    at https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:141539
+    at sp (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:146700)
+    at sc (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:138040)
+    at https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:132869
+    at u9 (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:132970)
+    at sV (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:159484)
+    at MessagePort.z (https://elements.ai-sdk.dev/_next/static/chunks/ca4f4b0dd29a3a72.js?dpl=dpl_EmNH5rbaMVr2PEhcgutv2HCofRF7:1:8325)

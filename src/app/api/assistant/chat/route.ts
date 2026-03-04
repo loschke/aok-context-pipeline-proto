@@ -5,6 +5,7 @@ import { anthropic } from "@ai-sdk/anthropic"
 import { getUser } from "@/lib/auth"
 import { features } from "@/config/features"
 import { assistantConfig } from "@/config/assistants"
+import { ALLOWED_MODEL_IDS, DEFAULT_MODEL_ID, getModelConfig } from "@/config/models"
 import { loadAssistantPrompt } from "@/lib/assistant/load-prompt"
 import { MAX_MESSAGE_LENGTH, MAX_BODY_SIZE } from "@/lib/constants"
 import { checkRateLimit, RATE_LIMITS, rateLimitResponse } from "@/lib/rate-limit"
@@ -94,8 +95,15 @@ export async function POST(req: Request) {
   const parsed = parseBody(assistantChatBodySchema, raw)
   if (!parsed.success) return parsed.response
 
-  const { messages, expertSlug, thinking } = parsed.data
+  const { messages, expertSlug, thinking, model: requestedModel } = parsed.data
   const slug = expertSlug ?? "general"
+
+  // Resolve and validate model
+  const resolvedModelId =
+    requestedModel && ALLOWED_MODEL_IDS.has(requestedModel)
+      ? requestedModel
+      : DEFAULT_MODEL_ID
+  const modelConfig = getModelConfig(resolvedModelId)
 
   // Input-Validierung: letzte User-Nachricht pruefen
   const lastMessage = messages[messages.length - 1]
@@ -131,23 +139,31 @@ export async function POST(req: Request) {
 
   const modelMessages = fixFilePartsForGateway(await convertToModelMessages(messages))
 
+  // Only enable thinking if the model supports it
+  const effectiveThinking = thinking && modelConfig?.supportsThinking
+
   const result = streamText({
-    model: gateway(assistantConfig.model),
+    model: gateway(resolvedModelId),
     system: systemPrompt,
     messages: modelMessages,
-    maxOutputTokens: thinking
+    maxOutputTokens: effectiveThinking
       ? assistantConfig.thinkingMaxTokens
       : assistantConfig.maxTokens,
-    ...(thinking ? {} : { temperature: assistantConfig.temperature }),
-    tools: {
-      web_search: anthropic.tools.webSearch_20250305({
-        maxUses: 5,
-      }),
-      web_fetch: anthropic.tools.webFetch_20250910({
-        maxUses: 3,
-      }),
-    },
-    providerOptions: thinking
+    ...(effectiveThinking ? {} : { temperature: assistantConfig.temperature }),
+    // Anthropic-specific tools only for models that support them
+    ...(modelConfig?.supportsAnthropicTools
+      ? {
+          tools: {
+            web_search: anthropic.tools.webSearch_20250305({
+              maxUses: 5,
+            }),
+            web_fetch: anthropic.tools.webFetch_20250910({
+              maxUses: 3,
+            }),
+          },
+        }
+      : {}),
+    providerOptions: effectiveThinking
       ? {
           anthropic: {
             thinking: {
@@ -160,6 +176,6 @@ export async function POST(req: Request) {
   })
 
   return result.toUIMessageStreamResponse({
-    sendReasoning: thinking ?? false,
+    sendReasoning: effectiveThinking ?? false,
   })
 }

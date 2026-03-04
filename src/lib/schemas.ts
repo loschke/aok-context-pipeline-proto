@@ -59,6 +59,7 @@ export const assistantChatBodySchema = z.object({
   messages: z.array(z.any()).min(1).max(50),
   expertSlug: slug.optional(),
   thinking: z.boolean().optional(),
+  model: z.string().optional(),
 })
 
 // Helper: parse and return typed data or error Response

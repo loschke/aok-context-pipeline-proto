@@ -25,7 +25,9 @@ import {
 } from "@/components/ai-elements/prompt-input"
 import type { ExpertConfig } from "@/lib/assistant/types"
 import { assistantConfig } from "@/config/assistants"
+import { DEFAULT_MODEL_ID, getModelConfig } from "@/config/models"
 import { ExpertPicker } from "./expert-picker"
+import { ModelPicker } from "./model-picker"
 import { ArtifactPanel } from "./artifact-panel"
 import { extractArtifactTitle } from "./artifact-utils"
 import { AssistantMessages } from "./assistant-messages"
@@ -56,6 +58,7 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
   const [messageCount, setMessageCount] = useState(0)
   const [artifact, setArtifact] = useState<ArtifactState | null>(null)
 
+  const [selectedModelId, setSelectedModelId] = useState(DEFAULT_MODEL_ID)
   const [canvasMode, setCanvasMode] = useState(false)
   const [thinkingMode, setThinkingMode] = useState(false)
 
@@ -70,6 +73,7 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
 
   // Per-turn tracking: index = turn number
   const [turnExperts, setTurnExperts] = useState<string[]>([])
+  const [turnModels, setTurnModels] = useState<string[]>([])
   const [turnCanvas, setTurnCanvas] = useState<boolean[]>([])
   const [turnThinking, setTurnThinking] = useState<boolean[]>([])
 
@@ -110,10 +114,12 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
     setInput("")
     setArtifact(null)
     setTurnExperts([])
+    setTurnModels([])
     setTurnCanvas([])
     setTurnThinking([])
     setCanvasMode(false)
     setThinkingMode(false)
+    setSelectedModelId(DEFAULT_MODEL_ID)
     setExpertSlug(assistantConfig.defaultExpert)
   }, [setMessages])
 
@@ -121,22 +127,35 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
   const expertSlugRef = useRef(expertSlug)
   expertSlugRef.current = expertSlug
 
+  const selectedModelIdRef = useRef(selectedModelId)
+  selectedModelIdRef.current = selectedModelId
+
   const canvasModeRef = useRef(canvasMode)
   canvasModeRef.current = canvasMode
 
   const thinkingModeRef = useRef(thinkingMode)
   thinkingModeRef.current = thinkingMode
 
+  const handleModelChange = useCallback((modelId: string) => {
+    setSelectedModelId(modelId)
+    const config = getModelConfig(modelId)
+    if (!config?.supportsThinking) {
+      setThinkingMode(false)
+    }
+  }, [])
+
   const handleSuggestionSelect = useCallback(
     (text: string) => {
       const slug = expertSlugRef.current
+      const modelId = selectedModelIdRef.current
       const canvas = canvasModeRef.current
       const thinking = thinkingModeRef.current
       setMessageCount((prev) => prev + 1)
       setTurnExperts((prev) => [...prev, slug])
+      setTurnModels((prev) => [...prev, modelId])
       setTurnCanvas((prev) => [...prev, canvas])
       setTurnThinking((prev) => [...prev, thinking])
-      sendMessage({ text }, { body: { expertSlug: slug, thinking } })
+      sendMessage({ text }, { body: { expertSlug: slug, thinking, model: modelId } })
     },
     [sendMessage]
   )
@@ -147,15 +166,17 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
       const hasFiles = message.files.length > 0
       if ((hasText || hasFiles) && messageCount < MAX_MESSAGES_PER_SESSION) {
         const slug = expertSlugRef.current
+        const modelId = selectedModelIdRef.current
         const canvas = canvasModeRef.current
         const thinking = thinkingModeRef.current
         setMessageCount((prev) => prev + 1)
         setTurnExperts((prev) => [...prev, slug])
+        setTurnModels((prev) => [...prev, modelId])
         setTurnCanvas((prev) => [...prev, canvas])
         setTurnThinking((prev) => [...prev, thinking])
         sendMessage(
           { text: message.text, files: message.files },
-          { body: { expertSlug: slug, thinking } }
+          { body: { expertSlug: slug, thinking, model: modelId } }
         )
         setInput("")
       }
@@ -279,6 +300,7 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
               <AssistantMessages
                 messages={messages}
                 turnExperts={turnExperts}
+                turnModels={turnModels}
                 turnCanvas={turnCanvas}
                 turnThinking={turnThinking}
                 expertsMap={expertsMap}
@@ -347,13 +369,19 @@ export function AssistantChat({ experts, initialExpert }: AssistantChatProps) {
                   >
                     <PanelRight className="size-4" />
                   </PromptInputButton>
-                  <PromptInputButton
-                    tooltip={thinkingMode ? "Thinking deaktivieren" : "Thinking aktivieren"}
-                    onClick={() => setThinkingMode((prev) => !prev)}
-                    className={thinkingMode ? "bg-primary/10 text-primary" : ""}
-                  >
-                    <BrainCircuit className="size-4" />
-                  </PromptInputButton>
+                  {getModelConfig(selectedModelId)?.supportsThinking && (
+                    <PromptInputButton
+                      tooltip={thinkingMode ? "Thinking deaktivieren" : "Thinking aktivieren"}
+                      onClick={() => setThinkingMode((prev) => !prev)}
+                      className={thinkingMode ? "bg-primary/10 text-primary" : ""}
+                    >
+                      <BrainCircuit className="size-4" />
+                    </PromptInputButton>
+                  )}
+                  <ModelPicker
+                    selectedModelId={selectedModelId}
+                    onSelect={handleModelChange}
+                  />
                   <ExpertPicker
                     experts={experts}
                     onSelect={handleExpertChange}
