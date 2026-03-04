@@ -2,13 +2,13 @@
 
 ## Der Sensor
 
-Der Sensor ist der Einstiegspunkt. Er analysiert jede Nutzeranfrage und erkennt zwei Dinge gleichzeitig:
+Der Sensor analysiert jede Nutzeranfrage und erkennt zwei Dinge gleichzeitig:
 - **Die Intention** — den emotionalen und situativen Kontext
 - **Das Thema** — den inhaltlichen Gegenstand der Anfrage
 
 Beispiel: "Mir wurde gerade Diabetes diagnostiziert, was bedeutet das fuer mich?"
 → Intention: Frische Diagnose (I2) — Schock, Orientierungsbedarf
-→ Thema: Diabetes mellitus — Baustein-Suche wird gestartet
+→ Thema: Diabetes mellitus — Context-Suche wird gestartet
 
 ## 7 Kernintentionen
 
@@ -30,7 +30,7 @@ Themen beschreiben WAS jemand wissen will. Intentionen beschreiben WARUM und in 
 
 ## Intentionen werden zur Laufzeit erkannt
 
-Intentionen sind NICHT auf den Bausteinen gespeichert. Sie werden aus der Nutzeranfrage erkannt. Der Sensor analysiert Wortwahl, Kontext und emotionale Signale und ordnet die Anfrage einer oder mehreren Intentionen zu. Bei Mehrdeutigkeit kann der Assistent rueckfragen.
+Intentionen sind NICHT auf den Contexts gespeichert. Sie werden aus der Nutzeranfrage erkannt. Der Sensor analysiert Wortwahl, Kontext und emotionale Signale und ordnet die Anfrage einer oder mehreren Intentionen zu. Bei Mehrdeutigkeit kann der Assistent rueckfragen.
 
 ## Antwort-Strategien pro Intention
 

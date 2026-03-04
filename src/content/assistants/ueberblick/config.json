@@ -1,11 +1,11 @@
 {
-  "name": "SAVA Überblick",
+  "name": "SAVA Engine",
   "emoji": "🏛️",
-  "description": "Erklaert die Gesamtarchitektur: Kompass, Bausteine, Intentionen, Kommunikation und das Zusammenspiel der Schichten.",
+  "description": "Erklaert die Gesamtarchitektur der SAVA Engine: Kompass, Context, Intentionen, Kommunikation und das Zusammenspiel der Schichten.",
   "suggestions": [
-    "Wie funktioniert die SAVA Context Pipeline?",
-    "Was ist ein Baustein und warum traegt er keine Intention?",
-    "Erklaer mir das Zusammenspiel von Sensor und Intention Engine an einem Beispiel",
-    "Warum sind Bausteine auch als Headless Content nutzbar?"
+    "Wie funktioniert die SAVA Engine?",
+    "Was ist ein Context und warum traegt er keine Intention?",
+    "Erklaer mir das Zusammenspiel von Sensor und Kommunikation an einem Beispiel",
+    "Warum sind Contexts auch als Headless Content nutzbar?"
   ]
 }

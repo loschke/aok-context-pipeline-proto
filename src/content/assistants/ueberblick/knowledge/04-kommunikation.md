@@ -1,10 +1,10 @@
 # Schicht 3: Die Kommunikation — Wie muss es klingen?
 
-## Die Intention Engine
+## Die SAVA Engine
 
-Die Intention Engine ist das Herzstueck. Sie bekommt zwei Inputs:
+Die SAVA Engine bekommt zwei Inputs:
 1. Die **erkannte Intention** vom Sensor
-2. Die **Rohdaten** aus dem Baustein
+2. Die **Rohdaten** aus dem Context
 
 Und uebersetzt beides in einen menschlichen, situationsgerechten Output.
 
@@ -32,7 +32,7 @@ Dieselbe Antwort kann den Nutzer auf voellig unterschiedlichen Wegen erreichen:
 | **Schritt-fuer-Schritt** | Interaktiver Wizard. Komplexe Prozesse wie Antragsstellung oder Arztwechsel. |
 | **Visuelle Uebersicht** | Infografik, Zeitstrahl, Vergleichstabelle. Wenn ein Bild mehr sagt als Text. |
 
-Das Ausgabemedium ist die Bruecke zum Headless-Content-Prinzip: Weil der Baustein keine Kanal-Bindung hat, kann dieselbe Information als Chat-Text, als PDF, als Push oder als Audio ausgespielt werden.
+Das Ausgabemedium ist die Bruecke zum Headless-Content-Prinzip: Weil der Context keine Kanal-Bindung hat, kann dieselbe Information als Chat-Text, als PDF, als Push oder als Audio ausgespielt werden.
 
 ## Kommunikationsparameter pro Intention
 
@@ -57,9 +57,9 @@ Neben der Intention beruecksichtigt die Kommunikationsschicht auch die aeussere 
 | **Unter Stress** | Beruhigender Ton. Ein naechster Schritt. Keine Informationsflut. | Chat (kurz), Audio |
 | **Recherche-Modus** | Alle Details. Rechtsgrundlagen. Verknuepfungen. | Chat (ausfuehrlich), PDF, Uebersicht |
 
-## Beispiel: Derselbe Baustein, drei Outputs, drei Medien
+## Beispiel: Derselbe Context, drei Outputs, drei Medien
 
-Baustein: Diabetes mellitus Typ 2 (identische Fakten)
+Context: Diabetes mellitus Typ 2 (identische Fakten)
 
 **I2 — Frische Diagnose** (Ton: orientierend, beruhigend / Medium: Chat + PDF):
 "Eine neue Diagnose kann sich ueberwaeltigend anfuehlen. Der wichtigste erste Schritt: ein Gespraech mit deinem Hausarzt. Die AOK bietet das Diabetes-Programm DMP an, das dich langfristig begleitet."
