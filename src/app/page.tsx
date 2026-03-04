@@ -3,11 +3,12 @@ import { ArrowRight, Database, Radar, MessageCircle, Zap, Shield, Layers } from 
 
 import { brand } from "@/config/brand"
 import { BrandWordmark } from "@/components/layout/brand-wordmark"
+import { ContextExamples } from "./context-examples"
 
 /* ── Layer Colors (matching Leitfaden) ── */
 const layers = {
   kompass: { bg: "bg-slate-50", accent: "text-slate-700", border: "border-slate-300", dot: "bg-slate-500", badge: "bg-slate-100 text-slate-800" },
-  baustein: { bg: "bg-emerald-50", accent: "text-emerald-700", border: "border-emerald-200", dot: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" },
+  context: { bg: "bg-emerald-50", accent: "text-emerald-700", border: "border-emerald-200", dot: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" },
   sensor: { bg: "bg-blue-50", accent: "text-blue-700", border: "border-blue-200", dot: "bg-blue-500", badge: "bg-blue-100 text-blue-800" },
   kommunikation: { bg: "bg-amber-50", accent: "text-amber-700", border: "border-amber-200", dot: "bg-amber-500", badge: "bg-amber-100 text-amber-800" },
 }
@@ -84,7 +85,7 @@ export default function LandingPage() {
           </h1>
 
           <p className="mb-10 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Die SAVA Context Pipeline trennt Wissen von Kommunikation. Ein Thema wird einmal gepflegt.
+            Die SAVA Engine trennt Wissen von Kommunikation. Ein Thema wird einmal als Context aufbereitet.
             Der Assistent erkennt, was der Mensch gerade braucht, und passt die Antwort an.
             Ein verbindliches Regelwerk hält alles in den richtigen Grenzen.
           </p>
@@ -139,7 +140,7 @@ export default function LandingPage() {
               <div className="border border-emerald-200 bg-emerald-50 p-5">
                 <p className="mb-2 text-sm font-semibold text-emerald-800">Mit Pipeline</p>
                 <ul className="space-y-1 text-sm text-emerald-700">
-                  <li>Ein Baustein: Diabetes-Fakten</li>
+                  <li>Ein Context: Diabetes-Fakten + relevante Tools</li>
                   <li>7 Intentionen: Erkennung zur Laufzeit</li>
                   <li>Kommunikation: Automatische Anpassung</li>
                 </ul>
@@ -159,7 +160,7 @@ export default function LandingPage() {
               Die Architektur
             </p>
             <h2 className="headline-black mb-6 text-2xl tracking-tight sm:text-3xl">
-              Drei Schichten. Ein Fundament.
+              Die SAVA Engine. Drei Schichten. Ein Fundament.
             </h2>
             <p className="mb-10 max-w-2xl text-muted-foreground leading-relaxed">
               Jede Schicht hat eine klare Verantwortung. Der Kompass durchzieht alle drei als
@@ -169,12 +170,12 @@ export default function LandingPage() {
 
             {/* Drei Schichten */}
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className={`border ${layers.baustein.border} ${layers.baustein.bg} p-5 transition-lift`}>
+              <div className={`border ${layers.context.border} ${layers.context.bg} p-5 transition-lift`}>
                 <Database className="mb-3 size-5 text-emerald-600" />
                 <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600">Schicht 1</p>
-                <p className="mt-1 text-lg font-bold text-emerald-900">Der Baustein</p>
-                <p className="mt-2 text-sm text-emerald-800">Was ist wahr?</p>
-                <p className="mt-1 text-xs text-emerald-600">Reine Fakten. Kein Ton. Kein Kontext. Einmal gepflegt, überall genutzt.</p>
+                <p className="mt-1 text-lg font-bold text-emerald-900">Der Context</p>
+                <p className="mt-2 text-sm text-emerald-800">Was ist wahr? Was steht zur Verfügung?</p>
+                <p className="mt-1 text-xs text-emerald-600">Wissen, Tools und Datenbanken. Kein Ton, keine Meinung. Einmal gepflegt, überall genutzt.</p>
               </div>
               <div className={`border ${layers.sensor.border} ${layers.sensor.bg} p-5 transition-lift`}>
                 <Radar className="mb-3 size-5 text-blue-600" />
@@ -203,7 +204,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="hidden shrink-0 sm:flex sm:gap-1.5">
-                <span className="inline-block size-2 rounded-full bg-emerald-400" title="Baustein" />
+                <span className="inline-block size-2 rounded-full bg-emerald-400" title="Context" />
                 <span className="inline-block size-2 rounded-full bg-blue-400" title="Intention" />
                 <span className="inline-block size-2 rounded-full bg-amber-400" title="Kommunikation" />
               </div>
@@ -228,7 +229,7 @@ export default function LandingPage() {
             </p>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
               Bevor der Assistent antwortet, gelten Regeln. Der Kompass ist kein separater Schritt,
-              sondern das Betriebssystem, auf dem alles läuft. Er steuert, welche Quellen der Baustein
+              sondern das Betriebssystem, auf dem alles läuft. Er steuert, welche Quellen der Context
               nutzen darf, wie der Sensor Grenzsituationen behandelt und welche Formulierungen die
               Kommunikation nie verwenden darf.
             </p>
@@ -254,7 +255,7 @@ export default function LandingPage() {
 
                 <h3 className="mb-3 mt-6 text-sm font-bold uppercase tracking-wider text-slate-600">Quellen & Wissensbasis</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Der Assistent antwortet ausschließlich auf Basis der strukturierten Wissensbausteine.
+                  Der Assistent antwortet ausschließlich auf Basis der strukturierten Context-Einheiten.
                   Keine Internetsuche, kein allgemeines Sprachmodell-Wissen. Was nicht in der Wissensbasis
                   steht, wird nicht beantwortet, sondern an die persönliche Beratung verwiesen.
                 </p>
@@ -317,7 +318,7 @@ export default function LandingPage() {
               <div className="border border-emerald-200 bg-emerald-50 p-3">
                 <p className="flex items-center gap-2 text-xs font-semibold">
                   <Shield className="size-3 text-slate-500" />
-                  <span className="text-emerald-800">Kompass im Baustein</span>
+                  <span className="text-emerald-800">Kompass im Context</span>
                 </p>
                 <p className="mt-1 text-xs text-emerald-600">Nur fachlich geprüfte Quellen. Keine Marketing-Sprache. Haftungshinweise wo nötig.</p>
               </div>
@@ -340,29 +341,48 @@ export default function LandingPage() {
         </section>
 
         {/* ════════════════════════════════════
-           Layer 1: Der Baustein
+           Layer 1: Der Context
            ════════════════════════════════════ */}
-        <section className={`border-t ${layers.baustein.bg} px-6 py-20 sm:px-8 lg:px-20`}>
+        <section className={`border-t ${layers.context.bg} px-6 py-20 sm:px-8 lg:px-20`}>
           <div className="mx-auto max-w-4xl">
             <p className="micro-label mb-4 flex items-center gap-2">
-              <span className={`inline-block size-1.5 rounded-full ${layers.baustein.dot}`} />
+              <span className={`inline-block size-1.5 rounded-full ${layers.context.dot}`} />
               Schicht 1
             </p>
             <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Der Baustein
+              Der Context
             </h2>
             <p className="mb-8 text-lg text-emerald-800">
-              Reiner Inhalt. Ein Baustein weiß nicht, wer ihn liest.
+              Wissen, Tools und Datenbanken. Ein Context weiß nicht, wer ihn nutzt.
             </p>
 
             <div className="grid gap-8 lg:grid-cols-2">
               {/* Erklärung */}
               <div>
                 <p className="mb-4 leading-relaxed text-muted-foreground">
-                  Ein Baustein ist eine atomare Wissenseinheit. Er beantwortet genau eine Frage vollständig,
-                  ohne dass zusätzlicher Kontext nötig ist. Keine Tonalität. Keine Empathie.
-                  Nur fachlich geprüfte Fakten.
+                  Context ist alles, was der Assistent braucht, um eine Frage zu beantworten.
+                  Das sind nicht nur Wissenseinheiten mit fachlich geprüften Fakten, sondern auch
+                  Tools und Datenbanken der AOK: Krankenhaussuche, Pflegeheim-Finder, BMI-Rechner
+                  und viele mehr. Context beschreibt was verfügbar ist und wann es relevant wird.
                 </p>
+
+                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-emerald-700">Zwei Typen von Context</h3>
+                <div className="mb-4 space-y-3">
+                  <div className="rounded-md border border-emerald-200 bg-white p-3">
+                    <p className="text-sm font-semibold text-emerald-900">Wissens-Context</p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Atomare Wissenseinheiten. Beantworten genau eine Frage vollständig.
+                      Keine Tonalität, keine Empathie. Nur Fakten.
+                    </p>
+                  </div>
+                  <div className="rounded-md border border-emerald-200 bg-white p-3">
+                    <p className="text-sm font-semibold text-emerald-900">Tool-Context</p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Beschreibungen von AOK-Tools und Datenbanken. Wann ist welches Tool relevant?
+                      Krankenhaussuche bei Behandlungsfragen, Pflegeheim-Finder bei Angehörigen-Sorge.
+                    </p>
+                  </div>
+                </div>
 
                 <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-emerald-700">Vier Eigenschaften</h3>
                 <ul className="space-y-2 text-sm">
@@ -376,7 +396,7 @@ export default function LandingPage() {
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
-                    <span><strong>Eindeutig typisiert</strong> — genau ein Typ, der korrekt ist</span>
+                    <span><strong>Eindeutig typisiert</strong> — Wissen oder Tool, klar zugeordnet</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
@@ -389,38 +409,13 @@ export default function LandingPage() {
                   Felder wie <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">zielgruppe</code>,{" "}
                   <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">kontext_tags</code> und{" "}
                   <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">typ</code> helfen,
-                  den richtigen Baustein zur Laufzeit zu finden. Sie sind keine Intentions-Zuordnung.
-                  Der Baustein bleibt neutral — die Kommunikation liegt woanders.
+                  den richtigen Context zur Laufzeit zu finden. Sie sind keine Intentions-Zuordnung.
+                  Der Context bleibt neutral. Die Kommunikation liegt woanders.
                 </p>
               </div>
 
-              {/* Beispiel */}
-              <div className="overflow-hidden border border-emerald-200 bg-white">
-                <div className="border-b border-emerald-100 bg-emerald-50/50 px-4 py-2">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600">Beispiel: Baustein</p>
-                </div>
-                <pre className="overflow-x-auto p-4 text-xs leading-relaxed text-emerald-950"><code>{`titel: "Diabetes mellitus Typ 2"
-typ: erkrankung
-cluster: stoffwechsel
-kategorie: chronische-erkrankungen
-stand: "2026-03-01"
-zielgruppe:
-  - versicherte
-  - angehoerige
-kontext_tags:
-  bereich: innere-medizin
-  chronisch: true
-
-## Inhalt
-
-- Chronische Stoffwechselerkrankung
-- Diagnose: HbA1c > 6,5%
-- Behandlung: Ernährung, Bewegung,
-  ggf. Metformin
-- AOK-Leistungen: DMP Diabetes,
-  Ernährungsberatung,
-  Blutzuckermessgeräte`}</code></pre>
-              </div>
+              {/* Beispiele als Tabs */}
+              <ContextExamples />
             </div>
           </div>
         </section>
@@ -493,7 +488,7 @@ kontext_tags:
                   <p className="mt-1 rounded bg-blue-50 p-2 text-sm text-blue-800">
                     <strong>Diabetes mellitus</strong>
                     <br />
-                    <span className="text-xs">Baustein-Suche gestartet</span>
+                    <span className="text-xs">Context-Suche gestartet</span>
                   </p>
                 </div>
               </div>
@@ -517,7 +512,7 @@ kontext_tags:
               Dieselben Fakten. Drei verschiedene Stimmen.
             </p>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Die Intention Engine bekommt zwei Inputs: die erkannte Intention und die Rohdaten aus dem Baustein.
+              Die SAVA Engine bekommt zwei Inputs: die erkannte Intention und die Rohdaten aus dem Context.
               Daraus entsteht eine situationsgerechte Antwort. Drei Parameter steuern das Ergebnis.
             </p>
 
@@ -618,10 +613,10 @@ kontext_tags:
               Das Zusammenspiel
             </p>
             <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Ein Baustein. Drei Intentionen. Drei Antworten.
+              Ein Context. Drei Intentionen. Drei Antworten.
             </h2>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Hier wird das Prinzip greifbar. Derselbe Diabetes-Baustein, drei verschiedene
+              Hier wird das Prinzip der SAVA Engine greifbar. Derselbe Diabetes-Context, drei verschiedene
               Intentionen, drei völlig verschiedene Antworten. Die Fakten sind identisch.
               Nur die Kommunikation ändert sich.
             </p>
@@ -629,9 +624,9 @@ kontext_tags:
             {/* Flow-Visualisierung */}
             <div className="mb-10">
               <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-0">
-                <div className={`flex items-center gap-2 rounded-full border ${layers.baustein.border} ${layers.baustein.bg} px-4 py-2`}>
+                <div className={`flex items-center gap-2 rounded-full border ${layers.context.border} ${layers.context.bg} px-4 py-2`}>
                   <Database className="size-4 text-emerald-600" />
-                  <span className="text-xs font-semibold text-emerald-800">Baustein: Diabetes</span>
+                  <span className="text-xs font-semibold text-emerald-800">Context: Diabetes</span>
                 </div>
                 <div className="hidden h-px w-8 bg-border sm:block" />
                 <div className="block text-center text-xs text-muted-foreground sm:hidden">+</div>
@@ -679,11 +674,11 @@ kontext_tags:
             {/* Quintessenz */}
             <div className="mt-10 border-l-4 border-primary bg-muted/50 p-6">
               <p className="text-sm font-bold">Der Kompass setzt die Grenzen.</p>
-              <p className="text-sm font-bold">Der Baustein liefert die Wahrheit.</p>
+              <p className="text-sm font-bold">Der Context liefert Wissen und Tools.</p>
               <p className="text-sm font-bold">Der Sensor liefert den Kontext.</p>
-              <p className="text-sm font-bold">Die Intention Engine macht daraus Kommunikation.</p>
+              <p className="text-sm font-bold">Die SAVA Engine macht daraus Kommunikation.</p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Fachinhalt wird zentral aktualisiert — alle Intentionen profitieren sofort.
+                Wissen und Tools werden zentral gepflegt. Alle Intentionen profitieren sofort.
                 Neue Intentionen erfordern keinen neuen Content, nur neue Engine-Regeln.
                 Fachliche Prüfung und kommunikative Prüfung sind klar getrennt.
                 Und in jedem Schritt gelten dieselben verbindlichen Regeln.
@@ -702,7 +697,7 @@ kontext_tags:
             </h2>
             <p className="mx-auto mb-8 max-w-lg text-sm text-background/60">
               In der Workbench kannst du den gesamten Prozess durchspielen: Webinhalte extrahieren,
-              Bausteine erzeugen, Qualität prüfen und die Intention Engine testen.
+              Contexts erzeugen, Qualität prüfen und die SAVA Engine testen.
             </p>
             <Link
               href="/api/auth/sign-in"
@@ -724,18 +719,18 @@ kontext_tags:
               Weitergedacht
             </p>
             <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Bausteine sind Headless Content
+              Contexts sind Headless Content
             </h2>
             <p className="mb-4 text-lg text-muted-foreground">
               Einmal aufbereitet. Überall einsetzbar. Nicht nur für den Assistenten.
             </p>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Die Trennung von Inhalt und Kommunikation hat einen Nebeneffekt: Bausteine sind strukturierte,
+              Die Trennung von Inhalt und Kommunikation hat einen Nebeneffekt: Contexts sind strukturierte,
               fachlich geprüfte Rohdaten ohne Kanal-Bindung. Das macht sie zur idealen Grundlage
               für ein KI-gestütztes Multi-Kanal-Content-System.
             </p>
 
-            {/* Vom Baustein zum Kanal */}
+            {/* Vom Context zum Kanal */}
             <div className="mb-8 grid gap-4 lg:grid-cols-2">
               {/* So funktioniert es */}
               <div className="border border-border p-5">
@@ -744,7 +739,7 @@ kontext_tags:
                   <div className="flex gap-3">
                     <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">1</span>
                     <div>
-                      <p className="text-sm font-semibold">Baustein als Single Source of Truth</p>
+                      <p className="text-sm font-semibold">Context als Single Source of Truth</p>
                       <p className="mt-0.5 text-xs text-muted-foreground">Fachredaktion pflegt Fakten einmal. Qualitätsgesichert, strukturiert, versioniert.</p>
                     </div>
                   </div>
@@ -752,7 +747,7 @@ kontext_tags:
                     <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">2</span>
                     <div>
                       <p className="text-sm font-semibold">KI generiert kanalgerechte Varianten</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">Aus einem Diabetes-Baustein wird ein Social-Post, ein Newsletter-Absatz, eine App-Notification oder ein Webseitentext.</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">Aus einem Diabetes-Context wird ein Social-Post, ein Newsletter-Absatz, eine App-Notification oder ein Webseitentext.</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
@@ -767,7 +762,7 @@ kontext_tags:
 
               {/* Kanäle */}
               <div className="border border-border p-5">
-                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Ein Baustein, viele Kanäle</h3>
+                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Ein Context, viele Kanäle</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {[
                     { kanal: "Website", ton: "Ausführlich, SEO-optimiert", format: "Ratgeber-Artikel" },
@@ -793,7 +788,7 @@ kontext_tags:
                 Die Pipeline baut nicht nur ein Assistenten-Gedächtnis. Sie baut eine Infrastruktur für die gesamte Gesundheitskommunikation.
               </p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Wenn die Fachredaktion einen Baustein aktualisiert, profitieren alle Kanäle sofort.
+                Wenn die Fachredaktion einen Context aktualisiert, profitieren alle Kanäle sofort.
                 Kein Abgleich zwischen Webseite, App und Newsletter. Kein veralteter Social-Post
                 neben aktueller Webseite. Eine Quelle der Wahrheit. Viele Stimmen.
               </p>
