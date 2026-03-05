@@ -61,7 +61,7 @@ export function ClusterDashboard({ initialClusters }: ClusterDashboardProps) {
             Pipeline v2<span className="text-primary">.</span>
           </h1>
           <p className="text-sm text-muted-foreground">
-            Content-to-Context Transformation (8-Step Engine)
+            Content-Cluster in strukturierte Wissensbausteine fuer die SAVA Engine transformieren
           </p>
         </div>
       </div>

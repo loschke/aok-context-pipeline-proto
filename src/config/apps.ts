@@ -3,10 +3,10 @@ import type { AppLink } from "@/types"
 
 export const apps: AppLink[] = [
   {
-    name: "Context Pipeline",
+    name: "SAVA Engine",
     url: "/pipeline",
     icon: Workflow,
-    description: "Content-to-Context Workbench",
+    description: "Werkbank fuer die SAVA Engine",
     active: true,
   },
   {

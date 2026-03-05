@@ -20,20 +20,5 @@ export function ChatTrigger() {
     return null
   }
 
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="gap-2"
-          onClick={toggle}
-        >
-          <MessageCircle className="size-4" />
-          <span className="hidden sm:inline">Frage stellen</span>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>Experten-Chat öffnen</TooltipContent>
-    </Tooltip>
-  )
+  return null
 }

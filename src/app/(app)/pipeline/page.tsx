@@ -39,10 +39,16 @@ const infoPages = [
 
 const tools = [
   {
-    title: "Context Pipeline",
+    title: "Context Pipeline v2",
+    url: "/pipeline-v2",
+    icon: Workflow,
+    description: "8-Step Pipeline: Content-Cluster in strukturierte Wissensbausteine transformieren.",
+  },
+  {
+    title: "Context Pipeline v1",
     url: "/context-pipeline",
     icon: Workflow,
-    description: "Content extrahieren, typisieren, anreichern und als Wissensbausteine exportieren.",
+    description: "Legacy-Pipeline (6 Steps). Wird durch v2 abgeloest.",
   },
 ]
 
@@ -55,15 +61,15 @@ export default async function PipelinePage() {
     <div className="mx-auto max-w-3xl py-12">
       <p className="micro-label mb-4 flex items-center gap-2">
         <span className="inline-block size-1.5 rounded-full bg-primary" />
-        Pipeline Dashboard
+        SAVA Engine
       </p>
       <h1 className="headline-black mb-2 text-4xl">
         Willkommen, {displayName}
         <span className="text-primary">.</span>
       </h1>
       <p className="mb-8 text-lg text-muted-foreground">
-        Content-to-Context Pipeline fuer AOK-Gesundheitsinhalte. Transformiere Webinhalte in
-        strukturierte Wissensbausteine fuer den AI-Assistenten.
+        Werkbank fuer die SAVA Engine der AOK Sachsen-Anhalt. Architektur verstehen,
+        Context aufbauen, Experten befragen.
       </p>
 
       {experts.length > 0 && (

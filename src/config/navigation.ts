@@ -20,17 +20,9 @@ export const primaryModules: ModuleItem[] = [
   },
   {
     title: "Context Pipeline",
-    url: "/context-pipeline",
-    icon: Workflow,
-    description: "Methodik, Bausteine und Workflow",
-    variant: "compact",
-    badge: "v1",
-  },
-  {
-    title: "Pipeline v2",
     url: "/pipeline-v2",
     icon: Workflow,
-    description: "8-Step Engine mit Cluster-Dashboard",
+    description: "Content-Cluster in Wissensbausteine transformieren",
     variant: "compact",
     badge: "Tool",
   },
