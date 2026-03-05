@@ -20,6 +20,18 @@ export function ClusterDashboard({ initialClusters }: ClusterDashboardProps) {
   const [newName, setNewName] = useState("")
   const [error, setError] = useState("")
 
+  async function handleDelete(name: string) {
+    try {
+      const response = await fetch(`/api/pipeline-v2/state?cluster=${encodeURIComponent(name)}`, {
+        method: "DELETE",
+      })
+      if (!response.ok) return
+      setClusters((prev) => prev.filter((c) => c.name !== name))
+    } catch {
+      // ignore
+    }
+  }
+
   async function handleCreate() {
     const name = newName.trim().toLowerCase().replace(/\s+/g, "-")
     if (!name) return
@@ -68,7 +80,7 @@ export function ClusterDashboard({ initialClusters }: ClusterDashboardProps) {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {clusters.map((cluster) => (
-          <ClusterCard key={cluster.name} cluster={cluster} />
+          <ClusterCard key={cluster.name} cluster={cluster} onDelete={handleDelete} />
         ))}
 
         {/* Create new cluster */}

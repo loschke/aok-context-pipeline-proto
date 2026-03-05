@@ -101,6 +101,16 @@ export async function getClusterTree(cluster: string): Promise<FileTreeNode[]> {
 }
 
 /**
+ * Delete a cluster directory and all its contents.
+ */
+export async function deleteCluster(name: string): Promise<void> {
+  const clusterPath = v2Ops.resolveSafe(name)
+  // Verify it exists
+  await fs.stat(clusterPath)
+  await fs.rm(clusterPath, { recursive: true, force: true })
+}
+
+/**
  * Create a new cluster directory with step subdirectories.
  */
 export async function createCluster(name: string): Promise<void> {
