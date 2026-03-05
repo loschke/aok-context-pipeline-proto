@@ -1,43 +1,32 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { Sparkles, Loader2 } from "lucide-react"
+import { Sparkles, Loader2, CheckCircle2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import type { PipelineStepV2 } from "@/types/pipeline-v2"
 import type { PipelineFile } from "@/types/pipeline"
-import { SourceFileSelector } from "@/components/pipeline/shared/source-file-selector"
 import { StreamingOutput } from "@/components/pipeline/shared/streaming-output"
 
 interface StepConsolidateV2Props {
   step: PipelineStepV2
   groupedFiles: PipelineFile[]
+  bausteinFiles: PipelineFile[]
   cluster: string
   onComplete: () => void
 }
 
-export function StepConsolidateV2({ step, groupedFiles, cluster, onComplete }: StepConsolidateV2Props) {
-  const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set())
+export function StepConsolidateV2({ step, groupedFiles, bausteinFiles, cluster, onComplete }: StepConsolidateV2Props) {
   const [isRunning, setIsRunning] = useState(false)
   const [streamContent, setStreamContent] = useState("")
   const [isAnimating, setIsAnimating] = useState(false)
 
-  function toggleFile(path: string) {
-    setSelectedFiles((prev) => {
-      const next = new Set(prev)
-      if (next.has(path)) next.delete(path)
-      else next.add(path)
-      return next
-    })
-  }
-
-  function selectAll() {
-    if (selectedFiles.size === groupedFiles.length) setSelectedFiles(new Set())
-    else setSelectedFiles(new Set(groupedFiles.map((f) => f.path)))
-  }
+  const hasGrouped = groupedFiles.length > 0
+  const hasBausteine = bausteinFiles.length > 0
+  const canRun = hasGrouped && hasBausteine && !isRunning
 
   const handleConsolidate = useCallback(async () => {
-    if (selectedFiles.size === 0) return
+    if (!canRun) return
     setIsRunning(true)
     setIsAnimating(true)
     setStreamContent("")
@@ -46,7 +35,11 @@ export function StepConsolidateV2({ step, groupedFiles, cluster, onComplete }: S
       const response = await fetch("/api/pipeline-v2/consolidate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sourceFiles: Array.from(selectedFiles), cluster }),
+        body: JSON.stringify({
+          sourceFiles: groupedFiles.map((f) => f.path),
+          bausteinFiles: bausteinFiles.map((f) => f.path),
+          cluster,
+        }),
       })
 
       if (!response.ok) {
@@ -76,24 +69,24 @@ export function StepConsolidateV2({ step, groupedFiles, cluster, onComplete }: S
       setIsRunning(false)
       setIsAnimating(false)
     }
-  }, [selectedFiles, cluster, onComplete])
+  }, [canRun, groupedFiles, bausteinFiles, cluster, onComplete])
 
   return (
     <div className="flex flex-col gap-6">
-      <SourceFileSelector
-        label="Gruppierte Dateien aus Schritt 5"
-        description="Waehle die Dateien fuer die Konsolidierung."
-        emptyMessage="Keine Dateien aus Schritt 5 vorhanden."
-        files={groupedFiles}
-        selectedFiles={selectedFiles}
-        onToggle={toggleFile}
-        onSelectAll={selectAll}
-        disabled={isRunning}
-      />
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-2 text-sm">
+          <CheckCircle2 className={`size-4 ${hasBausteine ? "text-primary" : "text-muted-foreground"}`} />
+          <span>Bausteine aus Schritt 2 ({bausteinFiles.length} Dateien)</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm">
+          <CheckCircle2 className={`size-4 ${hasGrouped ? "text-primary" : "text-muted-foreground"}`} />
+          <span>Gruppierung aus Schritt 5 ({groupedFiles.length} Dateien)</span>
+        </div>
+      </div>
 
       <Button
         onClick={handleConsolidate}
-        disabled={isRunning || selectedFiles.size === 0}
+        disabled={!canRun}
         size="sm"
         className="gap-2 self-start"
       >

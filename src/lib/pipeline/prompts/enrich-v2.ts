@@ -84,6 +84,7 @@ Vergib thematisch passende Kontext-Tags als Key-Value-Paare. Die Tags sollen das
 - kebab-case, keine Umlaute (ae, oe, ue statt ae, oe, ue)
 
 ## Inhalt
+- Die Input-Bausteine enthalten bereits den vollstaendigen, bereinigten Inhalt. Uebernimm diesen Inhalt und ergaenze die 5 Kontext-Dimensionen.
 - Strukturiere mit Zwischenueberschriften (##)
 - Betraege in Tabellen
 - Prozesse als nummerierte Listen

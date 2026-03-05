@@ -19,25 +19,41 @@ export async function POST(req: Request) {
   const sizeError = checkBodySize(req)
   if (sizeError) return sizeError
 
-  let body: { sourceFiles: string[]; cluster: string }
+  let body: { sourceFiles: string[]; bausteinFiles: string[]; cluster: string }
   try { body = await req.json() } catch { return new Response("Invalid JSON", { status: 400 }) }
 
-  const { sourceFiles, cluster } = body
+  const { sourceFiles, bausteinFiles, cluster } = body
 
   if (!Array.isArray(sourceFiles) || sourceFiles.length === 0 || sourceFiles.length > 50) {
     return new Response("sourceFiles must be an array of 1-50 file paths", { status: 400 })
+  }
+  if (!Array.isArray(bausteinFiles) || bausteinFiles.length === 0 || bausteinFiles.length > 50) {
+    return new Response("bausteinFiles must be an array of 1-50 file paths", { status: 400 })
   }
   if (!cluster || !/^[a-z0-9-]+$/.test(cluster)) {
     return new Response("Invalid cluster name", { status: 400 })
   }
 
-  const sourceContents: string[] = []
-  for (const file of sourceFiles) {
+  const allFiles = [...sourceFiles, ...bausteinFiles]
+  for (const file of allFiles) {
     if (file.includes("..") || !/^[a-z0-9/_.-]+$/.test(file)) {
       return new Response(`Invalid file path: ${file}`, { status: 400 })
     }
+  }
+
+  const bausteinContents: string[] = []
+  for (const file of bausteinFiles) {
     try {
-      sourceContents.push(await readPipelineFileV2(file))
+      bausteinContents.push(await readPipelineFileV2(file))
+    } catch {
+      return new Response(`File not found: ${file}`, { status: 404 })
+    }
+  }
+
+  const groupingContents: string[] = []
+  for (const file of sourceFiles) {
+    try {
+      groupingContents.push(await readPipelineFileV2(file))
     } catch {
       return new Response(`File not found: ${file}`, { status: 404 })
     }
@@ -46,18 +62,29 @@ export async function POST(req: Request) {
   const userMessage = [
     `# Konsolidierung fuer Cluster: ${cluster}`,
     "",
-    `${sourceFiles.length} gruppierte Dateien als Input:`,
+    "## Original-Bausteine (vollstaendiger Inhalt aus Schritt 2)",
     "",
-    ...sourceContents.map((content, i) => [
+    ...bausteinContents.map((content, i) => [
       `---`,
-      `## Quelldatei ${i + 1}: ${sourceFiles[i]}`,
+      `### Baustein-Datei ${i + 1}: ${bausteinFiles[i]}`,
       "",
       content,
       "",
     ].join("\n")),
     "---",
     "",
-    "Fuehre Duplikate zusammen und loese Konflikte auf. Gib die bereinigten Bausteine aus.",
+    "## Gruppierung & Duplikat-Analyse (aus Schritt 5)",
+    "",
+    ...groupingContents.map((content, i) => [
+      `---`,
+      `### Gruppierungs-Datei ${i + 1}: ${sourceFiles[i]}`,
+      "",
+      content,
+      "",
+    ].join("\n")),
+    "---",
+    "",
+    "Fuehre Duplikate zusammen und loese Konflikte auf. Nutze die Gruppierung fuer Merge-Entscheidungen und die Original-Bausteine fuer die vollstaendigen Inhalte. Gib die bereinigten Bausteine mit VOLLSTAENDIGEM Inhalt aus.",
   ].join("\n")
 
   const result = streamText({

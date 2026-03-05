@@ -130,6 +130,7 @@ export function ContentPanel({
         <StepConsolidateV2
           step={currentStep}
           groupedFiles={getStepFiles(5)}
+          bausteinFiles={getStepFiles(2)}
           cluster={cluster}
           onComplete={onStepComplete}
         />
