@@ -7,7 +7,7 @@ import { readPipelineFileV2, writePipelineFileV2 } from "@/lib/pipeline/files-v2
 import { aiDefaults } from "@/config/ai"
 import { ENRICHMENT_V2_SYSTEM_PROMPT } from "@/lib/pipeline/prompts/enrich-v2"
 
-export const maxDuration = 120
+export const maxDuration = 300
 
 export async function POST(req: Request) {
   const user = await getUser()
@@ -24,8 +24,8 @@ export async function POST(req: Request) {
 
   const { sourceFiles, cluster } = body
 
-  if (!Array.isArray(sourceFiles) || sourceFiles.length === 0 || sourceFiles.length > 20) {
-    return new Response("sourceFiles must be an array of 1-20 file paths", { status: 400 })
+  if (!Array.isArray(sourceFiles) || sourceFiles.length === 0 || sourceFiles.length > 50) {
+    return new Response("sourceFiles must be an array of 1-50 file paths", { status: 400 })
   }
   if (!cluster || !/^[a-z0-9-]+$/.test(cluster)) {
     return new Response("Invalid cluster name", { status: 400 })
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     model: gateway(aiDefaults.model),
     system: ENRICHMENT_V2_SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
-    maxOutputTokens: 16384,
+    maxOutputTokens: 48000,
     temperature: 0.3,
     async onFinish({ text }) {
       if (!text) return

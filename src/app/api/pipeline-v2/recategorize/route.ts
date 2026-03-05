@@ -7,7 +7,7 @@ import { readPipelineFileV2, writePipelineFileV2 } from "@/lib/pipeline/files-v2
 import { aiDefaults } from "@/config/ai"
 import { RECATEGORIZE_V2_SYSTEM_PROMPT } from "@/lib/pipeline/prompts/recategorize-v2"
 
-export const maxDuration = 120
+export const maxDuration = 300
 
 export async function POST(req: Request) {
   const user = await getUser()
@@ -24,8 +24,8 @@ export async function POST(req: Request) {
 
   const { bausteinFiles, taxonomyFile, cluster } = body
 
-  if (!Array.isArray(bausteinFiles) || bausteinFiles.length === 0 || bausteinFiles.length > 20) {
-    return new Response("bausteinFiles must be an array of 1-20 file paths", { status: 400 })
+  if (!Array.isArray(bausteinFiles) || bausteinFiles.length === 0 || bausteinFiles.length > 50) {
+    return new Response("bausteinFiles must be an array of 1-50 file paths", { status: 400 })
   }
   if (!taxonomyFile || typeof taxonomyFile !== "string") {
     return new Response("taxonomyFile is required", { status: 400 })
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
     model: gateway(aiDefaults.model),
     system: RECATEGORIZE_V2_SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
-    maxOutputTokens: 8192,
+    maxOutputTokens: 48000,
     temperature: 0.3,
     async onFinish({ text }) {
       if (text) {
