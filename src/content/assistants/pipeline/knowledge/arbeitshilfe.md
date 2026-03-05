@@ -2,7 +2,7 @@ Context Engineering: Arbeitshilfe
 
 **Praktischer Leitfaden für die Erarbeitung und Qualitätssicherung von Context Clustern**
 
-Version: 0.2 Draft Stand: Februar 2025 Zielgruppe: Projektteam queonext / loschke.ai Projekt: Mission SAVA – AI-Assistenten AOK Sachsen-Anhalt
+Version: 0.3 Draft Stand: Maerz 2026 Zielgruppe: Projektteam queonext / loschke.ai Projekt: Mission SAVA – AI-Assistenten AOK Sachsen-Anhalt
 
 --------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ Die vier Eigenschaften eines guten Bausteins
 
 **Informationsdicht:** Jeder Satz hat Substanz. Kein Marketing, keine Überleitungen, keine emotionale Rahmung. Was übrig bleibt, sind Fakten, Bedingungen, Handlungsanweisungen.
 
-**Eindeutig typisiert:** Der Baustein hat genau einen Typ (FAKT, LEISTUNG, PROZESS, EMPFEHLUNG, WARNUNG, TIPP, VERWEIS) und der Typ stimmt.
+**Eindeutig typisiert:** Der Baustein hat genau einen Typ (FAKT, EMPFEHLUNG, ANLEITUNG, FAQ, CHECKLISTE, VERGLEICH, GLOSSAR, NAVIGATION) und der Typ stimmt.
 
 **Vollständig im Kontext:** Die Metadaten sind befüllt – wer braucht das, wann gilt es, wie verlässlich ist es, was darf damit getan werden.
 
@@ -71,7 +71,7 @@ Gut:
 
 ```
 ---
-typ: LEISTUNG
+typ: FAKT
 kategorie: Pflegegeld & Pflegesachleistung
 rechtsgrundlage: SGB XI §37
 ---
@@ -100,7 +100,7 @@ nicht-professionelle Pflegepersonen organisieren.
 Pflegegrad 1: kein Anspruch auf Pflegegeld.
 ```
 
-Warum gut: Eigenständig (man versteht alles ohne Kontext), informationsdicht (kein Füllwort), eindeutig typisiert (LEISTUNG), alle relevanten Fakten enthalten. Metadaten im Frontmatter, Inhalt als lesbarer Fließtext.
+Warum gut: Eigenständig (man versteht alles ohne Kontext), informationsdicht (kein Füllwort), eindeutig typisiert (FAKT), alle relevanten Fakten enthalten. Metadaten im Frontmatter, Inhalt als lesbarer Fließtext.
 
 **Beispiel 2: Medizinische Empfehlung**
 
@@ -158,7 +158,7 @@ Gut:
 
 ```
 ---
-typ: PROZESS
+typ: ANLEITUNG
 kategorie: Antrags- & Begutachtungsprozess
 rechtsgrundlage: SGB XI §18
 ---
@@ -228,23 +228,24 @@ Woran erkenne ich, dass die Extraktion gut war?
 
 Entscheidungshilfe: Welcher Baustein-Typ?
 
-| Frage an den Text                                   | Typ        | Kernmerkmal                                                          |
-| --------------------------------------------------- | ---------- | -------------------------------------------------------------------- |
-| Ist das eine objektive, überprüfbare Aussage?       | FAKT       | Kann verifiziert werden. Enthält keine Bewertung.                    |
-| Beschreibt das eine Leistung der AOK?               | LEISTUNG   | Enthält: Wer bekommt was, unter welchen Bedingungen, wie viel.       |
-| Empfiehlt das eine Handlung?                        | EMPFEHLUNG | Enthält ein "Sollte" oder "Ist empfehlenswert". Hat eine Begründung. |
-| Warnt das vor einem Risiko?                         | WARNUNG    | Enthält ein Risiko und eine Handlungsanweisung.                      |
-| Beschreibt das einen Ablauf mit Schritten?          | PROZESS    | Hat eine Reihenfolge. Man kann die Schritte abarbeiten.              |
-| Ist das ein praktischer Hinweis ohne Dringlichkeit? | TIPP       | Nützlich, aber nicht kritisch. Kein Risiko wenn ignoriert.           |
-| Verweist das auf ein anderes Thema?                 | VERWEIS    | Enthält keine eigene Information, nur einen Zusammenhang.            |
+| Frage an den Text | Typ | Kernmerkmal |
+|---|---|---|
+| Ist das eine objektive, faktenbasierte Sachinformation? | FAKT | Kann verifiziert werden. Enthaelt keine Bewertung oder Handlungsempfehlung. |
+| Gibt das eine handlungsorientierte Einordnung mit klarer Richtung? | EMPFEHLUNG | Enthaelt ein "Sollte" oder "Ist empfehlenswert". Hat eine Begruendung. |
+| Beschreibt das einen Ablauf mit Schritten? | ANLEITUNG | Hat eine Reihenfolge. Man kann die Schritte abarbeiten. |
+| Beantwortet das eine haeufig gestellte Frage direkt? | FAQ | Frage-Antwort-Format. Direkte, vollstaendige Antwort. |
+| Ist das eine strukturierte Pruef- oder Abhakliste? | CHECKLISTE | Punkte zum Abhaken. Fuer komplexe Vorgaenge. |
+| Stellt das zwei oder mehr Optionen gegenueber? | VERGLEICH | Mindestens zwei Optionen mit Kriterien. Hilft bei Entscheidung. |
+| Definiert das einen Fachbegriff? | GLOSSAR | Kurze, praegnante Begriffsdefinition. |
+| Verweist das auf ein anderes Thema oder eine Stelle? | NAVIGATION | Enthaelt keine eigene Fachinformation, nur einen Zusammenhang oder Verweis. |
 
-**Grenzfälle:**
+**Grenzfaelle:**
 
-"Pflegegeld beträgt bei Pflegegrad 2 monatlich 332 €" – ist das FAKT oder LEISTUNG? **LEISTUNG**, weil es eine AOK-Leistung beschreibt. Ein FAKT wäre: "In Deutschland gibt es 5 Pflegegrade."
+"Pflegegeld betraegt bei Pflegegrad 2 monatlich 332 EUR" -- ist das FAKT oder EMPFEHLUNG? **FAKT**, weil es eine objektive Sachinformation ist (Betrag, Voraussetzung). Eine EMPFEHLUNG waere: "Kombinationsleistung pruefen: oft guenstiger als reines Pflegegeld."
 
-"Sprechen Sie mit Ihrem Arzt über Folsäure" – ist das EMPFEHLUNG oder TIPP? **EMPFEHLUNG**, weil es eine medizinisch begründete Handlungsanweisung ist. Ein TIPP wäre: "Ingwertee kann bei Übelkeit helfen."
+"Sprechen Sie mit Ihrem Arzt ueber Folsaeure" -- ist das EMPFEHLUNG oder FAKT? **EMPFEHLUNG**, weil es eine medizinisch begruendete Handlungsanweisung ist. Ein FAKT waere: "Folsaeure ist ein B-Vitamin."
 
-"Bei Blutungen in der Schwangerschaft sofort den Notruf wählen" – ist das EMPFEHLUNG oder WARNUNG? **WARNUNG**, weil ein akutes Risiko besteht.
+"Pflegegeld vs. Pflegesachleistung" -- ist das FAKT oder VERGLEICH? **VERGLEICH**, weil zwei Optionen gegenuebergestellt werden. Ein FAKT waere nur die Information zu einer einzelnen Leistung.
 
 --------------------------------------------------------------------------------
 
@@ -252,7 +253,7 @@ Entscheidungshilfe: Welcher Baustein-Typ?
 
 Was ist eine Taxonomie und warum ist sie wichtig?
 
-Die Taxonomie ist das Ordnungssystem für alle Bausteine eines Clusters. Sie definiert, welche Kategorien es gibt und was in welche Kategorie gehört. Für das AI-System ist sie der Bedeutungskontext – ohne Taxonomie kann das System nicht unterscheiden, ob eine Frage zur Leistung, zum Prozess oder zur Voraussetzung gehört.
+Die Taxonomie ist das Ordnungssystem für alle Bausteine eines Clusters. Sie definiert, welche Kategorien es gibt und was in welche Kategorie gehört. Für das AI-System ist sie der Bedeutungskontext – ohne Taxonomie kann das System nicht unterscheiden, ob eine Frage zum Fakt, zur Anleitung oder zur Voraussetzung gehört.
 
 Wie eine gute Taxonomie entsteht
 
@@ -358,14 +359,16 @@ Dimension 4: Regelkontext
 
 **Wann braucht ein Baustein welchen Regelkontext?**
 
-| Baustein-Typ | Regelkontext-Bedarf | Warum?                                              |
+| Baustein-Typ | Regelkontext-Bedarf | Warum? |
 | ------------ | ------------------- | --------------------------------------------------- |
-| LEISTUNG     | Hoch                | Beträge können individuell abweichen, keine Zusagen |
-| PROZESS      | Mittel-Hoch         | Fristen und Abläufe können variieren                |
-| WARNUNG      | Hoch                | Medizinische Abgrenzung: keine Diagnosen            |
-| EMPFEHLUNG   | Mittel              | Medizinische Empfehlung ≠ ärztliche Anordnung       |
-| FAKT         | Niedrig             | Allgemeine Fakten brauchen selten Disclaimer        |
-| TIPP         | Niedrig             | Praktische Tipps sind unkritisch                    |
+| FAKT         | Niedrig-Mittel      | Allgemeine Fakten brauchen selten Disclaimer, aber Betraege koennen abweichen |
+| EMPFEHLUNG   | Mittel-Hoch         | Handlungsempfehlung ist keine aerztliche Anordnung, Betraege koennen individuell abweichen |
+| ANLEITUNG    | Mittel-Hoch         | Fristen und Ablaeufe koennen variieren |
+| FAQ          | Mittel              | Antworten muessen korrekt und aktuell sein |
+| CHECKLISTE   | Mittel              | Vollstaendigkeit ist kritisch, fehlende Punkte koennen Nachteile verursachen |
+| VERGLEICH    | Mittel              | Gegenuberstellung muss fair und aktuell sein |
+| GLOSSAR      | Niedrig             | Begriffsdefinitionen sind selten haftungsrelevant |
+| NAVIGATION   | Niedrig             | Verweise sind unkritisch, solange Ziel korrekt ist |
 
 **Typisches Problem:** Der Baustein beschreibt, wie man einen Pflegegrad beantragt, enthält aber keinen Hinweis, dass der Assistent keine Einschätzung geben darf, welcher Pflegegrad "herauskommen wird". Lösung: Expliziter Regelkontext: "Allgemeine Prozessinformation. Individuelle Pflegegrad-Einschätzung nur durch den Medizinischen Dienst."
 
@@ -433,7 +436,7 @@ Fehler bei der Extraktion
 | **Baustein nicht eigenständig**                        | Sätze wie "Wie oben beschrieben...", "In diesem Fall..."  | Bezüge auflösen. Der Baustein darf nichts voraussetzen.                    |
 | **Zu große Bausteine**                                 | Baustein beantwortet 3+ verschiedene Fragen               | Aufteilen. Eine Frage = ein Baustein.                                      |
 | **Zu kleine Bausteine**                                | Baustein ist ein einzelner Fakt ohne Kontext              | Zusammenführen oder als Teil eines größeren Bausteins eingliedern.         |
-| **Falscher Typ**                                       | EMPFEHLUNG, die eigentlich eine WARNUNG ist               | Typisierungs-Entscheidungshilfe in Kapitel 2 nutzen.                       |
+| **Falscher Typ**                                       | FAKT, der eigentlich eine EMPFEHLUNG ist               | Typisierungs-Entscheidungshilfe in Kapitel 2 nutzen.                       |
 | **Information ergänzt, die nicht in der Quelle steht** | Beträge oder Details hinzugefügt ohne Quellenangabe       | Alle ergänzten Informationen müssen eine dokumentierte Quelle haben.       |
 
 Fehler bei der Taxonomie
@@ -450,7 +453,7 @@ Fehler bei den Kontextdimensionen
 | Fehler                     | Symptom                                                                | Lösung                                                         |
 | -------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **Qualitätskontext fehlt** | Kein Stand-Datum, keine Volatilität                                    | Nachrüsten. Ist schnell gemacht und verhindert große Probleme. |
-| **Regelkontext vergessen** | LEISTUNG-Baustein ohne Haftungshinweis                                 | Regelkontext-Bedarf pro Typ prüfen (Tabelle in Kapitel 4).     |
+| **Regelkontext vergessen** | FAKT-Baustein ohne Haftungshinweis                                 | Regelkontext-Bedarf pro Typ prüfen (Tabelle in Kapitel 4).     |
 | **Einseitige Zielgruppe**  | Pflege-Baustein nur für Pflegebedürftige getaggt, nicht für Angehörige | Für jeden Baustein fragen: Wer fragt typischerweise danach?    |
 | **Relationen fehlen**      | Baustein steht isoliert, obwohl Zusammenhänge offensichtlich sind      | Relationen-Checkliste aus Kapitel 5 durchgehen.                |
 
@@ -487,21 +490,22 @@ als atomare Bausteine.
    nach dem Pflegegrad" ohne konkrete Beträge), markiere die Lücke 
    mit [ERGÄNZEN: was fehlt]
 6. Wenn der Artikel auf andere Themen verweist, erstelle 
-   VERWEIS-Bausteine
-7. Bei Leistungen: Beträge, Voraussetzungen und Pflegegrade/Trimester 
+   NAVIGATION-Bausteine
+7. Bei FAKT-Bausteinen: Beträge, Voraussetzungen und Pflegegrade/Trimester 
    explizit nennen
-8. Bei Prozessen: Schritte klar nummerieren, Fristen und benötigte 
+8. Bei ANLEITUNG-Bausteinen: Schritte klar nummerieren, Fristen und benötigte 
    Dokumente angeben
 
 ## Bausteintypen
 
-- FAKT: Objektive, überprüfbare Information
-- LEISTUNG: AOK-spezifisches Angebot mit Bedingungen
-- EMPFEHLUNG: Medizinisch/fachlich begründete Handlungsanweisung
-- WARNUNG: Risiko oder Symptom, das ärztliche Hilfe erfordert
-- PROZESS: Ablauf mit Schritten und Reihenfolge
-- TIPP: Praktischer Hinweis ohne medizinische Dringlichkeit
-- VERWEIS: Hinweis auf anderes Thema oder Leistung
+- FAKT: Objektive, faktenbasierte Sachinformation
+- EMPFEHLUNG: Handlungsorientierte Einordnung mit klarer Richtung
+- ANLEITUNG: Schritt-fuer-Schritt-Ablauf
+- FAQ: Haeufig gestellte Frage direkt beantworten
+- CHECKLISTE: Strukturierte Pruefpunkte zum Abhaken
+- VERGLEICH: Zwei oder mehr Optionen gegeneinanderstellen
+- GLOSSAR: Fachbegriff definieren
+- NAVIGATION: Verweis auf anderes Thema oder Stelle
 
 ## Ausgabeformat pro Baustein
 
@@ -593,6 +597,7 @@ Der Baustein stammt aus dem Cluster {themencluster}.
    - alternative_zu (A oder B)
    - verwandt_mit (thematisch nah)
    - teil_von (A gehört zu B)
+   - ersetzt_durch (A wurde durch B abgeloest)
 
 3. QUALITÄT: Wie volatil ist die Information? Setze:
    - stand: [Datum der Quelle oder "unbekannt"]
@@ -670,9 +675,9 @@ Checkliste pro Baustein (nach Extraktion)
 □ Kein Marketing, keine Füllsätze, keine CTAs
 □ Typ korrekt zugeordnet
 □ Titel ist selbsterklärend
-□ Bei LEISTUNG: Beträge, Voraussetzungen, Rechtsgrundlage vorhanden
-□ Bei PROZESS: Schritte, Fristen, Dokumente vorhanden
-□ Bei WARNUNG: Risiko und Handlungsanweisung klar
+□ Bei FAKT: Beträge, Voraussetzungen, Rechtsgrundlage vorhanden
+□ Bei ANLEITUNG: Schritte, Fristen, Dokumente vorhanden
+□ Bei EMPFEHLUNG: Handlungsrichtung und Begruendung klar
 □ Informationslücken markiert mit [ERGÄNZEN]
 ```
 
@@ -716,4 +721,4 @@ Checkliste pro Cluster (nach QS)
 
 --------------------------------------------------------------------------------
 
-*Dokument erstellt: Februar 2025* *Teil von: Mission SAVA – AI-Assistenten AOK Sachsen-Anhalt* *Verwandte Dokumente: Architektur-Dokument, Content-to-Context-Methodik (v4), Context Storage & Retrieval Architektur (v0.2), Assistent-Verfassung (Layer 1)*
+*Dokument erstellt: Maerz 2026* *Teil von: Mission SAVA – AI-Assistenten AOK Sachsen-Anhalt* *Verwandte Dokumente: Architektur-Dokument, Content-to-Context-Methodik (v4), Context Storage & Retrieval Architektur (v0.2), Assistent-Verfassung (Layer 1)*

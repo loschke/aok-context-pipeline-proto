@@ -4,63 +4,94 @@
 
 Intentionen beschreiben das Grundbeduerfnis hinter einer Anfrage. Nicht die woertliche Frage, sondern was der Mensch eigentlich braucht. "Zahlt die AOK das?" ist die Frage — Sicherheit und Pragmatismus ist das Beduerfnis.
 
+## Das 3-Ebenen-Framework
+
+Jede Intention wird in drei Ebenen beschrieben:
+
+| Ebene | Frage | Beschreibung |
+|-------|-------|-------------|
+| **Intention** | Warum kommt jemand zu SAVA? | Das Grundbeduerfnis hinter der Anfrage |
+| **Handlung** | Was delegiert der Mensch an SAVA? | Die konkreten Denkaufgaben, die der Assistent uebernimmt |
+| **Wirkung** | Was ist nach der Interaktion anders? | Das messbare Ergebnis der Interaktion |
+
 ## Die 7 Kernintentionen
 
 ### I1: Akute Sorge
-- **Beduerfnis:** Sicherheit & Erleichterung
 - **Leitfrage:** "Bin ich krank?"
-- **Emotionaler Zustand:** Angst, Unsicherheit, Dringlichkeit
+- **Beduerfnis:** Sicherheit & Erleichterung
+- **Emotion:** Angst, Unsicherheit, Dringlichkeit
+- **Zustand:** Akute koerperliche oder psychische Symptome, die Angst ausloesen
+- **Delegierte Handlungen:** Symptome einordnen, Dringlichkeit bewerten, naechste Schritte priorisieren, Anlaufstellen identifizieren
+- **Wirkung:** Weiss ob Notfall oder nicht. Hat einen klaren naechsten Schritt.
 - **Typische Aeusserungen:** "Ich habe seit Tagen Kopfschmerzen", "Mein Kind hat Fieber"
 - **Antwort-Strategie:** Beruhigen ohne zu verharmlosen, Handlungsoptionen aufzeigen, bei Notfall sofort 112
-- **Sofort-Triage:** Notfall-Assessment → Beruhigung → Symptom-Strukturierung → Handlungsoptionen
+- **Response-Journey (Sofort-Triage):** Notfall-Assessment → Beruhigung → Symptom-Strukturierung → Handlungsoptionen
 
 ### I2: Frische Diagnose
-- **Beduerfnis:** Orientierung & Kontrolle
 - **Leitfrage:** "Was bedeutet das fuer mich?"
-- **Emotionaler Zustand:** Schock, Informationshunger, Kontrollverlust
+- **Beduerfnis:** Orientierung & Kontrolle
+- **Emotion:** Schock, Informationshunger, Kontrollverlust
+- **Zustand:** Kuerzlich erhaltene Diagnose oder Einstufung, alles ist neu
+- **Delegierte Handlungen:** Diagnose uebersetzen, Wichtigstes filtern, naechste 48h priorisieren, Langzeit-Perspektive skizzieren
+- **Wirkung:** Versteht die Diagnose. Weiss was jetzt am wichtigsten ist.
 - **Typische Aeusserungen:** "Mir wurde gerade Diabetes diagnostiziert", "Was ist Pflegegrad 2?"
 - **Antwort-Strategie:** Orientierung geben, naechste Schritte aufzeigen, nicht mit Informationen ueberfluten
-- **Orientierungs-Journey:** Emotionale Validierung → 3 wichtigste Schritte in 48h → Personalisierte Aufklaerung → Langfrist-Perspektive
+- **Response-Journey (Orientierungs-Journey):** Emotionale Validierung → 3 wichtigste Schritte in 48h → Personalisierte Aufklaerung → Langfrist-Perspektive
 
 ### I3: Behandlungssuche
-- **Beduerfnis:** Qualitaet & Effizienz
 - **Leitfrage:** "Wer kann mir helfen?"
-- **Emotionaler Zustand:** Pragmatisch, loesungsorientiert, entschlossen
+- **Beduerfnis:** Qualitaet & Effizienz
+- **Emotion:** Pragmatisch, loesungsorientiert, entschlossen
+- **Zustand:** Behandlungsbedarf erkannt, sucht den richtigen Anbieter oder Weg
+- **Delegierte Handlungen:** Optionen recherchieren, Qualitaet einschaetzen, Organisation planen, Vorbereitung strukturieren
+- **Wirkung:** Hat konkrete Anlaufstellen. Weiss wie man hinkommt.
 - **Typische Aeusserungen:** "Welcher Arzt ist zustaendig?", "Wo finde ich einen Therapeuten?"
 - **Antwort-Strategie:** Konkrete Anlaufstellen nennen, Wege aufzeigen, AOK-Services verlinken
-- **Qualitaets-Vermittlung:** Bedarfs-Assessment → Qualitaetsbewertung → Praktische Organisation → Vorbereitung
+- **Response-Journey (Qualitaets-Vermittlung):** Bedarfs-Assessment → Qualitaetsbewertung → Praktische Organisation → Vorbereitung
 
 ### I4: Leistungsklaerung
-- **Beduerfnis:** Sicherheit & Pragmatismus
 - **Leitfrage:** "Zahlt die AOK das?"
-- **Emotionaler Zustand:** Unsicherheit ueber Ansprueche, Gerechtigkeitsempfinden
+- **Beduerfnis:** Sicherheit & Pragmatismus
+- **Emotion:** Unsicherheit ueber Ansprueche, Gerechtigkeitsempfinden
+- **Zustand:** Konkrete Leistungsfrage, will wissen was zusteht und wie man es bekommt
+- **Delegierte Handlungen:** Anspruch pruefen, Betraege nennen, Alternativen zeigen, Antrag skizzieren
+- **Wirkung:** Kennt die Leistung und den Weg dorthin. Kann handeln.
 - **Typische Aeusserungen:** "Wird Physiotherapie bezahlt?", "Habe ich Anspruch auf Pflegegeld?"
 - **Antwort-Strategie:** Allgemeine Leistungsinfos geben, KEINE individuellen Zusagen, Verweis an Beratung
-- **Leistungs-Klarheit:** Praezise Antworten mit Zahlen → Alternative Wege → Antrags-Unterstuetzung → Kosten-Transparenz
+- **Response-Journey (Leistungs-Klarheit):** Praezise Antworten mit Zahlen → Alternative Wege → Antrags-Unterstuetzung → Kosten-Transparenz
 
 ### I5: Langzeit-Management
-- **Beduerfnis:** Autonomie & Stabilitaet
 - **Leitfrage:** "Wie lebe ich damit?"
-- **Emotionaler Zustand:** Akzeptanz, Optimierungswunsch, manchmal Erschoepfung
+- **Beduerfnis:** Autonomie & Stabilitaet
+- **Emotion:** Akzeptanz, Optimierungswunsch, manchmal Erschoepfung
+- **Zustand:** Lebt mit chronischer Situation, sucht Optimierung und Entlastung
+- **Delegierte Handlungen:** Routinen vorschlagen, Entlastung identifizieren, Community anbinden, Fortschritt tracken
+- **Wirkung:** Hat neue Ideen fuer den Alltag. Fuehlt sich weniger allein.
 - **Typische Aeusserungen:** "Wie manage ich meinen Diabetes im Alltag?", "Tipps fuer die Pflege zu Hause"
 - **Antwort-Strategie:** Alltagstaugliche Tipps, Selbstmanagement staerken, Entlastungsangebote aufzeigen
-- **Langzeit-Begleitung:** Alltags-Integration → Motivations-Coaching → Community-Anbindung → Optimierung
+- **Response-Journey (Langzeit-Begleitung):** Alltags-Integration → Motivations-Coaching → Community-Anbindung → Optimierung
 
 ### I6: Angehoerigen-Sorge
-- **Beduerfnis:** Verantwortung & Fuersorge
 - **Leitfrage:** "Wie helfe ich meinem Angehoerigen?"
-- **Emotionaler Zustand:** Ueberforderung, Pflichtgefuehl, eigene Beduerfnisse zurueckgestellt
+- **Beduerfnis:** Verantwortung & Fuersorge
+- **Emotion:** Ueberforderung, Pflichtgefuehl, eigene Beduerfnisse zurueckgestellt
+- **Zustand:** Kuemmert sich um jemanden, traegt Verantwortung, braucht selbst Unterstuetzung
+- **Delegierte Handlungen:** Unterstuetzung strukturieren, Entlastung finden, Rechte klaeren, Selbstfuersorge ermoeglichen
+- **Wirkung:** Weiss welche Hilfe es gibt. Fuehlt sich in der Rolle unterstuetzt.
 - **Typische Aeusserungen:** "Meine Mutter braucht Pflege", "Wie beantrage ich Pflegezeit?"
 - **Antwort-Strategie:** Beide Perspektiven beruecksichtigen (Angehoeriger + Pflegeperson), Entlastung aufzeigen
-- **Familien-System-Betreuung:** Angehoerigen-Entlastung → Praktische Hilfen → Kommunikation → Professionelle Hilfe
+- **Response-Journey (Familien-System-Betreuung):** Angehoerigen-Entlastung → Praktische Hilfen → Kommunikation → Professionelle Hilfe
 
 ### I7: Praeventive Vorsorge
-- **Beduerfnis:** Selbstverwirklichung
 - **Leitfrage:** "Wie bleibe ich gesund?"
-- **Emotionaler Zustand:** Proaktiv, motiviert, informationssuchend
+- **Beduerfnis:** Selbstverwirklichung
+- **Emotion:** Proaktiv, motiviert, informationssuchend
+- **Zustand:** Gesund oder stabil, will vorsorgen oder optimieren
+- **Delegierte Handlungen:** Risiken einschaetzen, Plan erstellen, motivieren, Langzeit begleiten
+- **Wirkung:** Hat einen konkreten Vorsorgeplan. Fuehlt sich motiviert.
 - **Typische Aeusserungen:** "Welche Vorsorge steht mir zu?", "Was kann ich fuer meine Gesundheit tun?"
 - **Antwort-Strategie:** Positiv verstaerken, konkrete AOK-Angebote nennen, niedrigschwellig halten
-- **Gesundheits-Coaching:** Risiko-Assessment → Individueller Plan → Motivation → Langfrist-Begleitung
+- **Response-Journey (Gesundheits-Coaching):** Risiko-Assessment → Individueller Plan → Motivation → Langfrist-Begleitung
 
 ## Drei wichtige Prinzipien
 

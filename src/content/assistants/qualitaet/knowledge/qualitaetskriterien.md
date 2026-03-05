@@ -4,7 +4,7 @@
 
 1. **Eigenstaendig** — Ohne den Quellartikel verstaendlich. Keine Rueckverweise wie "wie oben beschrieben".
 2. **Informationsdicht** — Jeder Satz hat Substanz. Kein Marketing, keine Ueberleitungen, keine emotionale Rahmung.
-3. **Eindeutig typisiert** — Genau ein Typ (FAKT, LEISTUNG, PROZESS, EMPFEHLUNG, WARNUNG, TIPP, VERWEIS) und der Typ stimmt.
+3. **Eindeutig typisiert** — Genau ein Typ (FAKT, EMPFEHLUNG, ANLEITUNG, FAQ, CHECKLISTE, VERGLEICH, GLOSSAR, NAVIGATION) und der Typ stimmt.
 4. **Vollstaendig im Kontext** — Metadaten befuellt: Zielgruppe, Gueltigkeit, Verlaesslichkeit, Regelkontext.
 
 ## Die 5 Kontext-Dimensionen
@@ -56,12 +56,14 @@ Prueffrage: Weiss das System, was es mit dieser Information tun darf?
 Regelkontext-Bedarf nach Typ:
 | Typ | Bedarf | Grund |
 |-----|--------|-------|
-| LEISTUNG | Hoch | Betraege koennen individuell abweichen |
-| PROZESS | Mittel-Hoch | Fristen und Ablaeufe koennen variieren |
-| WARNUNG | Hoch | Medizinische Abgrenzung noetig |
-| EMPFEHLUNG | Mittel | Keine aerztliche Anordnung |
-| FAKT | Niedrig | Allgemeine Fakten selten haftungsrelevant |
-| TIPP | Niedrig | Praktische Tipps unkritisch |
+| FAKT | Niedrig-Mittel | Allgemeine Fakten manchmal haftungsrelevant bei Betraegen |
+| EMPFEHLUNG | Mittel-Hoch | Handlungsempfehlungen koennen individuelle Situation verkennen |
+| ANLEITUNG | Mittel-Hoch | Fristen und Ablaeufe koennen variieren |
+| FAQ | Mittel | Abhaengig vom Thema |
+| CHECKLISTE | Mittel | Vollstaendigkeit relevant |
+| VERGLEICH | Hoch | Betraege und Bedingungen koennen individuell abweichen |
+| GLOSSAR | Niedrig | Definitionen selten haftungsrelevant |
+| NAVIGATION | Niedrig | Verweise unkritisch |
 
 ### Dimension 5: Zielgruppenkontext
 
@@ -88,14 +90,14 @@ Prueffrage: Ist klar, fuer wen diese Information relevant ist?
 | Baustein nicht eigenstaendig | "Wie oben beschrieben...", "In diesem Fall..." | Bezuege aufloesen |
 | Zu grosse Bausteine | Beantwortet 3+ Fragen | Aufteilen. Eine Frage = ein Baustein |
 | Zu kleine Bausteine | Einzelner Fakt ohne Kontext | Zusammenfuehren |
-| Falscher Typ | EMPFEHLUNG die eine WARNUNG ist | Typisierungs-Entscheidungshilfe nutzen |
+| Falscher Typ | FAKT der eine EMPFEHLUNG ist | Typisierungs-Entscheidungshilfe nutzen |
 
 ### Bei den Kontextdimensionen
 
 | Fehler | Symptom | Loesung |
 |--------|---------|---------|
 | Qualitaetskontext fehlt | Kein Stand-Datum, keine Volatilitaet | Nachruesten |
-| Regelkontext vergessen | LEISTUNG ohne Haftungshinweis | Regelkontext-Bedarf pro Typ pruefen |
+| Regelkontext vergessen | VERGLEICH ohne Haftungshinweis | Regelkontext-Bedarf pro Typ pruefen |
 | Einseitige Zielgruppe | Pflege-Baustein nur fuer Pflegebeduerftige, nicht Angehoerige | Fragen: Wer fragt typischerweise danach? |
 | Relationen fehlen | Baustein steht isoliert trotz offensichtlicher Zusammenhaenge | Relationen-Checkliste durchgehen |
 | Einseitige Relationen | A verweist auf B, aber B nicht auf A | Bidirektionale Relationen setzen |
@@ -104,10 +106,11 @@ Prueffrage: Ist klar, fuer wen diese Information relevant ist?
 
 | Frage an den Text | Typ |
 |-------------------|-----|
-| Objektive, ueberpruefbare Aussage? | FAKT |
-| Beschreibt eine AOK-Leistung? | LEISTUNG |
-| Empfiehlt eine Handlung mit Begruendung? | EMPFEHLUNG |
-| Warnt vor einem Risiko? | WARNUNG |
-| Beschreibt einen Ablauf mit Schritten? | PROZESS |
-| Praktischer Hinweis ohne Dringlichkeit? | TIPP |
-| Verweist auf ein anderes Thema? | VERWEIS |
+| Objektive Sachinformation oder Zahl? | FAKT |
+| Handlungsorientierte Einordnung mit Richtung? | EMPFEHLUNG |
+| Schritt-fuer-Schritt Ablauf? | ANLEITUNG |
+| Frage-Antwort-Format? | FAQ |
+| Liste zum Abhaken? | CHECKLISTE |
+| Zwei oder mehr Optionen gegenuebergestellt? | VERGLEICH |
+| Fachbegriff erklaert? | GLOSSAR |
+| Verweist auf ein anderes Thema oder Stelle? | NAVIGATION |

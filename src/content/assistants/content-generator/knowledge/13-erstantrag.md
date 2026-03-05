@@ -1,6 +1,6 @@
 ---
 titel: "Erstantrag auf Pflegeleistungen"
-typ: PROZESS
+typ: ANLEITUNG
 cluster: pflege
 kategorie: antragstellung
 stand: "2026-03-01"

@@ -70,14 +70,19 @@ function NavModulesInner() {
             )
           }
 
-          // Compact variant: Single-line with icon + title
+          // Compact variant: Single-line with icon + title + optional badge
           if (item.variant === "compact") {
             return (
               <SidebarMenuItem key={item.url}>
                 <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
                   <Link href={item.url}>
                     <item.icon className="size-4 text-primary" />
-                    <span>{item.title}</span>
+                    <span className="flex-1">{item.title}</span>
+                    {item.badge && (
+                      <span className="rounded-full border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

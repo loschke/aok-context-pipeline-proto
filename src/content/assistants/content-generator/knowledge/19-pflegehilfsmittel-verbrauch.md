@@ -1,6 +1,6 @@
 ---
 titel: "Pflegehilfsmittel zum Verbrauch"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: hilfsmittel
 stand: "2026-03-01"

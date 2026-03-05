@@ -1,76 +1,100 @@
-# Storage & Retrieval: Wo liegen die Bausteine?
+# Retrieval-Architektur: Wie der Assistent den richtigen Context findet
 
-## 3 Optionen im Ueberblick
+## 4 Stufen im Ueberblick
 
-| | Option A: Flat Files | Option B: Payload CMS | Option C: Vector DB |
-|---|---|---|---|
-| **Storage** | Markdown in Git | Payload Collections | MD-Export in Vector DB |
-| **Retrieval** | Full Context Loading / MCP | API / MCP | Hybride Vektorsuche |
-| **Wer pflegt** | Projektteam (Editor) | Redaktion (Web-Interface) | Projektteam (Pipeline) |
-| **Setup** | Stunden | Tage | Tage bis Wochen |
-| **Geeignet fuer** | Demo, erster Prototyp | Prototyp mit Kunden-Interface | Produktionssystem |
+Stufe 1-3 beschreiben, wie der Assistent Wissensbausteine findet — aufeinander aufbauend, jede loest ein Problem der vorherigen. Stufe 4 ergaenzt den zweiten Retrieval-Pfad: Live-Daten aus Tools, Datenbanken und externen Services.
 
-## Option A: Flat Files + Full Context Loading
+| Stufe | Name | Prinzip | Geeignet fuer |
+|-------|------|---------|--------------|
+| 1 | Full Context Loading | Alles laden, LLM sucht selbst | Demo, PoC, Content-Validierung |
+| 2 | MCP Server | Aktiv abrufen statt alles vorladen | Prototyp mit mehreren Clustern |
+| 3 | Vector DB + Hybride Suche | Semantische + Metadaten-Suche | Produktionssystem, Multi-Cluster |
+| 4 | Tool-APIs und Live-Daten | Datenbanken, Rechner, externe Services | Tool-Integration, Personalisierung |
 
-Aktueller Stand. Markdown-Dateien in Git, sortiert nach Cluster.
+## Stufe 1: Full Context Loading
 
-**Wie Full Context Loading funktioniert:**
-Alle Bausteine eines Clusters werden komplett ins Context Window geladen. Kein Retrieval-Algorithmus noetig — das LLM durchsucht den gesamten Context selbst.
+Alle Bausteine eines Clusters komplett ins Context Window laden. Kein Retrieval-Algorithmus noetig — das LLM durchsucht den gesamten Context selbst und entscheidet, welche Bausteine relevant sind.
 
-**Groessenordnung:** 80–150 Bausteine pro Cluster, 250–400 Tokens pro Baustein = 20.000–60.000 Tokens. Passt in Claude (200k Context Window).
+**Groessenordnung:** 80-150 Bausteine pro Cluster, je 250-400 Tokens = 20.000-60.000 Tokens. Passt in Claude (200k Context).
 
-**Grenze:** Skaliert nicht ueber 1-2 Cluster. 3 Cluster gleichzeitig = 100k–200k Tokens nur fuer Content. Kein Platz mehr fuer Konversation.
+**Staerken:**
+- Setup in 1-2 Stunden
+- Kein Retrieval-Algorithmus noetig
+- LLM findet selbst die relevanten Teile
 
-**Alternative: MCP Server**
+**Grenzen:**
+- Skaliert nicht ueber 1-2 Cluster
+- 3 Cluster = 100k-200k Tokens nur fuer Content
+- Hoehere Token-Kosten pro Anfrage
+
+## Stufe 2: MCP Server
+
 Model Context Protocol als Schnittstelle. Der Assistent ruft aktiv Bausteine ab statt alles vorzuladen.
-- Tools: suche_bausteine(), hole_baustein(), zeige_relationen()
-- Vorteil: Skaliert besser, Cluster-uebergreifend moeglich
-- Setup: 4–8 Stunden
 
-## Option B: Payload CMS
+Der MCP Server liest Markdown-Dateien, parst Frontmatter und stellt Such-Tools bereit: suche_bausteine(), hole_baustein(), zeige_relationen(). Der Assistent entscheidet per Tool-Call, welche Bausteine er braucht.
 
-Headless CMS mit Web-Interface. Die AOK-Fachredaktion bekommt ein Dashboard zum Reviewen und Freigeben.
+**Staerken:**
+- Laedt nur relevante Bausteine
+- Skaliert cluster-uebergreifend
+- Setup in 4-8 Stunden
 
-**Collections:**
-- context-bausteine (Titel, Typ, Cluster, Content, Frontmatter-Felder)
-- taxonomie (Cluster, Kategorien, Hierarchien)
-- cluster (Name, Status, Verantwortlicher)
+**Grenzen:**
+- Suche nur ueber Metadaten, nicht semantisch
+- Assistent muss wissen, wonach er suchen soll
+- Kein Web-Interface fuer Redaktion
 
-**Vorteile:** Admin-Interface, Workflow (Draft → Review → Published), Versionierung, User-Rollen
-**Import:** Markdown-Dateien → Frontmatter parsen → Payload-Collections fuellen
+## Stufe 3: Vector DB + Hybride Suche
 
-## Option C: Vector Database
+Semantische Aehnlichkeit (Vektorsuche) kombiniert mit Metadaten-Filtern (Frontmatter-Felder).
 
-Hybride Suche: Semantische Aehnlichkeit (Vektorsuche) + Metadaten-Filter (Frontmatter-Felder).
+Jeder Baustein wird als Embedding gespeichert, Metadaten als filterbare Felder. Bei einer Anfrage: Vektorsuche findet semantisch aehnliche Bausteine, Metadaten-Filter grenzt ein (Cluster, Zielgruppe, Pflegegrad), Re-Ranking liefert die relevantesten.
 
 **Warum hybrid:** "Was steht meiner Mutter zu?" braucht beides:
 - Semantik: "Mutter" → Angehoerigen-Kontext, "zustehen" → Leistungsanspruch
-- Filter: Zielgruppe=Angehoerige, Typ=LEISTUNG
+- Filter: Zielgruppe=Angehoerige, Typ=FAKT oder CHECKLISTE
 
-**Retrieval-Ablauf:**
-1. Anfrage kommt rein
-2. Vektorsuche findet semantisch aehnliche Bausteine
-3. Metadaten-Filter grenzt ein (Cluster, Zielgruppe, Pflegegrad)
-4. Re-Ranking: Relevanteste Bausteine zuerst
+**Staerken:**
+- Semantisches Verstehen freier Nutzerfragen
+- Skaliert auf Tausende Bausteine
+- Praezise durch hybride Filterung
+
+**Grenzen:**
+- Setup: Tage bis Wochen
+- Jede Aenderung erfordert Re-Embedding
+- DSGVO: EU-Hosting Pflicht fuer AOK-Daten
 
 **Produkt-Empfehlungen:**
 - EU-Hosting (DSGVO): Qdrant Cloud EU, Supabase pgvector (EU-Region)
 - Global: Pinecone, Weaviate, Azure AI Search
 
-## Empfohlener Stufenplan
+## Stufe 4: Tool-APIs und Live-Daten
 
-### Stufe 1: Content validieren (aktuell)
-Flat Files + Full Context Loading. Aufwand: 1–2 Stunden.
-Wichtigste Frage: Funktionieren die Bausteine?
+Der Assistent ruft ueber API-Schnittstellen Datenbanken, Rechner und externe Services auf und speist deren Ergebnisse in den Context ein.
 
-### Stufe 2: Kunden-Prototyp (naechster Schritt)
-Payload CMS. AOK bekommt Web-Interface. MCP oder API-Anbindung.
-Aufwand: 2–4 Tage.
+Parallel zum Wissens-Retrieval erkennt der Assistent, ob die Anfrage Live-Daten erfordert. Ueber definierte Tool-Calls greift er auf AOK-Services zu: pflegenavigator_suche(plz, leistungsart) liefert konkrete Pflegedienste, pflegegradrechner(eingaben) berechnet eine Ersteinschaetzung, kundencenter_finden(region) zeigt Anlaufstellen.
 
-### Stufe 3: Produktionsvorbereitung (ab Monat 3)
-Payload bleibt Source of Truth. Vector DB fuer hybrides Retrieval. Automatische Sync-Pipeline.
-Aufwand: 1–3 Wochen.
+**Staerken:**
+- Konkrete, personalisierte Antworten statt generischer Infos
+- Ergebnisse sind immer aktuell
+- Kombinierbar mit jeder Wissens-Retrieval-Stufe
 
-## DSGVO
+**Grenzen:**
+- Pro Service eigene API-Anbindung noetig
+- Abhaengig von Verfuegbarkeit der AOK-Systeme
+- Latenz: API-Calls brauchen Zeit
 
-Fuer AOK-Daten: EU-Hosting Pflicht. Qdrant Cloud EU oder Supabase EU-Region als sichere Wahl. US-basierte Anbieter (Pinecone) muessten mit AOK geklaert werden.
+## Zusammenspiel in der Praxis
+
+In der Praxis laufen Wissens-Retrieval und Tool-Aufrufe parallel. Der Assistent sucht die passenden Bausteine (Stufe 1-3) und fragt gleichzeitig relevante Services ab (Stufe 4). Beides fliesst zusammen in den Context, aus dem die Antwort entsteht.
+
+## Storage-Optionen
+
+Unabhaengig von der Retrieval-Stufe brauchen die Bausteine ein Zuhause:
+
+| Option | Storage | Wer pflegt | Geeignet fuer |
+|--------|---------|-----------|--------------|
+| Flat Files (Git) | Markdown in Git | Projektteam | Demo, Prototyp |
+| Headless CMS | Payload Collections | Redaktion (Web-Interface) | Kunden-Prototyp |
+| Vector DB | Embeddings + Metadaten | Projektteam (Pipeline) | Produktionssystem |
+
+Empfohlener Pfad: Flat Files zum Validieren → CMS fuer AOK-Redaktion → Vector DB fuer Produktion. Jede Stufe baut auf der vorherigen auf.

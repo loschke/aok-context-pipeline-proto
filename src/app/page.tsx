@@ -1,47 +1,46 @@
 import Link from "next/link"
-import { ArrowRight, Database, Radar, MessageCircle, Zap, Shield, Layers } from "lucide-react"
+import { ArrowRight, Database, Radar, MessageCircle, Shield, Layers, ChevronRight } from "lucide-react"
 
 import { brand } from "@/config/brand"
 import { BrandWordmark } from "@/components/layout/brand-wordmark"
-import { ContextExamples } from "./context-examples"
 
-/* ── Layer Colors (matching Leitfaden) ── */
+/* ── Layer Colors ── */
 const layers = {
-  kompass: { bg: "bg-slate-50", accent: "text-slate-700", border: "border-slate-300", dot: "bg-slate-500", badge: "bg-slate-100 text-slate-800" },
-  context: { bg: "bg-emerald-50", accent: "text-emerald-700", border: "border-emerald-200", dot: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" },
-  sensor: { bg: "bg-blue-50", accent: "text-blue-700", border: "border-blue-200", dot: "bg-blue-500", badge: "bg-blue-100 text-blue-800" },
-  kommunikation: { bg: "bg-amber-50", accent: "text-amber-700", border: "border-amber-200", dot: "bg-amber-500", badge: "bg-amber-100 text-amber-800" },
+  kompass: { border: "border-slate-300", bg: "bg-slate-50", dot: "bg-slate-500" },
+  context: { border: "border-emerald-200", bg: "bg-emerald-50", dot: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" },
+  sensor: { border: "border-blue-200", bg: "bg-blue-50", dot: "bg-blue-500", badge: "bg-blue-100 text-blue-800" },
+  kommunikation: { border: "border-amber-200", bg: "bg-amber-50", dot: "bg-amber-500", badge: "bg-amber-100 text-amber-800" },
 }
 
-/* ── Intentions Data ── */
-const intentions = [
-  { nr: "I1", name: "Akute Sorge", frage: "Bin ich krank?", emotion: "Angst, Dringlichkeit" },
-  { nr: "I2", name: "Frische Diagnose", frage: "Was bedeutet das?", emotion: "Schock, Orientierungslosigkeit" },
-  { nr: "I3", name: "Behandlungssuche", frage: "Wer kann helfen?", emotion: "Pragmatisch, zielorientiert" },
-  { nr: "I4", name: "Leistungsklärung", frage: "Zahlt die AOK das?", emotion: "Unsicherheit, Anspruchsdenken" },
-  { nr: "I5", name: "Langzeit-Management", frage: "Wie lebe ich damit?", emotion: "Akzeptanz, Optimierung" },
-  { nr: "I6", name: "Angehörigen-Sorge", frage: "Wie helfe ich?", emotion: "Überforderung, Pflichtgefühl" },
-  { nr: "I7", name: "Präventive Vorsorge", frage: "Wie bleibe ich gesund?", emotion: "Proaktiv, motiviert" },
+/* ── 7 Intentionen ── */
+const intentionen = [
+  { nr: 1, name: "Akute Sorge", frage: "Bin ich krank?", kurztext: "Angst, Dringlichkeit. Der Mensch braucht sofort Orientierung und Beruhigung." },
+  { nr: 2, name: "Frische Diagnose", frage: "Was bedeutet das?", kurztext: "Schock, Überforderung. Einordnung und erste Schritte statt Informationsflut." },
+  { nr: 3, name: "Behandlungssuche", frage: "Wer kann helfen?", kurztext: "Pragmatisch, zielorientiert. Konkrete Anlaufstellen und Vergleichsmöglichkeiten." },
+  { nr: 4, name: "Leistungsklärung", frage: "Zahlt die AOK das?", kurztext: "Anspruchsdenken, Unsicherheit. Klare Fakten, keine individuellen Zusagen." },
+  { nr: 5, name: "Langzeit-Management", frage: "Wie lebe ich damit?", kurztext: "Akzeptanz, Alltag. Partnerschaftliche Begleitung und praktische Routinen." },
+  { nr: 6, name: "Angehörigen-Sorge", frage: "Wie helfe ich?", kurztext: "Überforderung, Pflichtgefühl. Entlastungsangebote und Orientierung." },
+  { nr: 7, name: "Präventive Vorsorge", frage: "Wie bleibe ich gesund?", kurztext: "Proaktiv, motiviert. Angebote aufzeigen, nicht belehren." },
 ]
 
-/* ── Example Outputs ── */
-const examples = [
+/* ── Beispiel-Outputs: Gleicher Context, verschiedene Intentionen ── */
+const beispiele = [
   {
     intention: "Frische Diagnose",
     label: "I2",
-    tonalitaet: "Orientierend, beruhigend",
+    ton: "Orientierend, beruhigend",
     output: "Eine neue Diagnose kann sich überwältigend anfühlen. Der wichtigste erste Schritt: ein Gespräch mit deinem Hausarzt. Die AOK bietet das Diabetes-Programm DMP an, das dich langfristig begleitet.",
   },
   {
     intention: "Langzeit-Management",
     label: "I5",
-    tonalitaet: "Partnerschaftlich, alltagsnah",
+    ton: "Partnerschaftlich, alltagsnah",
     output: "Mit den richtigen Routinen lässt sich Diabetes gut in den Alltag integrieren. Neben Bewegung und Ernährung unterstützt dich das AOK-DMP mit strukturierten Checks. Kennst du die Selbsthilfegruppen in deiner Region?",
   },
   {
     intention: "Leistungsklärung",
     label: "I4",
-    tonalitaet: "Direkt, sachlich, präzise",
+    ton: "Direkt, sachlich, präzise",
     output: "Die AOK übernimmt im Rahmen des DMP Diabetes: Vorsorgeuntersuchungen, Ernährungsberatung und bei Bedarf Blutzuckermessgeräte. Für deinen konkreten Anspruch wende dich an deine AOK-Geschäftsstelle.",
   },
 ]
@@ -68,7 +67,7 @@ export default function LandingPage() {
 
       <main>
         {/* ════════════════════════════════════
-           Hero
+           1. Hero — Der Mensch kommt mit einem Bedürfnis
            ════════════════════════════════════ */}
         <section className="flex flex-col justify-center px-6 pb-24 pt-12 sm:px-8 lg:px-20">
           <p className="micro-label mb-6 flex items-center gap-2">
@@ -85,9 +84,10 @@ export default function LandingPage() {
           </h1>
 
           <p className="mb-10 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Die SAVA Engine trennt Wissen von Kommunikation. Ein Thema wird einmal als Context aufbereitet.
-            Der Assistent erkennt, was der Mensch gerade braucht, und passt die Antwort an.
-            Ein verbindliches Regelwerk hält alles in den richtigen Grenzen.
+            Jeder Mensch, der die AOK kontaktiert, kommt mit einem konkreten Bedürfnis.
+            Angst nach einer Diagnose. Die Frage nach den Kosten. Sorge um einen Angehörigen.
+            Dasselbe Thema — aber ein völlig anderer Kontext.
+            Die SAVA Engine erkennt diesen Unterschied und antwortet entsprechend.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -99,16 +99,63 @@ export default function LandingPage() {
               <ArrowRight className="size-4" />
             </Link>
             <a
-              href="#architektur"
+              href="#intentionen"
               className="inline-flex items-center gap-2 border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
             >
-              Architektur verstehen
+              Wie funktioniert das?
             </a>
           </div>
         </section>
 
         {/* ════════════════════════════════════
-           Das Problem
+           2. Die 7 Intentionen — Warum Menschen zur AOK kommen
+           ════════════════════════════════════ */}
+        <section id="intentionen" className={`scroll-mt-8 border-t ${layers.sensor.bg} px-6 py-20 sm:px-8 lg:px-20`}>
+          <div className="mx-auto max-w-5xl">
+            <p className="micro-label mb-4 flex items-center gap-2">
+              <span className={`inline-block size-1.5 rounded-full ${layers.sensor.dot}`} />
+              7 Grundbedürfnisse
+            </p>
+            <h2 className="headline-black mb-4 text-2xl tracking-tight sm:text-3xl">
+              Jede Anfrage hat ein Bedürfnis dahinter
+            </h2>
+            <p className="mb-10 max-w-2xl leading-relaxed text-muted-foreground">
+              Ob jemand gerade eine Diagnose erhalten hat oder seit Jahren mit einer Erkrankung lebt —
+              das Grundbedürfnis bestimmt, welche Art von Antwort hilft. Wir haben 7 Kernintentionen
+              identifiziert, die das gesamte Spektrum abdecken.
+            </p>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {intentionen.map((i) => (
+                <div key={i.nr} className="border border-blue-200 bg-white p-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="inline-flex size-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                      {i.nr}
+                    </span>
+                    <span className="text-sm font-bold text-blue-900">{i.name}</span>
+                  </div>
+                  <p className="text-sm font-medium text-blue-700">&ldquo;{i.frage}&rdquo;</p>
+                  <p className="mt-2 text-xs leading-relaxed text-blue-600">{i.kurztext}</p>
+                </div>
+              ))}
+              <Link
+                href="/intentionen"
+                className="group flex flex-col justify-center border border-blue-100 bg-blue-100/50 p-4 transition-colors hover:bg-blue-100"
+              >
+                <p className="text-sm font-semibold text-blue-800">Tiefer einsteigen</p>
+                <p className="mt-1 text-xs leading-relaxed text-blue-600">
+                  3-Ebenen-Framework, delegierte Handlungen, Response-Journeys und mehr.
+                </p>
+                <p className="mt-2 flex items-center gap-1 text-xs font-semibold text-blue-700 transition-all group-hover:gap-2">
+                  Zur Intentionen-Referenz <ArrowRight className="size-3" />
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════
+           3. Das Problem — Warum ein System nötig ist
            ════════════════════════════════════ */}
         <section className="border-t bg-muted/50 px-6 py-20 sm:px-8 lg:px-20">
           <div className="mx-auto max-w-4xl">
@@ -117,508 +164,179 @@ export default function LandingPage() {
               Das Problem
             </p>
             <h2 className="headline-black mb-6 text-2xl tracking-tight sm:text-3xl">
-              Ohne Pipeline: Für jede Situation ein eigener Text
+              7 Bedürfnisse × Hunderte Themen = nicht manuell lösbar
             </h2>
             <p className="mb-8 max-w-2xl text-muted-foreground leading-relaxed">
-              Ein Mensch mit frischer Diabetes-Diagnose braucht eine andere Antwort als jemand, der seit Jahren mit Diabetes lebt.
-              Ohne Trennung von Inhalt und Kommunikation müsste jede Variante einzeln geschrieben und gepflegt werden.
-              Das skaliert nicht.
+              Diabetes allein müsste in 7 Varianten existieren: beruhigend für die Angst-Situation,
+              sachlich für die Kosten-Frage, partnerschaftlich für den Alltag.
+              Und das für jedes Gesundheitsthema, jede Leistung, jeden Prozess.
+              Das skaliert nicht mit redaktioneller Handarbeit.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="border border-red-200 bg-red-50 p-5">
-                <p className="mb-2 text-sm font-semibold text-red-800">Ohne Pipeline</p>
+                <p className="mb-2 text-sm font-semibold text-red-800">Ohne System</p>
                 <ul className="space-y-1 text-sm text-red-700">
-                  <li>Diabetes-Text für Angst-Situation</li>
-                  <li>Diabetes-Text für Kosten-Frage</li>
-                  <li>Diabetes-Text für Alltags-Management</li>
-                  <li>Diabetes-Text für Angehörige</li>
-                  <li className="text-red-400">... pro Thema x7 Varianten</li>
+                  <li>Pro Thema × 7 Intentionen = eigener Text</li>
+                  <li>Jede Änderung muss überall nachgezogen werden</li>
+                  <li>Ton und Fakten vermischt — schwer prüfbar</li>
                 </ul>
                 <p className="mt-3 text-xs font-medium text-red-500">Inkonsistenz. Redundanz. Pflegehölle.</p>
               </div>
               <div className="border border-emerald-200 bg-emerald-50 p-5">
-                <p className="mb-2 text-sm font-semibold text-emerald-800">Mit Pipeline</p>
+                <p className="mb-2 text-sm font-semibold text-emerald-800">Mit SAVA Engine</p>
                 <ul className="space-y-1 text-sm text-emerald-700">
-                  <li>Ein Context: Diabetes-Fakten + relevante Tools</li>
-                  <li>7 Intentionen: Erkennung zur Laufzeit</li>
-                  <li>Kommunikation: Automatische Anpassung</li>
+                  <li>Fakten einmal aufbereiten, als Context speichern</li>
+                  <li>Intention automatisch erkennen</li>
+                  <li>Antwort situationsgerecht zusammenbauen</li>
                 </ul>
-                <p className="mt-3 text-xs font-medium text-emerald-600">Konsistenz. Effizienz. Skalierbarkeit.</p>
+                <p className="mt-3 text-xs font-medium text-emerald-600">Ein Thema pflegen. Alle Bedürfnisse bedienen.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════
-           Architektur-Überblick
-           ════════════════════════════════════ */}
-        <section id="architektur" className="scroll-mt-8 border-t px-6 py-20 sm:px-8 lg:px-20">
-          <div className="mx-auto max-w-4xl">
-            <p className="micro-label mb-4 flex items-center gap-2">
-              <span className="inline-block size-1.5 rounded-full bg-primary" />
-              Die Architektur
-            </p>
-            <h2 className="headline-black mb-6 text-2xl tracking-tight sm:text-3xl">
-              Die SAVA Engine. Drei Schichten. Ein Fundament.
-            </h2>
-            <p className="mb-10 max-w-2xl text-muted-foreground leading-relaxed">
-              Jede Schicht hat eine klare Verantwortung. Der Kompass durchzieht alle drei als
-              verbindliches Regelwerk: Was darf der Assistent? Was darf er nicht? Welche Werte leiten
-              sein Handeln?
-            </p>
-
-            {/* Drei Schichten */}
-            <div className="grid gap-4 sm:grid-cols-3">
-              <div className={`border ${layers.context.border} ${layers.context.bg} p-5 transition-lift`}>
-                <Database className="mb-3 size-5 text-emerald-600" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600">Schicht 1</p>
-                <p className="mt-1 text-lg font-bold text-emerald-900">Der Context</p>
-                <p className="mt-2 text-sm text-emerald-800">Was ist wahr? Was steht zur Verfügung?</p>
-                <p className="mt-1 text-xs text-emerald-600">Wissen, Tools und Datenbanken. Kein Ton, keine Meinung. Einmal gepflegt, überall genutzt.</p>
-              </div>
-              <div className={`border ${layers.sensor.border} ${layers.sensor.bg} p-5 transition-lift`}>
-                <Radar className="mb-3 size-5 text-blue-600" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">Schicht 2</p>
-                <p className="mt-1 text-lg font-bold text-blue-900">Die Intention</p>
-                <p className="mt-2 text-sm text-blue-800">Was braucht der Mensch gerade?</p>
-                <p className="mt-1 text-xs text-blue-600">Erkennung des emotionalen und situativen Kontexts aus der Anfrage.</p>
-              </div>
-              <div className={`border ${layers.kommunikation.border} ${layers.kommunikation.bg} p-5 transition-lift`}>
-                <MessageCircle className="mb-3 size-5 text-amber-600" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-amber-600">Schicht 3</p>
-                <p className="mt-1 text-lg font-bold text-amber-900">Die Kommunikation</p>
-                <p className="mt-2 text-sm text-amber-800">Wie muss es klingen?</p>
-                <p className="mt-1 text-xs text-amber-600">Tonalität, Tiefe und Format. Angepasst an Intention und Situation.</p>
-              </div>
-            </div>
-
-            {/* Kompass als Querschicht */}
-            <div className={`mt-4 flex items-center gap-4 border-2 ${layers.kompass.border} ${layers.kompass.bg} p-4`}>
-              <Shield className="size-6 shrink-0 text-slate-600" />
-              <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Fundament</p>
-                <p className="text-base font-bold text-slate-900">Der Kompass — Werte, Regeln, Grenzen</p>
-                <p className="mt-0.5 text-xs text-slate-500">
-                  Durchzieht alle Schichten. Definiert was der Assistent darf, was er nie darf, welche Quellen er nutzt und wie er sich verhält.
-                </p>
-              </div>
-              <div className="hidden shrink-0 sm:flex sm:gap-1.5">
-                <span className="inline-block size-2 rounded-full bg-emerald-400" title="Context" />
-                <span className="inline-block size-2 rounded-full bg-blue-400" title="Intention" />
-                <span className="inline-block size-2 rounded-full bg-amber-400" title="Kommunikation" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════
-           Layer 0: Der Kompass
-           ════════════════════════════════════ */}
-        <section className={`border-t ${layers.kompass.bg} px-6 py-20 sm:px-8 lg:px-20`}>
-          <div className="mx-auto max-w-4xl">
-            <p className="micro-label mb-4 flex items-center gap-2">
-              <span className={`inline-block size-1.5 rounded-full ${layers.kompass.dot}`} />
-              Fundament
-            </p>
-            <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Der Kompass
-            </h2>
-            <p className="mb-4 text-lg text-slate-800">
-              Die Verfassung des Assistenten. Was er darf. Was er nie darf. Woran er sich misst.
-            </p>
-            <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Bevor der Assistent antwortet, gelten Regeln. Der Kompass ist kein separater Schritt,
-              sondern das Betriebssystem, auf dem alles läuft. Er steuert, welche Quellen der Context
-              nutzen darf, wie der Sensor Grenzsituationen behandelt und welche Formulierungen die
-              Kommunikation nie verwenden darf.
-            </p>
-
-            <div className="grid gap-8 lg:grid-cols-2">
-              {/* Linke Spalte: Werte + Quellen */}
-              <div>
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-600">5 Kernwerte</h3>
-                <ul className="space-y-2 text-sm">
-                  {[
-                    { wert: "Fachliche Korrektheit", desc: "Nur Informationen aus der geprüften Wissensbasis. Keine Spekulation." },
-                    { wert: "Ehrlichkeit", desc: "Der Assistent ist eine KI. Er sagt, wenn er etwas nicht weiß." },
-                    { wert: "Echte Hilfsbereitschaft", desc: "Konkrete Informationen geben, wenn vorhanden. Nicht übervorsichtig." },
-                    { wert: "Respekt vor Autonomie", desc: "Informieren und empfehlen, nicht bevormunden." },
-                    { wert: "Fürsorge", desc: "Die emotionale Situation in jeder Antwort berücksichtigen." },
-                  ].map((v) => (
-                    <li key={v.wert} className="flex gap-2">
-                      <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-slate-400" />
-                      <span><strong>{v.wert}</strong> — {v.desc}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <h3 className="mb-3 mt-6 text-sm font-bold uppercase tracking-wider text-slate-600">Quellen & Wissensbasis</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Der Assistent antwortet ausschließlich auf Basis der strukturierten Context-Einheiten.
-                  Keine Internetsuche, kein allgemeines Sprachmodell-Wissen. Was nicht in der Wissensbasis
-                  steht, wird nicht beantwortet, sondern an die persönliche Beratung verwiesen.
-                </p>
-              </div>
-
-              {/* Rechte Spalte: Hard Constraints */}
-              <div>
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-600">5 Hard Constraints — nie verletzbar</h3>
-                <div className="space-y-3">
-                  {[
-                    { nr: "1", titel: "Keine individuellen Leistungszusagen", desc: "Allgemeine Info erlaubt. Aber nie: \"Sie haben Anspruch auf...\"" },
-                    { nr: "2", titel: "Keine Diagnosen oder Therapieempfehlungen", desc: "Keine Symptome bewerten, keine Therapien empfehlen." },
-                    { nr: "3", titel: "Keine personenbezogenen Daten", desc: "Keine Speicherung über den Konversationskontext hinaus." },
-                    { nr: "4", titel: "Keine Beeinflussung medizinischer Entscheidungen", desc: "Informieren über Leistungen, nicht bewerten." },
-                    { nr: "5", titel: "Notruf-Verweis bei akuter Gefahr", desc: "Bei Notlage, Suizidgedanken, Gewalt: sofort 112 oder Telefonseelsorge." },
-                  ].map((c) => (
-                    <div key={c.nr} className="flex gap-3 border border-slate-200 bg-white p-3">
-                      <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">
-                        {c.nr}
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-900">{c.titel}</p>
-                        <p className="mt-0.5 text-xs text-slate-500">{c.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Prüfsteine */}
-            <div className="mt-8 border-2 border-slate-300 bg-white p-5">
-              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-600">Prüfsteine für Grenzfälle</h3>
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">Kompetente-Beraterin-Test</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Würde eine erfahrene AOK-Beraterin das so sagen? Wäre sie hilfreicher? Wäre sie vorsichtiger?
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">Doppelzeitungs-Test</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Würde die Antwort als &ldquo;gefährliche Fehlinformation&rdquo; oder als &ldquo;unnötige Informationsverweigerung&rdquo;
-                    in der Zeitung stehen? Beides vermeiden.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">1.000-Versicherte-Regel</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Wenn 1.000 Menschen diese Frage stellen, hat die große Mehrheit eine legitime Frage.
-                    Antworte für die Mehrheit, nicht den Ausnahmefall.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Kompass durchzieht alle Schichten */}
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="border border-emerald-200 bg-emerald-50 p-3">
-                <p className="flex items-center gap-2 text-xs font-semibold">
-                  <Shield className="size-3 text-slate-500" />
-                  <span className="text-emerald-800">Kompass im Context</span>
-                </p>
-                <p className="mt-1 text-xs text-emerald-600">Nur fachlich geprüfte Quellen. Keine Marketing-Sprache. Haftungshinweise wo nötig.</p>
-              </div>
-              <div className="border border-blue-200 bg-blue-50 p-3">
-                <p className="flex items-center gap-2 text-xs font-semibold">
-                  <Shield className="size-3 text-slate-500" />
-                  <span className="text-blue-800">Kompass in der Intention</span>
-                </p>
-                <p className="mt-1 text-xs text-blue-600">Bei Akuter Sorge: Empathie zuerst. Notruf-Verweis bei Gefahr. Nie verharmlosen.</p>
-              </div>
-              <div className="border border-amber-200 bg-amber-50 p-3">
-                <p className="flex items-center gap-2 text-xs font-semibold">
-                  <Shield className="size-3 text-slate-500" />
-                  <span className="text-amber-800">Kompass in der Kommunikation</span>
-                </p>
-                <p className="mt-1 text-xs text-amber-600">Keine individuellen Zusagen. Verständliche Sprache. Grenzen ehrlich benennen.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════
-           Layer 1: Der Context
-           ════════════════════════════════════ */}
-        <section className={`border-t ${layers.context.bg} px-6 py-20 sm:px-8 lg:px-20`}>
-          <div className="mx-auto max-w-4xl">
-            <p className="micro-label mb-4 flex items-center gap-2">
-              <span className={`inline-block size-1.5 rounded-full ${layers.context.dot}`} />
-              Schicht 1
-            </p>
-            <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Der Context
-            </h2>
-            <p className="mb-8 text-lg text-emerald-800">
-              Wissen, Tools und Datenbanken. Ein Context weiß nicht, wer ihn nutzt.
-            </p>
-
-            <div className="grid gap-8 lg:grid-cols-2">
-              {/* Erklärung */}
-              <div>
-                <p className="mb-4 leading-relaxed text-muted-foreground">
-                  Context ist alles, was der Assistent braucht, um eine Frage zu beantworten.
-                  Das sind nicht nur Wissenseinheiten mit fachlich geprüften Fakten, sondern auch
-                  Tools und Datenbanken der AOK: Krankenhaussuche, Pflegeheim-Finder, BMI-Rechner
-                  und viele mehr. Context beschreibt was verfügbar ist und wann es relevant wird.
-                </p>
-
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-emerald-700">Zwei Typen von Context</h3>
-                <div className="mb-4 space-y-3">
-                  <div className="rounded-md border border-emerald-200 bg-white p-3">
-                    <p className="text-sm font-semibold text-emerald-900">Wissens-Context</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      Atomare Wissenseinheiten. Beantworten genau eine Frage vollständig.
-                      Keine Tonalität, keine Empathie. Nur Fakten.
-                    </p>
-                  </div>
-                  <div className="rounded-md border border-emerald-200 bg-white p-3">
-                    <p className="text-sm font-semibold text-emerald-900">Tool-Context</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      Beschreibungen von AOK-Tools und Datenbanken. Wann ist welches Tool relevant?
-                      Krankenhaussuche bei Behandlungsfragen, Pflegeheim-Finder bei Angehörigen-Sorge.
-                    </p>
-                  </div>
-                </div>
-
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-emerald-700">Vier Eigenschaften</h3>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex gap-2">
-                    <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
-                    <span><strong>Eigenständig</strong> — verständlich ohne den Quellartikel</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
-                    <span><strong>Informationsdicht</strong> — jeder Satz hat Substanz, kein Marketing</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
-                    <span><strong>Eindeutig typisiert</strong> — Wissen oder Tool, klar zugeordnet</span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="mt-0.5 inline-block size-1.5 shrink-0 rounded-full bg-emerald-400" />
-                    <span><strong>Vollständig im Kontext</strong> — Metadaten gefüllt für Auffindbarkeit</span>
-                  </li>
-                </ul>
-
-                <h3 className="mb-3 mt-6 text-sm font-bold uppercase tracking-wider text-emerald-700">Metadaten = Retrieval-Infrastruktur</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Felder wie <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">zielgruppe</code>,{" "}
-                  <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">kontext_tags</code> und{" "}
-                  <code className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-800">typ</code> helfen,
-                  den richtigen Context zur Laufzeit zu finden. Sie sind keine Intentions-Zuordnung.
-                  Der Context bleibt neutral. Die Kommunikation liegt woanders.
-                </p>
-              </div>
-
-              {/* Beispiele als Tabs */}
-              <ContextExamples />
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════
-           Layer 2: Die Intentionen
-           ════════════════════════════════════ */}
-        <section className={`border-t ${layers.sensor.bg} px-6 py-20 sm:px-8 lg:px-20`}>
-          <div className="mx-auto max-w-4xl">
-            <p className="micro-label mb-4 flex items-center gap-2">
-              <span className={`inline-block size-1.5 rounded-full ${layers.sensor.dot}`} />
-              Schicht 2
-            </p>
-            <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Die Intentionen
-            </h2>
-            <p className="mb-4 text-lg text-blue-800">
-              Das Grundbedürfnis hinter jeder Frage erkennen.
-            </p>
-            <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Der Sensor analysiert jede Nutzeranfrage und erkennt zwei Dinge gleichzeitig:
-              die Intention (den emotionalen und situativen Kontext) und das Thema (den inhaltlichen Gegenstand).
-              7 Kernintentionen decken das Spektrum von akuter Krise bis langfristiger Gesundheitsoptimierung ab.
-            </p>
-
-            {/* Intention Grid */}
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {intentions.map((i) => (
-                <div key={i.nr} className="border border-blue-200 bg-white p-4">
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className="inline-flex size-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
-                      {i.nr.replace("I", "")}
-                    </span>
-                    <span className="text-sm font-bold text-blue-900">{i.name}</span>
-                  </div>
-                  <p className="text-sm font-medium text-blue-700">&ldquo;{i.frage}&rdquo;</p>
-                  <p className="mt-1 text-xs text-blue-500">{i.emotion}</p>
-                </div>
-              ))}
-              {/* Why-Card */}
-              <div className="flex flex-col justify-center border border-blue-100 bg-blue-100/50 p-4">
-                <p className="text-sm font-semibold text-blue-800">Warum 7?</p>
-                <p className="mt-1 text-xs leading-relaxed text-blue-600">
-                  Abgeleitet aus der Analyse typischer Krankenkassen-Interaktionen. Jede Intention beschreibt ein
-                  Grundbedürfnis, das die Kommunikationsstrategie bestimmt.
-                </p>
-              </div>
-            </div>
-
-            {/* Erkennung */}
-            <div className="mt-8 border border-blue-200 bg-white p-5">
-              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-blue-700">Wie erkennt der Sensor die Intention?</h3>
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold text-blue-600">Eingabe</p>
-                  <p className="mt-1 rounded bg-blue-50 p-2 text-sm italic text-blue-800">
-                    &ldquo;Mir wurde gerade Diabetes diagnostiziert, was bedeutet das für mich?&rdquo;
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-blue-600">Erkannte Intention</p>
-                  <p className="mt-1 rounded bg-blue-50 p-2 text-sm text-blue-800">
-                    <strong>I2 — Frische Diagnose</strong>
-                    <br />
-                    <span className="text-xs">Schock, Orientierungsbedarf</span>
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-blue-600">Erkanntes Thema</p>
-                  <p className="mt-1 rounded bg-blue-50 p-2 text-sm text-blue-800">
-                    <strong>Diabetes mellitus</strong>
-                    <br />
-                    <span className="text-xs">Context-Suche gestartet</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════
-           Layer 3: Die Kommunikation
-           ════════════════════════════════════ */}
-        <section className={`border-t ${layers.kommunikation.bg} px-6 py-20 sm:px-8 lg:px-20`}>
-          <div className="mx-auto max-w-4xl">
-            <p className="micro-label mb-4 flex items-center gap-2">
-              <span className={`inline-block size-1.5 rounded-full ${layers.kommunikation.dot}`} />
-              Schicht 3
-            </p>
-            <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Die Kommunikation
-            </h2>
-            <p className="mb-4 text-lg text-amber-800">
-              Dieselben Fakten. Drei verschiedene Stimmen.
-            </p>
-            <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Die SAVA Engine bekommt zwei Inputs: die erkannte Intention und die Rohdaten aus dem Context.
-              Daraus entsteht eine situationsgerechte Antwort. Drei Parameter steuern das Ergebnis.
-            </p>
-
-            {/* Kommunikationsparameter */}
-            <div className="mb-8 grid gap-4 sm:grid-cols-3">
-              <div className="border border-amber-200 bg-white p-4">
-                <p className="text-sm font-bold text-amber-900">Tonalität</p>
-                <p className="mt-1 text-xs text-amber-600">Beruhigend, sachlich, motivierend, partnerschaftlich — abhängig von der emotionalen Lage.</p>
-              </div>
-              <div className="border border-amber-200 bg-white p-4">
-                <p className="text-sm font-bold text-amber-900">Informationstiefe</p>
-                <p className="mt-1 text-xs text-amber-600">Minimal bei Überforderung, maximal bei Fakten-Hunger. Der Mensch bestimmt das Tempo.</p>
-              </div>
-              <div className="border border-amber-200 bg-white p-4">
-                <p className="text-sm font-bold text-amber-900">Proaktivität</p>
-                <p className="mt-1 text-xs text-amber-600">Aktives Hinweisen auf verwandte Leistungen vs. abwarten. Bei Krisen hoch, bei Routine niedrig.</p>
-              </div>
-            </div>
-
-            {/* Situationskontext */}
-            <div className="mb-8 border border-amber-200 bg-white p-5">
-              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-amber-700">Situation beeinflusst Kommunikation</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                Neben der Intention berücksichtigt die Kommunikationsschicht auch die äußere Situation des Nutzers.
-              </p>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  { label: "Mobil unterwegs", desc: "Kurze, scanbare Antworten. Listen statt Fließtext. Wichtigstes zuerst." },
-                  { label: "Am Desktop", desc: "Ausführlicher, mit Tabellen und Vergleichen. Mehr Kontext möglich." },
-                  { label: "Unter Stress", desc: "Beruhigender Ton. Ein nächster Schritt. Keine Informationsflut." },
-                  { label: "Recherche-Modus", desc: "Alle Details. Rechtsgrundlagen. Verknüpfungen zu verwandten Themen." },
-                ].map((s) => (
-                  <div key={s.label} className="rounded bg-amber-50 p-3">
-                    <p className="text-xs font-semibold text-amber-800">{s.label}</p>
-                    <p className="mt-1 text-xs text-amber-600">{s.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Ausgabemedium */}
-            <div className="mb-8 border border-amber-200 bg-white p-5">
-              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-amber-700">Ausgabemedium — Die letzte Meile</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                Dieselbe Antwort kann den Nutzer auf völlig unterschiedlichen Wegen erreichen.
-                Das Medium richtet sich nach Situation, Gerät und Kontext der Anfrage.
-              </p>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  { label: "Chat-Antwort", desc: "Strukturierter Text im Dialog. Das Standard-Medium für direkte Fragen im Assistenten." },
-                  { label: "Dokument / PDF", desc: "Druckfähige Zusammenfassung zum Mitnehmen. Für Arztgespräche, Antragsunterlagen, Checklisten." },
-                  { label: "Push-Nachricht", desc: "Kurzer Impuls aufs Smartphone. Erinnerungen, Fristen, proaktive Hinweise auf neue Leistungen." },
-                  { label: "Audio / Vorlese", desc: "Gesprochene Antwort. Für unterwegs, bei Seheinschränkung oder wenn Lesen gerade nicht geht." },
-                  { label: "Schritt-für-Schritt", desc: "Interaktiver Wizard statt Fließtext. Komplexe Prozesse wie Antragsstellung oder Arztwechsel." },
-                  { label: "Visuelle Übersicht", desc: "Infografik, Zeitstrahl oder Vergleichstabelle. Wenn ein Bild mehr sagt als Text." },
-                ].map((s) => (
-                  <div key={s.label} className="rounded bg-amber-50 p-3">
-                    <p className="text-xs font-semibold text-amber-800">{s.label}</p>
-                    <p className="mt-1 text-xs text-amber-600">{s.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Intention x Kommunikation Matrix */}
-            <div className="overflow-x-auto border border-amber-200 bg-white">
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="border-b border-amber-100 bg-amber-50/50">
-                    <th className="px-4 py-2.5 font-semibold text-amber-800">Intention</th>
-                    <th className="px-4 py-2.5 font-semibold text-amber-800">Tonalität</th>
-                    <th className="px-4 py-2.5 font-semibold text-amber-800">Tiefe</th>
-                    <th className="px-4 py-2.5 font-semibold text-amber-800">Proaktivität</th>
-                    <th className="px-4 py-2.5 font-semibold text-amber-800">Typisches Medium</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-amber-50">
-                  <tr><td className="px-4 py-2 font-medium">I1 Akute Sorge</td><td className="px-4 py-2">Beruhigend, empathisch</td><td className="px-4 py-2">Minimal</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">Chat, Push, Audio</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I2 Frische Diagnose</td><td className="px-4 py-2">Strukturiert, sachlich-warm</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Chat, PDF, Wizard</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I3 Behandlungssuche</td><td className="px-4 py-2">Sachlich, kompetent</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Chat, Übersicht, PDF</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I4 Leistungsklärung</td><td className="px-4 py-2">Direkt, klar</td><td className="px-4 py-2">Präzise</td><td className="px-4 py-2">Niedrig</td><td className="px-4 py-2">Chat, PDF</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I5 Langzeit-Mgmt.</td><td className="px-4 py-2">Partnerschaftlich</td><td className="px-4 py-2">Anpassbar</td><td className="px-4 py-2">Gering</td><td className="px-4 py-2">Push, Audio, Chat</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I6 Angehörige</td><td className="px-4 py-2">Unterstützend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Hoch</td><td className="px-4 py-2">PDF, Wizard, Chat</td></tr>
-                  <tr><td className="px-4 py-2 font-medium">I7 Prävention</td><td className="px-4 py-2">Motivierend</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Mittel</td><td className="px-4 py-2">Push, Audio, Übersicht</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════
-           Das Zusammenspiel
+           4. Der Weg — Von der Frage zur Antwort
            ════════════════════════════════════ */}
         <section className="border-t px-6 py-20 sm:px-8 lg:px-20">
           <div className="mx-auto max-w-4xl">
             <p className="micro-label mb-4 flex items-center gap-2">
-              <Zap className="size-3" />
-              Das Zusammenspiel
+              <span className="inline-block size-1.5 rounded-full bg-primary" />
+              Der Weg
+            </p>
+            <h2 className="headline-black mb-4 text-2xl tracking-tight sm:text-3xl">
+              Von der Frage zur situationsgerechten Antwort
+            </h2>
+            <p className="mb-10 max-w-2xl leading-relaxed text-muted-foreground">
+              Ein Mensch stellt eine Frage. Die SAVA Engine durchläuft vier Stationen,
+              bevor eine Antwort entsteht. Jede Station hat eine klare Aufgabe.
+            </p>
+
+            {/* Vier Stationen */}
+            <div className="space-y-4">
+              {/* Station 1: Intention erkennen */}
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-blue-100">
+                    <Radar className="size-5 text-blue-600" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border" />
+                </div>
+                <div className="flex-1 pb-8">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">Station 1 — Sensor</p>
+                  <p className="mt-1 text-lg font-bold">Intention erkennen</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    &ldquo;Mir wurde gerade Diabetes diagnostiziert, was bedeutet das für mich?&rdquo;
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">
+                      I2 — Frische Diagnose
+                    </span>
+                    <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                      Thema: Diabetes mellitus
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Die Engine analysiert nicht nur das Thema, sondern das Bedürfnis dahinter: Orientierung nach einem Schock.
+                  </p>
+                </div>
+              </div>
+
+              {/* Station 2: Context abrufen */}
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-emerald-100">
+                    <Database className="size-5 text-emerald-600" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border" />
+                </div>
+                <div className="flex-1 pb-8">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600">Station 2 — Context</p>
+                  <p className="mt-1 text-lg font-bold">Wissen und Tools zusammenstellen</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Die Engine sucht die passenden Wissensbausteine: Was ist Diabetes? Welche AOK-Programme gibt es?
+                    Welche Tools sind relevant — DMP-Finder, Arztsuche, Ernährungsrechner?
+                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Context enthält nur Fakten. Kein Ton, keine Empathie. Das kommt später.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Link href="/contextualisierung" className="group inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-900">
+                      Wie Context entsteht <ChevronRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                    <Link href="/agent-context" className="group inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-900">
+                      Wie Context zur Laufzeit funktioniert <ChevronRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Station 3: Kompass prüfen */}
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-slate-100">
+                    <Shield className="size-5 text-slate-600" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border" />
+                </div>
+                <div className="flex-1 pb-8">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Durchgehend — Kompass</p>
+                  <p className="mt-1 text-lg font-bold">Regeln und Grenzen einhalten</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Bevor etwas formuliert wird, gelten Regeln. Der Kompass ist die Verfassung des Assistenten:
+                    Keine Diagnosen stellen. Keine Leistungszusagen machen. Bei akuter Gefahr sofort auf 112 verweisen.
+                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Der Kompass ist kein eigener Schritt. Er durchzieht alle Stationen als verbindliches Regelwerk.
+                  </p>
+                </div>
+              </div>
+
+              {/* Station 4: Kommunikation formen */}
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-amber-100">
+                    <MessageCircle className="size-5 text-amber-600" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-amber-600">Station 3 — Kommunikation</p>
+                  <p className="mt-1 text-lg font-bold">Antwort situationsgerecht formen</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Jetzt kommen Intention und Context zusammen. Die Kommunikationsschicht entscheidet:
+                    Welcher Ton passt? Wie viel Information verträgt der Mensch gerade?
+                    Soll der Assistent proaktiv auf verwandte Leistungen hinweisen?
+                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Für I2 (Frische Diagnose) heißt das: beruhigender Ton, mittlere Tiefe, ein klarer nächster Schritt.
+                  </p>
+                  <div className="mt-3">
+                    <Link href="/kommunikation" className="group inline-flex items-center gap-1 text-xs font-semibold text-amber-700 hover:text-amber-900">
+                      Wie Kommunikation gesteuert wird <ChevronRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════
+           5. Das Ergebnis — Gleicher Context, verschiedene Antworten
+           ════════════════════════════════════ */}
+        <section className="border-t bg-muted/50 px-6 py-20 sm:px-8 lg:px-20">
+          <div className="mx-auto max-w-4xl">
+            <p className="micro-label mb-4 flex items-center gap-2">
+              <span className="inline-block size-1.5 rounded-full bg-primary" />
+              Das Ergebnis
             </p>
             <h2 className="headline-black mb-2 text-2xl tracking-tight sm:text-3xl">
-              Ein Context. Drei Intentionen. Drei Antworten.
+              Ein Diabetes-Context. Drei Bedürfnisse. Drei Antworten.
             </h2>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Hier wird das Prinzip der SAVA Engine greifbar. Derselbe Diabetes-Context, drei verschiedene
-              Intentionen, drei völlig verschiedene Antworten. Die Fakten sind identisch.
-              Nur die Kommunikation ändert sich.
+              Dieselben Fakten. Derselbe Kompass. Aber die Intention bestimmt,
+              wie die Antwort klingt, wie tief sie geht und was sie hervorhebt.
             </p>
 
             {/* Flow-Visualisierung */}
@@ -632,13 +350,13 @@ export default function LandingPage() {
                 <div className="block text-center text-xs text-muted-foreground sm:hidden">+</div>
                 <div className={`flex items-center gap-2 rounded-full border ${layers.sensor.border} ${layers.sensor.bg} px-4 py-2`}>
                   <Radar className="size-4 text-blue-600" />
-                  <span className="text-xs font-semibold text-blue-800">Sensor: Intention erkennen</span>
+                  <span className="text-xs font-semibold text-blue-800">Intention erkennen</span>
                 </div>
                 <div className="hidden h-px w-8 bg-border sm:block" />
                 <div className="block text-center text-xs text-muted-foreground sm:hidden">=</div>
                 <div className={`flex items-center gap-2 rounded-full border ${layers.kommunikation.border} ${layers.kommunikation.bg} px-4 py-2`}>
                   <MessageCircle className="size-4 text-amber-600" />
-                  <span className="text-xs font-semibold text-amber-800">Situationsgerechter Output</span>
+                  <span className="text-xs font-semibold text-amber-800">Antwort formen</span>
                 </div>
               </div>
               <div className="mt-2 flex justify-center">
@@ -651,7 +369,7 @@ export default function LandingPage() {
 
             {/* Drei Beispiel-Outputs */}
             <div className="grid gap-4 lg:grid-cols-3">
-              {examples.map((ex) => (
+              {beispiele.map((ex) => (
                 <div key={ex.label} className="flex flex-col border border-border bg-white">
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-2.5">
                     <span className={`inline-flex items-center rounded-full ${layers.sensor.badge} px-2 py-0.5 text-xs font-bold`}>
@@ -661,7 +379,7 @@ export default function LandingPage() {
                   </div>
                   <div className="flex flex-1 flex-col p-4">
                     <p className="mb-1 text-xs text-muted-foreground">
-                      Ton: <span className="font-medium text-foreground">{ex.tonalitaet}</span>
+                      Ton: <span className="font-medium text-foreground">{ex.ton}</span>
                     </p>
                     <div className="mt-2 flex-1 rounded bg-muted/30 p-3">
                       <p className="text-sm leading-relaxed">{ex.output}</p>
@@ -672,23 +390,22 @@ export default function LandingPage() {
             </div>
 
             {/* Quintessenz */}
-            <div className="mt-10 border-l-4 border-primary bg-muted/50 p-6">
-              <p className="text-sm font-bold">Der Kompass setzt die Grenzen.</p>
-              <p className="text-sm font-bold">Der Context liefert Wissen und Tools.</p>
-              <p className="text-sm font-bold">Der Sensor liefert den Kontext.</p>
-              <p className="text-sm font-bold">Die SAVA Engine macht daraus Kommunikation.</p>
+            <div className="mt-10 border-l-4 border-primary bg-white p-6">
+              <p className="text-sm font-bold">
+                Wissen wird einmal aufbereitet. Die Engine erkennt das Bedürfnis. Und formt daraus eine Antwort,
+                die zum Menschen passt — nicht nur zum Thema.
+              </p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Wissen und Tools werden zentral gepflegt. Alle Intentionen profitieren sofort.
-                Neue Intentionen erfordern keinen neuen Content, nur neue Engine-Regeln.
-                Fachliche Prüfung und kommunikative Prüfung sind klar getrennt.
-                Und in jedem Schritt gelten dieselben verbindlichen Regeln.
+                Neue Themen erfordern neuen Context, aber keine neue Kommunikationslogik.
+                Neue Bedürfnisse erfordern neue Engine-Regeln, aber keinen neuen Content.
+                Fachliche Korrektheit und kommunikative Anpassung bleiben sauber getrennt.
               </p>
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════
-           CTA
+           6. CTA
            ════════════════════════════════════ */}
         <section className="border-t bg-foreground px-6 py-16 sm:px-8 lg:px-20">
           <div className="mx-auto max-w-4xl text-center">
@@ -710,7 +427,7 @@ export default function LandingPage() {
         </section>
 
         {/* ════════════════════════════════════
-           Bonus: Headless Content
+           7. Weitergedacht: Headless Content
            ════════════════════════════════════ */}
         <section className="border-t px-6 py-20 sm:px-8 lg:px-20">
           <div className="mx-auto max-w-4xl">
@@ -725,72 +442,33 @@ export default function LandingPage() {
               Einmal aufbereitet. Überall einsetzbar. Nicht nur für den Assistenten.
             </p>
             <p className="mb-8 max-w-2xl leading-relaxed text-muted-foreground">
-              Die Trennung von Inhalt und Kommunikation hat einen Nebeneffekt: Contexts sind strukturierte,
-              fachlich geprüfte Rohdaten ohne Kanal-Bindung. Das macht sie zur idealen Grundlage
-              für ein KI-gestütztes Multi-Kanal-Content-System.
+              Weil Fakten und Kommunikation getrennt sind, lassen sich dieselben Contexts
+              für jeden Kanal nutzen: Website, Newsletter, Social Media, Push-Benachrichtigung.
+              Die KI generiert kanalgerechte Varianten. Die Redaktion prüft und gibt frei.
             </p>
 
-            {/* Vom Context zum Kanal */}
-            <div className="mb-8 grid gap-4 lg:grid-cols-2">
-              {/* So funktioniert es */}
-              <div className="border border-border p-5">
-                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">So funktioniert es</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-3">
-                    <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">1</span>
-                    <div>
-                      <p className="text-sm font-semibold">Context als Single Source of Truth</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">Fachredaktion pflegt Fakten einmal. Qualitätsgesichert, strukturiert, versioniert.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">2</span>
-                    <div>
-                      <p className="text-sm font-semibold">KI generiert kanalgerechte Varianten</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">Aus einem Diabetes-Context wird ein Social-Post, ein Newsletter-Absatz, eine App-Notification oder ein Webseitentext.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-700">3</span>
-                    <div>
-                      <p className="text-sm font-semibold">Redakteure steuern und freigeben</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">KI liefert Entwürfe. Die Redaktion prüft, passt an, gibt frei. Schneller als Neuschreiben, sicherer als Copy-Paste.</p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+              {[
+                { kanal: "Website", format: "Ratgeber" },
+                { kanal: "App-Push", format: "1-2 Sätze" },
+                { kanal: "Newsletter", format: "Teaser" },
+                { kanal: "Social", format: "Karussell" },
+                { kanal: "Chatbot", format: "Dialog" },
+                { kanal: "Print", format: "Fakten-Box" },
+              ].map((k) => (
+                <div key={k.kanal} className="rounded bg-muted/50 p-3 text-center">
+                  <p className="text-xs font-semibold">{k.kanal}</p>
+                  <p className="text-xs text-muted-foreground">{k.format}</p>
                 </div>
-              </div>
-
-              {/* Kanäle */}
-              <div className="border border-border p-5">
-                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Ein Context, viele Kanäle</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { kanal: "Website", ton: "Ausführlich, SEO-optimiert", format: "Ratgeber-Artikel" },
-                    { kanal: "App-Push", ton: "Kurz, handlungsorientiert", format: "1-2 Sätze + CTA" },
-                    { kanal: "Newsletter", ton: "Persönlich, einladend", format: "Teaser + Link" },
-                    { kanal: "Social Media", ton: "Nahbar, aktivierend", format: "Karussell oder Short" },
-                    { kanal: "Chatbot", ton: "Situationsgerecht (Intention)", format: "Dialogisch" },
-                    { kanal: "Print-Flyer", ton: "Kompakt, überfliegbar", format: "Fakten-Box" },
-                  ].map((k) => (
-                    <div key={k.kanal} className="rounded bg-muted/50 p-2.5">
-                      <p className="text-xs font-semibold">{k.kanal}</p>
-                      <p className="text-xs text-muted-foreground">{k.ton}</p>
-                      <p className="mt-0.5 text-xs italic text-muted-foreground/70">{k.format}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Kernaussage */}
-            <div className="border-l-4 border-primary bg-muted/50 p-6">
+            <div className="mt-8 border-l-4 border-primary bg-muted/50 p-6">
               <p className="text-sm font-bold">
                 Die Pipeline baut nicht nur ein Assistenten-Gedächtnis. Sie baut eine Infrastruktur für die gesamte Gesundheitskommunikation.
               </p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Wenn die Fachredaktion einen Context aktualisiert, profitieren alle Kanäle sofort.
-                Kein Abgleich zwischen Webseite, App und Newsletter. Kein veralteter Social-Post
-                neben aktueller Webseite. Eine Quelle der Wahrheit. Viele Stimmen.
+                Ein Context wird aktualisiert — alle Kanäle profitieren sofort.
               </p>
             </div>
           </div>

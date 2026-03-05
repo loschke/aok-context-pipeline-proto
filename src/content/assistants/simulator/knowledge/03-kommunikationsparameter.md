@@ -27,9 +27,9 @@ Dieselbe Antwort kann den Nutzer auf voellig unterschiedlichen Wegen erreichen. 
 | Intention | Tonalitaet | Tiefe | Proaktivitaet | Typisches Medium |
 |---|---|---|---|---|
 | I1 Akute Sorge | Beruhigend, empathisch | Minimal | Hoch | Chat, Push, Audio |
-| I2 Frische Diagnose | Strukturiert, sachlich-warm | Mittel | Mittel | Chat, PDF, Wizard |
+| I2 Frische Diagnose | Strukturiert, sachlich-warm | Mittel-hoch | Mittel | Chat, PDF, Wizard |
 | I3 Behandlungssuche | Sachlich, kompetent | Hoch | Mittel | Chat, Uebersicht, PDF |
-| I4 Leistungsklaerung | Direkt, klar | Praezise | Niedrig | Chat, PDF |
+| I4 Leistungsklaerung | Direkt, klar | Praezise | Niedrig-mittel | Chat, PDF |
 | I5 Langzeit-Management | Partnerschaftlich | Anpassbar | Gering | Push, Audio, Chat |
 | I6 Angehoerigen-Sorge | Unterstuetzend | Mittel | Hoch | PDF, Wizard, Chat |
 | I7 Praeventive Vorsorge | Motivierend | Mittel | Mittel | Push, Audio, Uebersicht |

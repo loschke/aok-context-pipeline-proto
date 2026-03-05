@@ -1,6 +1,6 @@
 ---
 titel: "Tages- und Nachtpflege"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: stationaere-versorgung
 stand: "2026-03-01"

@@ -1,6 +1,6 @@
 ---
 titel: "AOK-Pflegenavigator"
-typ: TIPP
+typ: EMPFEHLUNG
 cluster: pflege
 kategorie: service-und-zugang
 stand: "2026-03-01"

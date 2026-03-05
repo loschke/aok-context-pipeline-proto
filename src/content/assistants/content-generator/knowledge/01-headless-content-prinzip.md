@@ -26,7 +26,7 @@ Jeder Baustein hat Frontmatter-Felder, die direkt in Content-Entscheidungen uebe
 | Frontmatter-Feld | Content-Entscheidung |
 |---|---|
 | `titel` | Headline-Basis |
-| `typ` (LEISTUNG, PROZESS, TIPP etc.) | Artikelformat (Ratgeber, How-to, FAQ) |
+| `typ` (FAKT, EMPFEHLUNG, ANLEITUNG etc.) | Artikelformat (Ratgeber, How-to, FAQ) |
 | `zielgruppe` | Ansprache und Schwerpunkt |
 | `kontext_tags` | Relevanzfilter, Personalisierung |
 | `relationen` | Verlinkungen, verwandte Artikel, "Auch interessant" |

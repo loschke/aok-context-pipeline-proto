@@ -17,6 +17,8 @@ export async function listExperts(): Promise<ExpertConfig[]> {
       const raw = await fs.readFile(configPath, "utf-8")
       const config = JSON.parse(raw) as Omit<ExpertConfig, "slug">
 
+      if (config.hidden) continue
+
       experts.push({
         slug: dir.name,
         name: config.name,

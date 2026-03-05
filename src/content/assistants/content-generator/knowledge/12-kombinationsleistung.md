@@ -1,6 +1,6 @@
 ---
 titel: "Kombinationsleistung"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: kombinationsleistungen
 stand: "2026-03-01"

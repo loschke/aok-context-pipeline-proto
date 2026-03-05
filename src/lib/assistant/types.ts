@@ -4,4 +4,5 @@ export interface ExpertConfig {
   emoji: string
   description: string
   suggestions: string[]
+  hidden?: boolean
 }

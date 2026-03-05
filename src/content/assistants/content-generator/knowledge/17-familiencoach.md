@@ -1,6 +1,6 @@
 ---
 titel: "Familiencoach Pflege"
-typ: VERWEIS
+typ: NAVIGATION
 cluster: pflege
 kategorie: beratung-und-unterstuetzung
 stand: "2026-03-01"

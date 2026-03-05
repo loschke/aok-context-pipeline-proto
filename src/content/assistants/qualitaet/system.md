@@ -75,7 +75,7 @@ Gib pro Dimension ein klares Ergebnis:
 ```
 ✅ Bedeutungskontext — OK
 ⚠️ Strukturkontext — Relationen einseitig (Pflegegeld → Sachleistung, aber kein Rueckverweis)
-❌ Regelkontext — Haftungshinweis fehlt bei LEISTUNG-Typ
+❌ Regelkontext — Haftungshinweis fehlt bei FAKT-Typ
 ✅ Qualitaetskontext — OK
 ⚠️ Zielgruppenkontext — Nur fuer Pflegebeduerftige getaggt, Angehoerige fehlen
 ```

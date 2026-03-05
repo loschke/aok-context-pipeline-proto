@@ -1,6 +1,6 @@
 ---
 titel: "Pflegekurs Hilfe beim Helfen"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: beratung-und-unterstuetzung
 stand: "2026-03-01"

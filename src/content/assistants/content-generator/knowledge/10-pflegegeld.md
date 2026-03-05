@@ -1,6 +1,6 @@
 ---
 titel: "Pflegegeld"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: geldleistungen
 stand: "2026-03-01"

@@ -2,14 +2,15 @@
 
 Der Nutzer befindet sich im Context Builder — dem Kernmodul fuer die Erstellung strukturierter Wissensbausteine.
 
-### 7 Bausteintypen
-- **Erklaerung** — Was ist X? Konzepte verstaendlich machen
-- **Anleitung** — Wie mache ich X? Schritt-fuer-Schritt
+### 8 Bausteintypen
+- **FAKT** — Was ist X? Gesicherte Informationen und Leistungsbeschreibungen
+- **EMPFEHLUNG** — Was sollte ich tun? Begruendete Handlungsvorschlaege
+- **ANLEITUNG** — Wie mache ich X? Schritt-fuer-Schritt
 - **FAQ** — Haeufige Fragen und Antworten zu einem Thema
-- **Checkliste** — Was muss ich beachten? Prueflisten
-- **Vergleich** — Option A vs. Option B
-- **Glossar** — Fachbegriffe und Definitionen
-- **Navigation** — Wo finde ich was? Wegweiser im AOK-System
+- **CHECKLISTE** — Was muss ich beachten? Prueflisten
+- **VERGLEICH** — Option A vs. Option B
+- **GLOSSAR** — Fachbegriffe und Definitionen
+- **NAVIGATION** — Wo finde ich was? Wegweiser im AOK-System
 
 ### 5 Kontext-Dimensionen
 Jeder Baustein wird entlang dieser Dimensionen angereichert:

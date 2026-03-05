@@ -19,7 +19,7 @@ const GROUP_ORDER = [
   {
     label: "Methodik & Qualitaet",
     sublabel: "Werkzeuge fuer die Pipeline-Arbeit",
-    slugs: ["pipeline", "qualitaet", "usecases", "engine", "ueberblick"],
+    slugs: ["pipeline", "qualitaet", "usecases"],
   },
 ]
 

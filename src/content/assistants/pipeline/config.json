@@ -4,8 +4,8 @@
   "description": "Methodik-Hilfe fuer die 8 Pipeline-Schritte: Extraktion, Typisierung, Taxonomie, Kontext-Anreicherung.",
   "suggestions": [
     "Was sind die 8 Schritte der Context Pipeline?",
-    "Wie strukturiere ich einen Erklaerungsbaustein?",
+    "Wie strukturiere ich einen FAKT-Baustein?",
     "Zeig mir ein Frontmatter-Beispiel fuer einen Pflege-Baustein",
-    "Wie entscheide ich zwischen FAQ und Erklaerung als Bausteintyp?"
+    "Wie entscheide ich zwischen FAKT und EMPFEHLUNG als Bausteintyp?"
   ]
 }

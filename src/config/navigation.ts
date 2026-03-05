@@ -1,4 +1,4 @@
-import { LayoutDashboard, Workflow, BookOpen, HelpCircle, BotMessageSquare, Building2 } from "lucide-react"
+import { LayoutDashboard, Workflow, BotMessageSquare, Compass, Layers, BrainCircuit, MessageCircle, Shield } from "lucide-react"
 import type { NavItem, ModuleItem } from "@/types"
 
 export const primaryModules: ModuleItem[] = [
@@ -11,16 +11,55 @@ export const primaryModules: ModuleItem[] = [
     variant: "compact",
   },
   {
+    title: "SAVA Engine",
+    url: "/assistant?expert=engine",
+    icon: BrainCircuit,
+    description: "Architektur, Schichten und Zusammenspiel",
+    variant: "compact",
+    badge: "Chat",
+  },
+  {
     title: "Context Pipeline",
     url: "/context-pipeline",
     icon: Workflow,
     description: "Methodik, Bausteine und Workflow",
+    variant: "compact",
+    badge: "Tool",
   },
   {
-    title: "SAVA Projektberater",
-    url: "/assistant?expert=ueberblick",
-    icon: Building2,
-    description: "Architektur, Methodik und Projektstatus",
+    title: "7 Kernintentionen",
+    url: "/intentionen",
+    icon: Compass,
+    description: "Warum kommen Menschen zur AOK? 7 Motive, 3 Ebenen",
+    badge: "Info",
+  },
+  {
+    title: "Agent Context",
+    url: "/agent-context",
+    icon: BrainCircuit,
+    description: "Build- und Runtime-Wissen, Retrieval, Cluster-Konfiguration",
+    badge: "Info",
+  },
+  {
+    title: "Kompass",
+    url: "/kompass",
+    icon: Shield,
+    description: "Verfassung, Werte und Compliance-Regeln",
+    badge: "Info",
+  },
+  {
+    title: "Contextualisierung",
+    url: "/contextualisierung",
+    icon: Layers,
+    description: "8-Schritte-Pipeline von Content zu Context",
+    badge: "Info",
+  },
+  {
+    title: "Kommunikation",
+    url: "/kommunikation",
+    icon: MessageCircle,
+    description: "Tonalitaet, Kanaele und Situations-Anpassung",
+    badge: "Info",
   },
 ]
 
@@ -28,18 +67,7 @@ export const assistantNavItem = {
   title: "SAVA Experten",
   url: "/assistant",
   icon: BotMessageSquare,
-  description: "9 Experten fuer Methodik, QS, Demo und Onboarding",
+  description: "6 Experten fuer Methodik, QS, Demo und Onboarding",
 }
 
-export const secondaryNavigation: NavItem[] = [
-  {
-    title: "Dokumentation",
-    url: "/docs",
-    icon: BookOpen,
-  },
-  {
-    title: "Hilfe & FAQ",
-    url: "/help",
-    icon: HelpCircle,
-  },
-]
+export const secondaryNavigation: NavItem[] = []

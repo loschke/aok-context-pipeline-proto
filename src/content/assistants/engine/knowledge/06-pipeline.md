@@ -25,7 +25,7 @@ Firecrawl scraped AOK-Webseiten. Ergebnis: Roher Seiteninhalt als Markdown.
 
 ### Schritt 2: Baustein-Extraktion (Pass 1)
 LLM zerlegt den Rohtext in atomare Wissensbausteine. Freie Kategorisierung. Jeder Baustein beantwortet genau eine Frage vollstaendig.
-- 7 Bausteintypen: FAKT, EMPFEHLUNG, WARNUNG, LEISTUNG, TIPP, VERWEIS, PROZESS
+- 8 Bausteintypen: FAKT, EMPFEHLUNG, ANLEITUNG, FAQ, CHECKLISTE, VERGLEICH, GLOSSAR, NAVIGATION
 - Entscheidungshilfe: "Koennte jemand genau diese Information suchen?" → Eigener Baustein
 - Automatisierungsgrad: Ueberwiegend automatisiert (LLM)
 

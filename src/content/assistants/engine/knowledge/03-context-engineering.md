@@ -6,20 +6,40 @@ Context ist alles, was der Assistent braucht, um eine Frage zu beantworten. Das 
 
 **Kernprinzip:** Ein Context weiss nicht, wer ihn nutzt. Er weiss nur, was wahr ist und was zur Verfuegung steht. Tonalitaet, Empathie, Medienanpassung — das ist Sache der anderen Schichten.
 
-## Zwei Typen von Context
+## Zwei Typen von Context: Build und Runtime
 
-### Wissens-Context
-Atomare Wissenseinheiten. Beantworten genau eine Frage vollstaendig. Keine Tonalitaet, keine Empathie. Nur fachlich gepruefte Fakten.
+### Build Context
+Vor dem Gespraech aufgebaut. Redaktionell geprueft, versioniert, aendert sich nur durch bewusste Aktualisierung. Die Redaktion kontrolliert, was der Assistent weiss.
 
-### Tool-Context
-Beschreibungen von AOK-Tools und Datenbanken. Wann ist welches Tool relevant? Krankenhaussuche bei Behandlungsfragen, Pflegeheim-Finder bei Angehoerigen-Sorge.
+Beispiele:
+- Wissensbausteine aus der Content-to-Context Pipeline
+- Statisch hinterlegte Daten (z.B. Filial-Oeffnungszeiten)
+- Tool-Beschreibungen (wann ist welches Tool relevant)
 
-## 4 Eigenschaften eines guten Bausteins
+### Runtime Context
+Existiert erst im Moment der Anfrage. Haengt von Nutzereingabe, Zeitpunkt oder Standort ab. Die Anfrage bestimmt, was zurueckkommt.
 
-1. **Eigenstaendig** — verstaendlich ohne den Quellartikel
-2. **Informationsdicht** — jeder Satz hat Substanz, kein Marketing
-3. **Eindeutig typisiert** — einer der 7 Bausteintypen
-4. **Vollstaendig im Kontext** — Metadaten gefuellt fuer Auffindbarkeit
+Beispiele:
+- Berechnungen (Pflegegradrechner mit Nutzereingaben)
+- Echtzeit-Daten (Wartezeiten, Verfuegbarkeit)
+- Nutzerdaten (Pflegegrad, PLZ, genutzte Leistungen)
+
+**Entscheidender Unterschied:** Bei Build Context kontrolliert die Redaktion, was der Assistent weiss. Bei Runtime Context bestimmt die Anfrage, was zurueckkommt.
+
+## Vier Kontextquellen
+
+| Quelle | Typ | Beispiel | Verfuegbarkeit |
+|--------|-----|---------|---------------|
+| **Wissensbausteine** | Build | Pflegegeld-Betraege, Antragsverfahren | Heute (Content Pipeline) |
+| **Tools & Datenbanken** | Hybrid | Pflegegradrechner, Pflegenavigator, Filial-Oeffnungszeiten | Teilweise |
+| **Echtzeit-Daten** | Runtime | Warteschlangen, Terminverfuegbarkeit | Zukunft (API-Anbindung noetig) |
+| **Nutzerprofil** | Runtime | Pflegegrad, Versichertenstatus, PLZ | Zukunft (MGW, Auth noetig) |
+
+Tools & Datenbanken sind hybrid, weil derselbe Tool-Call je nach Aufruf Build oder Runtime sein kann: `filiale_oeffnungszeiten("Dresden")` holt statisch hinterlegte Daten (Build). `pflegegradrechner(eingaben)` berechnet etwas Neues auf Basis von Nutzereingaben (Runtime).
+
+### Dazu kommt: der Kompass
+
+Unabhaengig von Typ und Quelle gilt fuer jede Antwort die Verfassung des Assistenten: 5 Kernwerte, 5 Hard Constraints, Vertrauens-Hierarchie. Der Kompass ist kein Context im klassischen Sinn, sondern die Leitplanke, die bestimmt, was der Assistent mit dem Context tun darf und was nicht.
 
 ## Die 5 Kontext-Dimensionen
 
@@ -29,19 +49,16 @@ Jeder Baustein wird mit 5 Dimensionen angereichert. Sie beantworten 5 verschiede
 **Frage:** Was ist das inhaltlich?
 **Felder:** titel, typ, cluster, kategorie, quellen
 **Wenn fehlt:** Generische oder falsche Antworten. System weiss nicht, worueber es spricht.
-**Beispiel:** Ein Pflegegeld-Baustein hat cluster: pflege, kategorie: geldleistungen, typ: LEISTUNG. Damit ist eindeutig klar, worum es geht.
 
 ### Dimension 2: Struktur
 **Frage:** Wie haengt es zusammen?
 **Felder:** relationen (6 Typen: voraussetzung, kombinierbar_mit, alternative_zu, verwandt_mit, teil_von, ersetzt_durch)
 **Wenn fehlt:** Fragmentierte Teilantworten. System erkennt keine Zusammenhaenge zwischen Bausteinen.
-**Beispiel:** Pflegegeld hat Relation "alternative_zu: pflegesachleistung" und "kombinierbar_mit: kombinationsleistung". Das ermoeglicht vollstaendige Antworten.
 
 ### Dimension 3: Qualitaet
 **Frage:** Kann ich mich darauf verlassen?
 **Felder:** stand, volatilitaet, validiert
 **Wenn fehlt:** Veraltete oder ungepruefte Informationen. System weiss nicht, ob Betraege noch stimmen.
-**Volatilitaets-Bewertung:**
 
 | Level | Bedeutung | Pruefintervall | Beispiel |
 |-------|-----------|---------------|---------|
@@ -53,43 +70,42 @@ Jeder Baustein wird mit 5 Dimensionen angereichert. Sie beantworten 5 verschiede
 **Frage:** Was gilt?
 **Felder:** haftungshinweis, rechtsgrundlage
 **Wenn fehlt:** System ueberschreitet Grenzen. Keine Einordnung, ob ein Disclaimer noetig ist.
-**Beispiel:** rechtsgrundlage: "§ 37 SGB XI", haftungshinweis: "Betraege gemaess aktueller Gesetzeslage. Individuelle Ansprueche koennen abweichen."
 
 ### Dimension 5: Zielgruppe
 **Frage:** Fuer wen?
 **Felder:** zielgruppe, kontext_tags
 **Wenn fehlt:** System antwortet am Bedarf vorbei. Gibt Angehoerigen-Info an Pflegebeduerftige.
-**Beispiel:** zielgruppe: [pflegebeduerftige, angehoerige], kontext_tags: { pflegegrade: [2,3,4,5], setting: "haeuslich" }
 
 ## Metadaten sind Retrieval-Infrastruktur, nicht Intentions-Zuordnung
 
 Wichtiges Architekturprinzip: Felder wie zielgruppe und kontext_tags helfen den richtigen Context zur Laufzeit zu FINDEN. Sie bestimmen nicht, WIE der Context kommuniziert wird.
 
-Derselbe Diabetes-Context bedient gleichzeitig:
-- I2 Frische Diagnose → "Was bedeutet das fuer mich?" → Orientierung geben
-- I5 Langzeit-Management → "Wie lebe ich damit?" → Alltagstipps
-- I4 Leistungsklaerung → "Zahlt die AOK das?" → DMP-Programme nennen
+Derselbe Pflegegeld-Baustein bedient gleichzeitig:
+- I2 Frische Diagnose → "Was bedeutet Pflegegrad 2?" → Orientierung geben, Pflegegeld als eine von mehreren Leistungen einordnen
+- I4 Leistungsklaerung → "Wie viel Pflegegeld gibt es?" → Direkt die Betraege nennen, Kombinierbarkeit erwaehnen
+- I5 Langzeit-Management → "Wie organisiere ich die Pflege dauerhaft?" → Pflegegeld als Teil des Gesamtpakets
 
 Gleicher Content, voellig anderer Output. Die Kommunikationsschicht steuert das.
 
-## 7 Bausteintypen
+## 8 Bausteintypen
 
 | Typ | Zweck | Beispiel |
 |-----|-------|---------|
-| **FAKT** | Neutrale Sachinformation | "Pflegegeld gibt es ab Pflegegrad 2" |
-| **EMPFEHLUNG** | Handlungsorientierte Einordnung | "Kombinationsleistung pruefen" |
-| **WARNUNG** | Risiko, Frist, Konsequenz | "Ohne Beratungseinsatz wird Pflegegeld gekuerzt" |
-| **LEISTUNG** | Konkrete AOK-Leistung mit Betraegen | Pflegegeld-Tabelle nach Pflegegrad |
-| **TIPP** | Praktischer Alltagshinweis | "Pflegetagebuch fuehren" |
-| **VERWEIS** | Weiterleitung an Stelle/Ressource | "AOK-Pflegeberatung: 0800..." |
-| **PROZESS** | Schritt-fuer-Schritt-Ablauf | "Pflegegrad beantragen in 5 Schritten" |
+| **FAKT** | Objektive, faktenbasierte Sachinformation | Pflegegeld Grad 2: 332 EUR monatlich |
+| **EMPFEHLUNG** | Handlungsorientierte Einordnung mit klarer Richtung | Kombinationsleistung pruefen: oft guenstiger als reines Pflegegeld |
+| **ANLEITUNG** | Schritt-fuer-Schritt-Ablauf | Pflegegrad beantragen in 5 Schritten |
+| **FAQ** | Haeufige Frage direkt beantworten | Wird Pflegegeld auf Sozialhilfe angerechnet? |
+| **CHECKLISTE** | Strukturierte Pruefpunkte | Checkliste: Was vor dem MD-Termin vorbereiten |
+| **VERGLEICH** | Zwei Optionen gegeneinanderstellen | Pflegegeld vs. Pflegesachleistung |
+| **GLOSSAR** | Begriff definieren | Was bedeutet Kombinationsleistung? |
+| **NAVIGATION** | Weiterleitung an Stelle/Ressource | AOK-Pflegeberatung: Kontakt und Oeffnungszeiten |
 
 ## Beispiel: Vollstaendiger Baustein
 
 ```yaml
 ---
 titel: "Pflegegeld"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: geldleistungen
 stand: "2026-03-01"
@@ -130,12 +146,3 @@ Voraussetzungen: Pflegegrad 2-5, haeusliche Pflege durch Angehoerige oder Ehrena
 Antragstellung: Formlos bei der Pflegekasse. Begutachtung durch MD.
 Beratungspflicht: Pflegegeldempfaenger muessen regelmaessig Beratungseinsaetze nachweisen.
 ```
-
-## Vier Kontextquellen
-
-| Quelle | Beispiel | Verfuegbarkeit |
-|--------|---------|---------------|
-| Wissensbausteine | Pflegegeld-Betraege, Antragsverfahren | Heute (Content Pipeline) |
-| Tools und Rechner | Pflegegradrechner, Pflegestuetzpunkt-Finder | Teilweise (AOK-Tools existieren) |
-| Echtzeit-Daten | Warteschlangen, Terminverfuegbarkeit | Zukunft (API-Anbindung noetig) |
-| Nutzerprofil | Pflegegrad, Versichertenstatus, PLZ | Zukunft (MGW, Auth noetig) |

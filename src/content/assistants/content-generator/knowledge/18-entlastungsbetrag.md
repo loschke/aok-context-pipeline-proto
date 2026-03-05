@@ -1,6 +1,6 @@
 ---
 titel: "Entlastungsbetrag"
-typ: LEISTUNG
+typ: FAKT
 cluster: pflege
 kategorie: entlastung-und-betreuung
 stand: "2026-03-01"
