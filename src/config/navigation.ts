@@ -24,6 +24,14 @@ export const primaryModules: ModuleItem[] = [
     icon: Workflow,
     description: "Methodik, Bausteine und Workflow",
     variant: "compact",
+    badge: "v1",
+  },
+  {
+    title: "Pipeline v2",
+    url: "/pipeline-v2",
+    icon: Workflow,
+    description: "8-Step Engine mit Cluster-Dashboard",
+    variant: "compact",
     badge: "Tool",
   },
   {

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Database, Radar, MessageCircle, Shield, Layers, ChevronRight } from "lucide-react"
+import { ArrowRight, Database, Radar, MessageCircle, Shield, Layers, ChevronRight, Workflow, BrainCircuit, BotMessageSquare } from "lucide-react"
 
 import { brand } from "@/config/brand"
 import { BrandWordmark } from "@/components/layout/brand-wordmark"
@@ -67,42 +67,64 @@ export default function LandingPage() {
 
       <main>
         {/* ════════════════════════════════════
-           1. Hero — Der Mensch kommt mit einem Bedürfnis
+           1. Hero — SAVA Engine Workbench
            ════════════════════════════════════ */}
         <section className="flex flex-col justify-center px-6 pb-24 pt-12 sm:px-8 lg:px-20">
           <p className="micro-label mb-6 flex items-center gap-2">
             <span className="inline-block size-1.5 rounded-full bg-primary" />
-            {brand.name}
+            {brand.name} Workbench
           </p>
 
           <h1 className="headline-black mb-6 max-w-4xl text-4xl leading-[1.08] tracking-tighter sm:text-5xl lg:text-6xl">
-            <span className="text-primary">Dasselbe Thema.</span>
+            <span className="text-primary">Die Werkbank</span>
             <br />
-            Verschiedene Menschen.
-            <br />
-            Verschiedene Antworten<span className="text-primary">.</span>
+            fuer die SAVA Engine<span className="text-primary">.</span>
           </h1>
 
-          <p className="mb-10 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Jeder Mensch, der die AOK kontaktiert, kommt mit einem konkreten Bedürfnis.
-            Angst nach einer Diagnose. Die Frage nach den Kosten. Sorge um einen Angehörigen.
-            Dasselbe Thema — aber ein völlig anderer Kontext.
-            Die SAVA Engine erkennt diesen Unterschied und antwortet entsprechend.
+          <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Die SAVA Engine ist das agentische System hinter dem AOK-Assistenten —
+            Intentionen, Kompass, Context, Kommunikation. Diese Workbench liefert die Werkzeuge,
+            um die Engine zu bauen, zu befuellen und zu konfigurieren.
           </p>
+
+          {/* Workbench Modules */}
+          <div className="mb-10 grid max-w-2xl gap-3 sm:grid-cols-3">
+            <div className="flex items-start gap-3 rounded border p-3">
+              <Workflow className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="text-sm font-semibold">Context Pipeline</p>
+                <p className="text-xs text-muted-foreground">Content in strukturierte Wissensbausteine transformieren</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded border p-3">
+              <BotMessageSquare className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="text-sm font-semibold">Engine-Experten</p>
+                <p className="text-xs text-muted-foreground">Chat-Assistenten fuer Methodik und Konzeption</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded border p-3">
+              <BrainCircuit className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="text-sm font-semibold">Engine-Referenz</p>
+                <p className="text-xs text-muted-foreground">Intentionen, Kompass, Kommunikation dokumentiert</p>
+              </div>
+            </div>
+          </div>
 
           <div className="flex flex-wrap gap-3">
             <Link
               href="/api/auth/sign-in"
               className="inline-flex items-center gap-2 bg-foreground px-7 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
             >
-              Jetzt starten
+              Workbench starten
               <ArrowRight className="size-4" />
             </Link>
             <a
               href="#intentionen"
               className="inline-flex items-center gap-2 border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
             >
-              Wie funktioniert das?
+              Wie funktioniert die Engine?
             </a>
           </div>
         </section>
@@ -410,17 +432,17 @@ export default function LandingPage() {
         <section className="border-t bg-foreground px-6 py-16 sm:px-8 lg:px-20">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="headline-black mb-4 text-2xl tracking-tight text-background sm:text-3xl">
-              Pipeline ausprobieren
+              Die Engine braucht Werkzeuge
             </h2>
             <p className="mx-auto mb-8 max-w-lg text-sm text-background/60">
-              In der Workbench kannst du den gesamten Prozess durchspielen: Webinhalte extrahieren,
-              Contexts erzeugen, Qualität prüfen und die SAVA Engine testen.
+              Context-Cluster anlegen, die Pipeline durchlaufen, mit Experten iterieren
+              und die Qualitaet der Wissensbausteine pruefen. Alles in einer Arbeitsumgebung.
             </p>
             <Link
               href="/api/auth/sign-in"
               className="inline-flex items-center gap-2 bg-background px-7 py-3 text-sm font-semibold text-foreground transition-opacity hover:opacity-90"
             >
-              Jetzt starten
+              Workbench starten
               <ArrowRight className="size-4" />
             </Link>
           </div>

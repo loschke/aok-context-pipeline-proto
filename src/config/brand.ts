@@ -35,7 +35,7 @@ const brands: Record<BrandId, BrandConfig> = {
   aok: {
     id: "aok",
     name: "SAVA",
-    description: "Context Pipeline",
+    description: "SAVA Engine Werkbank",
     domain: "localhost",
   },
 }
