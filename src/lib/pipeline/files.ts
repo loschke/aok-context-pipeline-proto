@@ -89,7 +89,3 @@ export function createPipelineFileOps(basePath: string) {
 
   return { listBatches, listStepFiles, readPipelineFile, writePipelineFile, ensureDir, dirHasFiles, resolveSafe }
 }
-
-// V1 backward compatibility
-const v1Ops = createPipelineFileOps(path.join(process.cwd(), "data/pipeline"))
-export const { listBatches, listStepFiles, readPipelineFile, writePipelineFile, ensureDir, dirHasFiles } = v1Ops

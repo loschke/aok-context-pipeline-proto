@@ -5,10 +5,10 @@ import { ArrowRight, Lightbulb, Database } from "lucide-react"
 
 const kontextQuellen = [
   {
-    name: "Wissensbausteine",
+    name: "Strukturiertes Fachwissen",
     typ: "Build" as const,
     beschreibung:
-      "Statisches Faktenwissen aus der Content-to-Context Pipeline. 8 Typen, 5 Dimensionen, validiert durch AOK-Fachredaktion. Atomare Einheiten, die genau eine Frage vollstaendig beantworten.",
+      "Redaktionell geprueftes Faktenwissen aus den Content-Pipelines. Liegt entweder als Cluster-Dokument (ein Markdown pro Thema) oder als atomare Wissensbausteine (mit Frontmatter-Metadaten) vor. Beides ist validiert und direkt als LLM-Context nutzbar.",
     beispiele: [
       "Pflegegeld-Betraege nach Pflegegrad mit Rechtsgrundlage",
       "Schritt-fuer-Schritt-Anleitung Pflegegrad beantragen",
@@ -68,9 +68,9 @@ const retrievalStufen = [
   {
     stufe: 1,
     name: "Full Context Loading",
-    prinzip: "Alle Bausteine eines Clusters komplett ins Context Window laden.",
+    prinzip: "Den gesamten Context eines Clusters komplett ins Context Window laden.",
     wieEsFunktioniert:
-      "80-150 Bausteine pro Cluster, je 250-400 Tokens = 20.000-60.000 Tokens. Passt in Claude (200k Context). Das LLM durchsucht den gesamten Context selbst und entscheidet, welche Bausteine relevant sind.",
+      "Ein Cluster-Dokument (4.000-27.000 Tokens) oder alle Bausteine eines Clusters (20.000-60.000 Tokens) werden vollstaendig geladen. Das LLM durchsucht den Context selbst und findet die relevanten Stellen.",
     staerken: [
       "Setup in 1-2 Stunden",
       "Kein Retrieval-Algorithmus noetig",
@@ -78,20 +78,20 @@ const retrievalStufen = [
     ],
     grenzen: [
       "Skaliert nicht ueber 1-2 Cluster",
-      "3 Cluster = 100k-200k Tokens nur fuer Content",
       "Hoehere Token-Kosten pro Anfrage",
+      "Bei grossen Clustern: Latenz durch langes Context Window",
     ],
-    geeignetFuer: "Demo, Proof of Concept, Content-Validierung",
+    geeignetFuer: "Demo, Proof of Concept, Fokus-Assistenten, Content-Validierung",
   },
   {
     stufe: 2,
     name: "MCP Server",
     prinzip:
-      "Model Context Protocol als Schnittstelle. Der Assistent ruft aktiv Bausteine ab statt alles vorzuladen.",
+      "Model Context Protocol als Schnittstelle. Der Assistent ruft aktiv Context ab statt alles vorzuladen.",
     wieEsFunktioniert:
-      "Der MCP Server liest Markdown-Dateien, parst Frontmatter und stellt Such-Tools bereit: suche_bausteine(), hole_baustein(), zeige_relationen(). Der Assistent entscheidet per Tool-Call, welche Bausteine er braucht.",
+      "Der MCP Server liest Markdown-Dateien, parst Metadaten und stellt Such-Tools bereit: suche_context(), hole_dokument(), zeige_relationen(). Der Assistent entscheidet per Tool-Call, welchen Context er braucht.",
     staerken: [
-      "Laedt nur relevante Bausteine",
+      "Laedt nur relevanten Context",
       "Skaliert cluster-uebergreifend",
       "Setup in 4-8 Stunden",
     ],
@@ -108,10 +108,10 @@ const retrievalStufen = [
     prinzip:
       "Semantische Aehnlichkeit (Vektorsuche) kombiniert mit Metadaten-Filtern (Frontmatter-Felder).",
     wieEsFunktioniert:
-      "Jeder Baustein wird als Embedding gespeichert, Metadaten als filterbare Felder. Bei einer Anfrage: Vektorsuche findet semantisch aehnliche Bausteine, Metadaten-Filter grenzt ein (Cluster, Zielgruppe, Pflegegrad), Re-Ranking liefert die relevantesten.",
+      "Jede Wissenseinheit wird als Embedding gespeichert, Metadaten als filterbare Felder. Bei einer Anfrage: Vektorsuche findet semantisch aehnliche Inhalte, Metadaten-Filter grenzt ein (Cluster, Zielgruppe, Pflegegrad), Re-Ranking liefert die relevantesten.",
     staerken: [
       "Semantisches Verstehen freier Nutzerfragen",
-      "Skaliert auf Tausende Bausteine",
+      "Skaliert auf Tausende Wissenseinheiten",
       "Praezise durch hybride Filterung",
     ],
     grenzen: [
@@ -153,7 +153,7 @@ const blaupauseAbschnitte = [
     name: "Kontextquellen-Inventar",
     frage: "Welche Quellen stehen fuer diesen Cluster zur Verfuegung — Build, Runtime, Hybrid?",
     beispiel:
-      "Wissensbausteine (Build): 15 Bausteine aus 10 Webseiten, vorhanden. Tools (Hybrid): Pflegegradrechner, Pflegestuetzpunkt-Finder — AOK-Tools existieren, Anbindung offen. Echtzeit-Daten (Runtime): nicht verfuegbar. Nutzerprofil (Runtime): nicht verfuegbar.",
+      "Fachwissen (Build): Cluster-Dokument aus 10 Webseiten oder 15 atomare Bausteine, vorhanden. Tools (Hybrid): Pflegegradrechner, Pflegestuetzpunkt-Finder — AOK-Tools existieren, Anbindung offen. Echtzeit-Daten (Runtime): nicht verfuegbar. Nutzerprofil (Runtime): nicht verfuegbar.",
   },
   {
     name: "Kompass-Konfiguration",
@@ -162,16 +162,16 @@ const blaupauseAbschnitte = [
       "Hard Constraints: Keine Pflegegrad-Zusagen, keine Diagnosen, Eskalation bei Einzelfall. Konfigurierbare Verhaltensweisen: Proaktive Hinweise auf Entlastungsleistungen aktivieren. Vertrauens-Hierarchie: SGB XI vor AOK-Empfehlungen vor Erfahrungswissen.",
   },
   {
-    name: "Kontextdimensionen-Check",
-    frage: "Sind alle 5 Dimensionen fuer jeden Baustein gefuellt?",
+    name: "Qualitaets-Check",
+    frage: "Erfuellt der Context die Qualitaetskriterien?",
     beispiel:
-      "Bedeutung: Titel, Typ, Cluster, Kategorie zugeordnet? Struktur: Relationen definiert? Qualitaet: Stand-Datum, Volatilitaet bewertet? Regeln: Haftungshinweis wo noetig? Zielgruppe: Tags gesetzt?",
+      "Cluster-Dokument: Keine Marketing-Sprache, jeder Absatz mit konkretem Fakt, Betraege mit Kontext, keine Wiederholungen, Quellen dokumentiert? Bausteine: 5 Dimensionen gefuellt (Bedeutung, Struktur, Qualitaet, Regeln, Zielgruppe), Relationen bidirektional?",
   },
   {
     name: "Retrieval-Konfiguration",
     frage: "Welche Retrieval-Stufe wird fuer diesen Cluster eingesetzt?",
     beispiel:
-      "PoC-Phase: Stufe 1 (Full Context Loading), 15 Bausteine passen komplett ins Context Window. Naechster Schritt: Stufe 2 (MCP Server) fuer cluster-uebergreifende Suche. Tool-APIs: Pflegegradrechner und Pflegenavigator parallel anbinden (Stufe 4).",
+      "PoC-Phase: Stufe 1 (Full Context Loading), Cluster-Dokument oder alle Bausteine komplett laden. Naechster Schritt: Stufe 2 (MCP Server) fuer cluster-uebergreifende Suche. Tool-APIs: Pflegegradrechner und Pflegenavigator parallel anbinden (Stufe 4).",
   },
   {
     name: "Abnahme und Freigabe",
@@ -198,7 +198,7 @@ export default function AgentContextPage() {
       <p className="mb-10 text-lg text-muted-foreground">
         Die Contextualisierung baut das Wissen auf. Agent Context beschreibt,
         was der Assistent im Moment der Antwort tatsaechlich weiss: welche Quellen
-        ihm zur Verfuegung stehen, wie er die richtigen Bausteine findet und wie
+        ihm zur Verfuegung stehen, wie er den richtigen Context findet und wie
         ein neuer Themencluster konfiguriert wird.
       </p>
 
@@ -210,9 +210,9 @@ export default function AgentContextPage() {
         </div>
         <p className="text-sm">
           Context ist alles, was der Assistent braucht, um eine Frage zu beantworten.
-          Nicht nur Wissensbausteine mit fachlich geprueften Fakten, sondern auch Tools,
-          Datenbanken und Nutzerdaten. Ein Context weiss nicht, wer ihn nutzt. Er weiss
-          nur, was wahr ist und was zur Verfuegung steht.
+          Nicht nur strukturiertes Fachwissen — ob als Cluster-Dokument oder als atomare
+          Bausteine — sondern auch Tools, Datenbanken und Nutzerdaten. Ein Context weiss
+          nicht, wer ihn nutzt. Er weiss nur, was wahr ist und was zur Verfuegung steht.
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           Tonalitaet, Empathie, Kanalanpassung — das ist Sache des Kommunikations-Layers.
@@ -243,7 +243,7 @@ export default function AgentContextPage() {
             <div className="space-y-0.5 border-t border-dashed border-muted pt-3">
               <p className="text-xs text-muted-foreground">
                 <ArrowRight className="mr-1 inline size-3 text-primary" />
-                Wissensbausteine aus der Pipeline
+                Strukturiertes Fachwissen aus den Pipelines
               </p>
               <p className="text-xs text-muted-foreground">
                 <ArrowRight className="mr-1 inline size-3 text-primary" />
@@ -293,9 +293,10 @@ export default function AgentContextPage() {
           <span className="text-primary">.</span>
         </h2>
         <p className="mb-4 text-sm text-muted-foreground">
-          Der Agent Context setzt sich aus vier Quellen zusammen. Heute sind Wissensbausteine
-          die Hauptquelle. Tools kommen dazu, Echtzeit-Daten und Nutzerprofil sind Zukunft.
-          Je mehr Quellen verfuegbar sind, desto praeziser und persoenlicher die Antwort.
+          Der Agent Context setzt sich aus vier Quellen zusammen. Heute ist strukturiertes
+          Fachwissen die Hauptquelle. Tools kommen dazu, Echtzeit-Daten und Nutzerprofil
+          sind Zukunft. Je mehr Quellen verfuegbar sind, desto praeziser und persoenlicher
+          die Antwort.
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {kontextQuellen.map((quelle) => (
@@ -359,7 +360,7 @@ export default function AgentContextPage() {
           <span className="text-primary">.</span>
         </h2>
         <p className="mb-6 text-sm text-muted-foreground">
-          Stufe 1-3 beschreiben, wie der Assistent Wissensbausteine findet — aufeinander aufbauend,
+          Stufe 1-3 beschreiben, wie der Assistent das richtige Wissen findet — aufeinander aufbauend,
           jede loest ein Problem der vorherigen. Stufe 4 ergaenzt den zweiten Retrieval-Pfad:
           Live-Daten aus Tools, Datenbanken und externen Services.
         </p>
@@ -423,8 +424,8 @@ export default function AgentContextPage() {
 
         <p className="mt-4 text-sm text-muted-foreground">
           In der Praxis laufen Wissens-Retrieval und Tool-Aufrufe parallel. Der Assistent sucht
-          die passenden Bausteine und fragt gleichzeitig relevante Services ab. Beides fliesst
-          zusammen in den Context, aus dem die Antwort entsteht.
+          den passenden Context und fragt gleichzeitig relevante Services ab. Beides fliesst
+          zusammen in den Gesamt-Context, aus dem die Antwort entsteht.
         </p>
       </div>
 
@@ -475,13 +476,13 @@ export default function AgentContextPage() {
         </h2>
         <p className="mb-4 text-sm text-muted-foreground">
           Metadaten wie Zielgruppe und Kontext-Tags helfen den richtigen Context zur Laufzeit
-          zu finden. Sie bestimmen nicht, wie er kommuniziert wird. Derselbe Baustein bedient
+          zu finden. Sie bestimmen nicht, wie er kommuniziert wird. Derselbe Context bedient
           voellig unterschiedliche Situationen.
         </p>
         <div className="border bg-card p-5">
-          <p className="mb-3 text-sm font-bold">Beispiel: Pflegegeld-Baustein</p>
+          <p className="mb-3 text-sm font-bold">Beispiel: Pflegegeld-Context</p>
           <p className="mb-3 text-sm text-muted-foreground">
-            Ein und derselbe Baustein. Drei verschiedene Intentionen. Drei verschiedene Antworten.
+            Dasselbe Wissen ueber Pflegegeld. Drei verschiedene Intentionen. Drei verschiedene Antworten.
           </p>
           <div className="space-y-2">
             <div className="flex items-start gap-3 border-t border-dashed border-muted pt-2">

@@ -4,7 +4,7 @@ import type { AppLink } from "@/types"
 export const apps: AppLink[] = [
   {
     name: "SAVA Engine",
-    url: "/pipeline",
+    url: "/dashboard",
     icon: Workflow,
     description: "Werkbank fuer die SAVA Engine",
     active: true,

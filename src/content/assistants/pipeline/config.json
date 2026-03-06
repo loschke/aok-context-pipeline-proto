@@ -1,11 +1,11 @@
 {
   "name": "Pipeline-Methodik",
   "emoji": "🔧",
-  "description": "Methodik-Hilfe fuer die 8 Pipeline-Schritte: Extraktion, Typisierung, Taxonomie, Kontext-Anreicherung.",
+  "description": "Methodik-Hilfe fuer beide Contextualisierungsansaetze: Cluster-Dokumente (4 Schritte) und atomare Bausteine (8 Schritte).",
   "suggestions": [
-    "Was sind die 8 Schritte der Context Pipeline?",
-    "Wie strukturiere ich einen FAKT-Baustein?",
-    "Zeig mir ein Frontmatter-Beispiel fuer einen Pflege-Baustein",
-    "Wie entscheide ich zwischen FAKT und EMPFEHLUNG als Bausteintyp?"
+    "Wann sollte ich die Cluster-Pipeline nutzen und wann die Baustein-Pipeline?",
+    "Was sind die 4 Schritte der Cluster-Pipeline?",
+    "Wie entscheide ich zwischen FAKT und EMPFEHLUNG als Bausteintyp?",
+    "Was sind die Qualitaetskriterien fuer ein Cluster-Dokument?"
   ]
 }

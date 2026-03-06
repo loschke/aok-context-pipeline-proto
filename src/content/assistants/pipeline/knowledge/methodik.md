@@ -1,11 +1,13 @@
-# Content-to-Context Methodik — Kernkonzepte
+# Baustein-Pipeline — Methodik und Kernkonzepte
+
+Dieses Dokument beschreibt die Baustein-Pipeline (8 Schritte, atomare Wissensbausteine). Fuer die Cluster-Pipeline (4 Schritte, Cluster-Dokumente) siehe `cluster-pipeline.md`.
 
 ## Das Problem
 Website-Content ist nicht direkt fuer LLMs nutzbar. Er hat niedrige Informationsdichte, fragmentiertes Wissen, fehlende Relationen, Marketing-Noise und versteckte Accordion-Inhalte. Die Website hat Content, aber dem AI-System fehlt der Kontext.
 
 ## Zwei-Ebenen-Modell
 - **Content-Ebene:** Website, fuer Menschen optimiert (SEO, Marketing, Navigation)
-- **Context-Ebene:** AI-Assistent, strukturierte Markdown-Chunks mit Metadaten
+- **Context-Ebene:** AI-Assistent, strukturierte Markdown-Chunks mit Metadaten (Bausteine) oder thematisch gegliedertes Dokument (Cluster)
 
 ## 5 Kontext-Dimensionen
 1. **Bedeutung** — Was beschreibt dieser Baustein? Thema, Kernaussagen, Zusammenfassung

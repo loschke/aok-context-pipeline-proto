@@ -1,22 +1,22 @@
 "use client"
 
-import type { PipelineRunV2, FileTreeNode } from "@/types/pipeline-v2"
-import { StepRailV2 } from "./step-rail-v2"
-import { ClusterFileTree } from "./cluster-file-tree"
-import { ContentPanel } from "./content-panel"
-import { usePipelineV2State } from "./use-pipeline-v2-state"
+import type { ClusterPipelineRun, FileTreeNode } from "@/types/cluster-pipeline"
+import { StepRail } from "./step-rail"
+import { ClusterFileTree } from "@/components/pipeline-v2/cluster-file-tree"
+import { ClusterContentPanel } from "./content-panel"
+import { useClusterPipelineState } from "./use-cluster-pipeline-state"
 
-interface PipelineV2WorkbenchProps {
+interface ClusterPipelineWorkbenchProps {
   cluster: string
-  initialState: PipelineRunV2 | null
+  initialState: ClusterPipelineRun | null
   initialTree: FileTreeNode[]
 }
 
-export function PipelineV2Workbench({
+export function ClusterPipelineWorkbench({
   cluster,
   initialState,
   initialTree,
-}: PipelineV2WorkbenchProps) {
+}: ClusterPipelineWorkbenchProps) {
   const {
     pipelineState,
     activeStep,
@@ -37,7 +37,7 @@ export function PipelineV2Workbench({
     saveFile,
     backToActions,
     handleStepComplete,
-  } = usePipelineV2State(cluster, initialState, initialTree)
+  } = useClusterPipelineState(cluster, initialState, initialTree)
 
   const steps = pipelineState?.steps || []
 
@@ -49,7 +49,7 @@ export function PipelineV2Workbench({
           {cluster}<span className="text-primary">.</span>
         </h1>
         <p className="text-sm text-muted-foreground">
-          Baustein-Pipeline — 8-Step Engine
+          Cluster Pipeline — 4-Step Cluster-Dokument Pipeline
         </p>
       </div>
 
@@ -62,7 +62,7 @@ export function PipelineV2Workbench({
               Laden...
             </div>
           ) : (
-            <StepRailV2
+            <StepRail
               steps={steps}
               activeStep={activeStep}
               onStepClick={setActiveStep}
@@ -86,7 +86,7 @@ export function PipelineV2Workbench({
 
         {/* Content Panel */}
         <div className="min-w-0 flex-1 overflow-y-auto rounded-lg border">
-          <ContentPanel
+          <ClusterContentPanel
             activeStep={activeStep}
             panelMode={panelMode}
             steps={steps}

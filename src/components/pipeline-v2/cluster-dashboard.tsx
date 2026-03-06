@@ -70,10 +70,10 @@ export function ClusterDashboard({ initialClusters }: ClusterDashboardProps) {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight">
-            Pipeline v2<span className="text-primary">.</span>
+            Baustein-Pipeline<span className="text-primary">.</span>
           </h1>
           <p className="text-sm text-muted-foreground">
-            Content-Cluster in strukturierte Wissensbausteine fuer die SAVA Engine transformieren
+            8-Step Pipeline: Content zu atomaren Wissensbausteinen mit Frontmatter-Metadaten
           </p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import type { NavItem, ModuleItem } from "@/types"
 export const primaryModules: ModuleItem[] = [
   {
     title: "Dashboard",
-    url: "/pipeline",
+    url: "/dashboard",
     icon: LayoutDashboard,
     description: "Fortschritt und Status der Pipeline",
     chatContext: "pipeline",
@@ -19,10 +19,18 @@ export const primaryModules: ModuleItem[] = [
     badge: "Chat",
   },
   {
-    title: "Context Pipeline",
+    title: "Baustein-Pipeline",
     url: "/pipeline-v2",
     icon: Workflow,
-    description: "Content-Cluster in Wissensbausteine transformieren",
+    description: "8-Step Pipeline: Content zu atomaren Wissensbausteinen",
+    variant: "compact",
+    badge: "Tool",
+  },
+  {
+    title: "Cluster Pipeline",
+    url: "/cluster-pipeline",
+    icon: Layers,
+    description: "Webseiten-Cluster zu LLM-optimierten Dokumenten",
     variant: "compact",
     badge: "Tool",
   },
@@ -51,7 +59,7 @@ export const primaryModules: ModuleItem[] = [
     title: "Contextualisierung",
     url: "/contextualisierung",
     icon: Layers,
-    description: "8-Schritte-Pipeline von Content zu Context",
+    description: "Zwei Pipeline-Ansaetze: Cluster-Dokumente und atomare Bausteine",
     badge: "Info",
   },
   {
